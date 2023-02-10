@@ -72,14 +72,15 @@ return [
     //Item Sales Table
 
     'item_sales_no' => 'No',
-    'PayFromDT' => 'Pay From DT',
-    'PayToDT' => 'Pay To DT',
+    'payment_from_date' => 'Payment From Date',
+    'payment_to_date' => 'Payment To Date',
+    'from_morning_evening' => 'From Morning Evening',
+    'to_morning_evening' => 'To Morning Evening',
     'Payment_Rate' => 'Payment Rate',
-    'DeductFromDT' => 'Deduct From DT',
-    'DeductToDT' => 'Deduct To DT',
-    'Deduct_Rate' => 'Deduct Rate',
-    'Total_DT' => 'Total DT',
-    'Total_Rate' => 'Total Rate',
+    'deduct_from_date' => 'Deduct From Date',
+    'deduct_to_date' => 'Deduct To Date',
+    'deduct_morning_evening' => 'Deduct Morning Evening',
+    'deduct_payment' => 'Deduct Payment',
     'itemQuantity' => 'item Quantity',
     'CustPhoto' => 'Customer Photo',
     'item_sales_action' => 'Action',
@@ -89,13 +90,14 @@ return [
     'select_item_name' => 'Select Item Name',
     'item_sales_edit_form' => 'Item Sales Edit Form',
     'item_sales_table' => 'Item Sales Table',
-    'deduct_payment' => 'Deduct Payment',
+
 
     //Item Purchase Table
 
     'item_purchase_no' => 'No',
     'Purchase_Rate' => 'Purchase Rate',
     'Sales_Rates' => 'Sales Rates',
+    'purchase_date' => 'Purchase Date',
     'item_purchase_action' => 'Action',
 
     'item_purchase_form' => 'Item Purchase Add Form',

@@ -20,6 +20,7 @@ class CreateItemPurchasesTable extends Migration
             $table->bigInteger('created_by')->unsigned();
             $table->double('Purchase_Rate');
             $table->double('Sales_Rates');
+            $table->date('purchase_date');
             $table->timestamps();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_name_id')->references('id')->on('item_names')->onDelete('cascade');

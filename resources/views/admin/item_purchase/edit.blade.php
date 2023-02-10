@@ -23,7 +23,7 @@
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.item_name')</label>
-                                    <select class="form-control @error('item_name_id') is-invalid @enderror"
+                                    <select class="form-control select2 @error('item_name_id') is-invalid @enderror"
                                             name="item_name_id">
                                         <option value="">---@lang('langs.select_item_name')---</option>
                                         @foreach($item_names as $item_name)
@@ -45,7 +45,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label for="inputNanme4" class="form-label">@lang('langs.Purchase_Rate')</label>
                                     <input type="number" name="Purchase_Rate" value="{{$item_purchases->Purchase_Rate}}"
                                            class="form-control @error('Purchase_Rate') is-invalid @enderror"
@@ -54,7 +54,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label for="inputNanme4" class="form-label">@lang('langs.Sales_Rates')</label>
                                     <input type="number" name="Sales_Rates" value="{{$item_purchases->Sales_Rates}}"
                                            class="form-control @error('Sales_Rates') is-invalid @enderror"
@@ -63,7 +63,15 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+                                <div class="col-4">
+                                    <label for="inputNanme4" class="form-label">@lang('langs.purchase_date')</label>
+                                    <input type="date" name="purchase_date" value="{{$item_purchases->purchase_date}}"
+                                           class="form-control @error('purchase_date') is-invalid @enderror"
+                                           id="inputNanme4">
+                                    @error('purchase_date')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-outline-info">@lang('langs.update')</button>
                                     <a href="{{route('item_purchase.index')}}" type="reset"
@@ -82,3 +90,13 @@
 
 
 @endsection
+@push('page_scripts')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+
+    </script>
+@endpush

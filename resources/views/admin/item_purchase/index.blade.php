@@ -24,6 +24,7 @@
                                     <th scope="col">@lang('langs.itemQuantity')</th>
                                     <th scope="col">@lang('langs.Purchase_Rate')</th>
                                     <th scope="col">@lang('langs.Sales_Rates')</th>
+                                    <th scope="col">@lang('langs.purchase_date')</th>
                                     <th scope="col">@lang('langs.item_name_action')</th>
                                 </tr>
                                 </thead>
@@ -35,6 +36,7 @@
                                         <td>{{$item_purchase->item_quantity}}</td>
                                         <td>{{$item_purchase->Purchase_Rate}}</td>
                                         <td>{{$item_purchase->Sales_Rates}}</td>
+                                        <td>{{$item_purchase->purchase_date}}</td>
                                         <td>
                                             {!! Form::open(['route' => ['item_purchase.destroy', $item_purchase->id], 'method' => 'delete']) !!}
                                             <div class='btn-group'>

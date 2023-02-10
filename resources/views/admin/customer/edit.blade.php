@@ -23,7 +23,8 @@
                                 <div class="col-12">
                                     <label for="inputNanme4" class="form-label">@lang('langs.user_name')</label>
 
-                                    <select class="form-control @error('user_id') is-invalid @enderror" name="user_id"
+                                    <select class="form-control select2 @error('user_id') is-invalid @enderror"
+                                            name="user_id"
                                             id="users">
                                         <option value="">---@lang('langs.select_user_name')---</option>
                                         @foreach($users as $user)
@@ -116,3 +117,13 @@
 
 
 @endsection
+@push('page_scripts')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+
+    </script>
+@endpush

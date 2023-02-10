@@ -28,7 +28,6 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $request->validate(Customers::$rules);
         $validatedData = $request->validate([
           'account_number' => 'required|unique:customers,account_number'

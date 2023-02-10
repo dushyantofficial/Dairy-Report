@@ -29,7 +29,8 @@
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.to_date')</label>
                                     <input type="date" name="payment_to_date" value="{{old('payment_to_date')}}"
-                                           class="form-control @error('payment_to_date') is-invalid @enderror" id="inputEmail4">
+                                           class="form-control @error('payment_to_date') is-invalid @enderror"
+                                           id="inputEmail4">
                                     @error('payment_to_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -129,7 +130,7 @@
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.customer_name')</label>
-                                    <select class="form-control @error('customer_id') is-invalid @enderror"
+                                    <select class="form-control select2 @error('customer_id') is-invalid @enderror"
                                             name="customer_id">
                                         <option value="">---@lang('langs.select_customer_name')---</option>
                                         @foreach($customers as $customer)
@@ -143,7 +144,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.item_name')</label>
-                                    <select class="form-control @error('item_name_id') is-invalid @enderror"
+                                    <select class="form-control select2 @error('item_name_id') is-invalid @enderror"
                                             name="item_name_id">
                                         <option value="">---@lang('langs.select_item_name')---</option>
                                         @foreach($item_namess as $item_names)
@@ -192,3 +193,13 @@
 
 
 @endsection
+@push('page_scripts')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+
+    </script>
+@endpush

@@ -18,6 +18,7 @@ class ItemPurchase extends Model
         'Purchase_Rate',
         'Sales_Rates',
         'created_by',
+        'purchase_date',
     ];
 
 
@@ -26,6 +27,7 @@ class ItemPurchase extends Model
         'item_quantity' => 'required',
         'Purchase_Rate' => 'required',
         'Sales_Rates' => 'required',
+        'purchase_date' => 'required',
     ];
 
     public function item_name()
