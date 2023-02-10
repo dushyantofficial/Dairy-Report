@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\Customers;
 use App\Models\admin\ItemName;
+use App\Models\admin\ItemPurchase;
 use App\Models\admin\ItemSales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,19 +24,20 @@ class ItemSalesController extends Controller
     public function create()
     {
         $customers = Customers::all();
-        $item_namess = ItemName::all();
+        $item_namess = ItemPurchase::all();
         return view('admin.item_sales.create', compact('item_namess', 'customers'));
     }
 
     public function store(Request $request)
     {
+
         $request->validate(ItemSales::$rules);
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
-        if ($request->hasFile("CustPhoto")) {
-            $img = $request->file("CustPhoto");
+        if ($request->hasFile("customer_photo")) {
+            $img = $request->file("customer_photo");
             $img->store('public/images');
-            $input['CustPhoto'] = $img->hashName();
+            $input['customer_photo'] = $img->hashName();
         }
         ItemSales::create($input);
         return redirect()->route('item_sales.index')->with('success', Lang::get('langs.flash_suc'));

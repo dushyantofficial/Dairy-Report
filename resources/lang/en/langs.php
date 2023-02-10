@@ -89,6 +89,7 @@ return [
     'select_item_name' => 'Select Item Name',
     'item_sales_edit_form' => 'Item Sales Edit Form',
     'item_sales_table' => 'Item Sales Table',
+    'deduct_payment' => 'Deduct Payment',
 
     //Item Purchase Table
 

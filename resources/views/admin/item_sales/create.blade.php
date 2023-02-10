@@ -19,98 +19,113 @@
                                 <h1 class="card-title">@lang('langs.choose_payment_date')</h1>
                                 <div class="col-6">
                                     <label for="inputNanme4" class="form-label">@lang('langs.from_date')</label>
-                                    <input type="date" name="PayFromDT" value="{{old('PayFromDT')}}"
-                                           class="form-control @error('PayFromDT') is-invalid @enderror"
+                                    <input type="date" name="payment_from_date" value="{{old('payment_from_date')}}"
+                                           class="form-control @error('payment_from_date') is-invalid @enderror"
                                            id="inputNanme4">
-                                    @error('PayFromDT')
+                                    @error('payment_from_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.to_date')</label>
-                                    <input type="date" name="PayToDT" value="{{old('PayToDT')}}"
-                                           class="form-control @error('PayToDT') is-invalid @enderror" id="inputEmail4">
-                                    @error('PayToDT')
+                                    <input type="date" name="payment_to_date" value="{{old('payment_to_date')}}"
+                                           class="form-control @error('payment_to_date') is-invalid @enderror" id="inputEmail4">
+                                    @error('payment_to_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-6">
                                     <select
-                                        class="form-control select2 @error('from_morning_evening') is-invalid @enderror"
+                                        class="form-control"
                                         name="from_morning_evening">
                                         <option
                                             value="morning" {{ old('from_morning_evening') == request()->to_morning_evening ? 'selected' : '' }}>@lang('langs.morning')</option>
                                         <option
                                             value="evening" {{ old('from_morning_evening') == request()->to_morning_evening ? 'selected' : '' }}>@lang('langs.evening')</option>
                                     </select>
-                                    @error('customer_id')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-control @error('to_morning_evening') is-invalid @enderror"
+                                    <select class="form-control"
                                             name="to_morning_evening">
                                         <option
                                             value="morning" {{ old('to_morning_evening') == request()->to_morning_evening ? 'selected' : '' }}>@lang('langs.morning')</option>
                                         <option
                                             value="evening" {{ old('to_morning_evening') == request()->to_morning_evening ? 'selected' : '' }}>@lang('langs.evening')</option>
                                     </select>
-                                    @error('customer_id')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                                 <h1 class="card-title">@lang('langs.choose_deduct_date')</h1>
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.from_date')</label>
-                                    <input type="date" name="DeductFromDT" value="{{old('DeductFromDT')}}"
-                                           class="form-control @error('DeductFromDT') is-invalid @enderror"
+                                    <input type="date" name="deduct_from_date" value="{{old('deduct_from_date')}}"
+                                           class="form-control @error('deduct_from_date') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('DeductFromDT')
+                                    @error('deduct_from_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.to_date')</label>
-                                    <input type="date" name="DeductToDT" value="{{old('DeductToDT')}}"
-                                           class="form-control @error('DeductToDT') is-invalid @enderror"
+                                    <input type="date" name="deduct_to_date" value="{{old('deduct_to_date')}}"
+                                           class="form-control @error('deduct_to_date') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('DeductToDT')
+                                    @error('deduct_to_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="inputEmail4" class="form-label">@lang('langs.Deduct_Rate')</label>
-                                    <input type="text" name="Deduct_Rate" value="{{old('Deduct_Rate')}}"
-                                           class="form-control @error('Deduct_Rate') is-invalid @enderror"
+                                    <label for="inputEmail4" class="form-label">@lang('langs.entry_date')</label>
+                                    <input type="date" name="entry_date" value="{{old('entry_date')}}"
+                                           class="form-control @error('entry_date') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('Deduct_Rate')
+                                    @error('entry_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="inputEmail4" class="form-label">@lang('langs.Total_DT')</label>
-                                    <input type="text" name="Total_DT" value="{{old('Total_DT')}}"
-                                           class="form-control @error('Total_DT') is-invalid @enderror"
+                                    <label for="inputEmail4" class="form-label"></label>
+                                    <label for="inputEmail4" class="form-label"></label>
+                                    <select class="form-control"
+                                            name="deduct_morning_evening">
+                                        <option
+                                            value="morning" {{ old('deduct_morning_evening') == request()->deduct_morning_evening ? 'selected' : '' }}>@lang('langs.morning')</option>
+                                        <option
+                                            value="evening" {{ old('deduct_morning_evening') == request()->deduct_morning_evening ? 'selected' : '' }}>@lang('langs.evening')</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <label for="inputEmail4" class="form-label">@lang('langs.payment')</label>
+                                    <input type="number" name="payment" value="{{old('payment')}}"
+                                           class="form-control @error('payment') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('Total_DT')
+                                    @error('payment')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-4">
+                                    <label for="inputEmail4" class="form-label">@lang('langs.deduct_payment')</label>
+                                    <input type="number" name="deduct_payment" value="{{old('deduct_payment')}}"
+                                           class="form-control @error('deduct_payment') is-invalid @enderror"
+                                           id="inputEmail4">
+                                    @error('deduct_payment')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-4">
+                                    <label for="inputEmail4" class="form-label">@lang('langs.total')</label>
+                                    <input type="number" name="total" value="{{old('total')}}"
+                                           class="form-control @error('total') is-invalid @enderror"
+                                           id="inputEmail4">
+                                    @error('total')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-6">
-                                    <label for="inputEmail4" class="form-label">@lang('langs.Total_Rate')</label>
-                                    <input type="number" name="Total_Rate" value="{{old('Total_Rate')}}"
-                                           class="form-control @error('Total_Rate') is-invalid @enderror"
-                                           id="inputEmail4">
-                                    @error('Total_Rate')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.customer_name')</label>
@@ -133,7 +148,7 @@
                                         <option value="">---@lang('langs.select_item_name')---</option>
                                         @foreach($item_namess as $item_names)
                                             <option
-                                                value="{{$item_names->id}}" {{ old('item_name_id') == $item_names->id ? 'selected' : '' }}>{{$item_names->item_name}}</option>
+                                                value="{{$item_names->id}}" {{ old('item_name_id') == $item_names->id ? 'selected' : '' }}>{{$item_names->item_name->item_name}}</option>
                                         @endforeach
                                     </select>
                                     @error('item_name_id')
@@ -142,20 +157,20 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.itemQuantity')</label>
-                                    <input type="number" name="itemQuantity" value="{{old('itemQuantity')}}"
-                                           class="form-control @error('itemQuantity') is-invalid @enderror"
+                                    <input type="number" name="item_quantity" value="{{old('item_quantity')}}"
+                                           class="form-control @error('item_quantity') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('itemQuantity')
+                                    @error('item_quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.CustPhoto')</label>
-                                    <input type="file" name="CustPhoto" value="{{old('CustPhoto')}}"
-                                           class="form-control @error('CustPhoto') is-invalid @enderror"
+                                    <input type="file" name="customer_photo" value="{{old('customer_photo')}}"
+                                           class="form-control @error('customer_photo') is-invalid @enderror"
                                            id="inputEmail4">
-                                    @error('CustPhoto')
+                                    @error('customer_photo')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

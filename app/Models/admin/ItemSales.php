@@ -9,37 +9,26 @@ class ItemSales extends Model
 {
     use HasFactory;
 
-
-    public static $rules = [
-        'PayFromDT' => 'required',
-        'PayToDT' => 'required',
-        'itemQuantity' => 'required',
-        'CustPhoto' => 'required',
-        'item_name_id' => 'required',
-        'customer_id' => 'required',
-        'Payment_Rate' => 'required',
-        'DeductFromDT' => 'required',
-        'DeductToDT' => 'required',
-        'Deduct_Rate' => 'required',
-        'Total_DT' => 'required',
-        'Total_Rate' => 'required',
-    ];
     public $table = 'item_sales';
     protected $fillable = [
-        'PayFromDT',
-        'PayToDT',
-        'Payment_Rate',
-        'DeductFromDT',
-        'DeductToDT',
-        'Deduct_Rate',
-        'Total_DT',
-        'Total_Rate',
+        'payment_from_date',
+        'payment_to_date',
+        'from_morning_evening',
+        'to_morning_evening',
+        'deduct_from_date',
+        'deduct_to_date',
+        'entry_date',
+        'deduct_morning_evening',
+        'payment',
+        'deduct_payment',
+        'total',
         'customer_id',
         'item_name_id',
-        'itemQuantity',
-        'CustPhoto',
+        'item_quantity',
+        'customer_photo',
         'created_by',
     ];
+
 
     public function customers()
     {
@@ -48,6 +37,21 @@ class ItemSales extends Model
 
     public function item_names()
     {
-        return $this->belongsTo(ItemName::class, 'item_name_id');
+        return $this->belongsTo(ItemPurchase::class, 'item_name_id');
     }
+
+    public static $rules = [
+        'payment_from_date' => 'required',
+        'payment_to_date' => 'required',
+        'item_quantity' => 'required',
+        'customer_photo' => 'required',
+        'item_name_id' => 'required',
+        'customer_id' => 'required',
+        'entry_date' => 'required',
+        'deduct_from_date' => 'required',
+        'deduct_to_date' => 'required',
+        'payment' => 'required',
+        'deduct_payment' => 'required',
+        'total' => 'required',
+    ];
 }
