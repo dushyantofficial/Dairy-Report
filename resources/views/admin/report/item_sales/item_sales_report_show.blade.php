@@ -21,7 +21,7 @@
                             <a href="{{route('item-sales-report-show')}}" class="btn btn-outline-dark ml-3">Reset</a>
 
                             <a class="btn btn-outline-danger"
-                               href="{{route('item-sales-report-pdf')}}?date={{request()->date}}">
+                               href="{{route('item-sales-report-show-pdf')}}?date={{request()->date}}">
                                 Pdf </a>
 
 

@@ -179,7 +179,7 @@ class ReportController extends Controller
 
     }
 
-    public function item_sales_report_pdf(Request $request)
+    public function item_sales_report_show_pdf(Request $request)
     {
         $item_sales_reports = ItemSales::all();
         if ($request->date) {
@@ -191,7 +191,7 @@ class ReportController extends Controller
                 ->whereDate('created_at', '<=', $end)->get();
         }
         $item_salesPaper = array(0, 0, 1000.00, 900.80);
-        $pdf = PDF::loadView('admin.report.item_sales.item_sales_report_pdf', compact('item_sales_reports'))->setPaper($item_salesPaper);
+        $pdf = PDF::loadView('admin.report.item_sales.item_sales_report_show_pdf', compact('item_sales_reports'))->setPaper($item_salesPaper);
         if (isset($start)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'item_sales_report.pdf');
         } else {
