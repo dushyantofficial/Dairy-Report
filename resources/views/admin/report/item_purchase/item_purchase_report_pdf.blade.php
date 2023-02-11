@@ -83,6 +83,10 @@
                                 <th style="padding: 7px;"> @lang('langs.Sales_Rates')</th>
 
                             @endif
+                            @if(isset($input['field']['purchase_date']))
+                                <th> @lang('langs.purchase_date')</th>
+
+                            @endif
                             @if(isset($input['field']['created_by']))
                                 <th style="padding: 7px;"> @lang('langs.created_by')</th>
 
@@ -112,6 +116,10 @@
                                 @endif
                                 @if(isset($input['field']['Sales_Rates']))
                                     <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
+                                @endif
+                                @if(isset($input['field']['purchase_date']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>
+
                                 @endif
                                 @if(isset($input['field']['created_by']))
                                     <td style="padding: 7px;">{{$item_purchase_report->created_bys->user_name}} </td>

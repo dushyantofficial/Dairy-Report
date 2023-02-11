@@ -105,30 +105,6 @@
             @endif
         }
 
-        function pdfreport() {
-
-            html2canvas($('#my_report')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    @if(\Illuminate\Support\Facades\Auth::user()->role == config('constants.ROLE.ADMIN'))
-                    pdfMake.createPdf(docDefinition).download('<?php if (isset($user_report)) {
-                        echo $user_report->name;
-                    } ?>_Reports.pdf');
-                    @else
-                    pdfMake.createPdf(docDefinition).download('<?php if (isset(Auth::user()->name)) {
-                        echo Auth::user()->name;
-                    } ?>_Reports.pdf');
-                    @endif
-                }
-            });
-
-        }
 
     </script>
 

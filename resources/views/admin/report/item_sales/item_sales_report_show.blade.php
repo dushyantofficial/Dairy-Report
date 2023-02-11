@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-3">
-                            <form action="{{ route('item-purchase-report-show') }}" method="GET"
+                            <form action="{{ route('item-sales-report-show') }}" method="GET"
                                   enctype="multipart/form-data">
                                 <input id="reportrange" name="date"
                                        @if(request('date') != 'null') value="{{request('date')}}"
@@ -18,10 +18,10 @@
                         <div class="col-6">
                             <button class="btn btn-outline-success">Filter</button>
                             </span>
-                            <a href="{{route('item-purchase-report-show')}}" class="btn btn-outline-dark ml-3">Reset</a>
+                            <a href="{{route('item-sales-report-show')}}" class="btn btn-outline-dark ml-3">Reset</a>
 
                             <a class="btn btn-outline-danger"
-                               href="{{route('item-purchase-report-show-pdf')}}?date={{request()->date}}">
+                               href="{{route('item-sales-report-pdf')}}?date={{request()->date}}">
                                 Pdf </a>
 
 
@@ -31,7 +31,7 @@
                             <button type="button" class="btn btn-outline-primary"
                                     onclick="ExportToExcel('xlsx')">Excel
                             </button>
-                            <a href="{{route('item-purchase-report-show')}}"
+                            <a href="{{route('item-sales-report-show')}}"
                                class="btn btn-outline-warning ml-3">Print</a>
 
                         </div>
@@ -43,31 +43,49 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body table-responsive" id="sampleTable">
-                            <h5 class="card-title">@lang('langs.item_purchase_report_table')</h5>
+                            <h5 class="card-title">@lang('langs.item_sales_report_table')</h5>
                             <div class="tile-body" id="my_report">
                                 <table id="sampleTable" class="table datatable">
                                     <thead>
                                     <tr>
-                                        <th scope="col">@lang('langs.item_purchase_no')</th>
+                                        <th scope="col">@lang('langs.item_sales_no')</th>
+                                        <th scope="col">@lang('langs.customer_name')</th>
                                         <th scope="col">@lang('langs.item_name')</th>
                                         <th scope="col">@lang('langs.itemQuantity')</th>
-                                        <th scope="col">@lang('langs.Purchase_Rate')</th>
-                                        <th scope="col">@lang('langs.Sales_Rates')</th>
-                                        <th scope="col">@lang('langs.purchase_date')</th>
-                                        <th scope="col">@lang('langs.created_at')</th>
+                                        <th scope="col">@lang('langs.payment_from_date')</th>
+                                        <th scope="col">@lang('langs.payment_to_date')</th>
+                                        <th scope="col">@lang('langs.from_morning_evening')</th>
+                                        <th scope="col">@lang('langs.to_morning_evening')</th>
+                                        <th scope="col">@lang('langs.deduct_from_date')</th>
+                                        <th scope="col">@lang('langs.deduct_to_date')</th>
+                                        <th scope="col">@lang('langs.entry_date')</th>
+                                        <th scope="col">@lang('langs.deduct_morning_evening')</th>
+                                        <th scope="col">@lang('langs.payment')</th>
+                                        <th scope="col">@lang('langs.deduct_payment')</th>
+                                        <th scope="col">@lang('langs.total')</th>
+                                        {{--                                    <th scope="col">@lang('langs.item_sales_action')</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(isset($filter_item_purchase))
-                                        @foreach($filter_item_purchase as $item_purchase)
+                                    @if(isset($filter_item_sales))
+                                        @foreach($filter_item_sales as $item_sales)
                                             <tr>
                                                 <th scope="row">{{$loop->iteration}}</th>
-                                                <td>{{$item_purchase->item_name->item_name}}</td>
-                                                <td>{{$item_purchase->item_quantity}}</td>
-                                                <td>{{$item_purchase->Purchase_Rate}}</td>
-                                                <td>{{$item_purchase->Sales_Rates}}</td>
-                                                <td>{{$item_purchase->purchase_date}}</td>
-                                                <td>{{$item_purchase->created_at}}</td>
+                                                <td>{{$item_sales->customers->customer_name}}</td>
+                                                <td>{{$item_sales->item_names->item_name->item_name}}</td>
+                                                <td>{{$item_sales->item_quantity}}</td>
+                                                <td>{{$item_sales->payment_from_date}}</td>
+                                                <td>{{$item_sales->payment_to_date}}</td>
+                                                <td>{{$item_sales->from_morning_evening}}</td>
+                                                <td>{{$item_sales->to_morning_evening}}</td>
+                                                <td>{{$item_sales->deduct_from_date}}</td>
+                                                <td>{{$item_sales->deduct_to_date}}</td>
+                                                <td>{{$item_sales->entry_date}}</td>
+                                                <td>{{$item_sales->deduct_morning_evening}}</td>
+                                                <td>{{$item_sales->payment}}</td>
+                                                <td>{{$item_sales->deduct_payment}}</td>
+                                                <td>{{$item_sales->total}}</td>
+
                                             </tr>
                                         @endforeach
                                     @endif

@@ -1,13 +1,6 @@
 <html>
 <head>
     <style>
-        /*#ascrail2002 {*/
-        /*    z-index: 0 !important;*/
-        /*}*/
-
-        /*.nicescroll-rails-vr {*/
-        /*    z-index: 0;*/
-        /*}*/
 
         @media print {
             .player-chart nice {
@@ -38,9 +31,24 @@
 <body>
 <section class="content-header">
     <div class="container-fluid">
+        @php
+            $user = \Illuminate\Support\Facades\Auth::user();
+            if (request()->date) {
+                $date = request()->date;
+                $name = explode(' ', $date);
+                $start = date('Y-m-d', strtotime($name[0]));
+                $end = date('Y-m-d', strtotime($name[2]));
+            }
+        @endphp
         <div class="row mb-2">
+            <center>  <h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
+                <h2>Bank Payment Statement</h2>
+                @if (request()->date)
+                    <h2>Date :{{$start}} To :{{$end}} Shift :Morning To :Evening</h2>
+                @endif
+            </center>
             <div class="col-sm-6">
-                <h1>Item Sales Reports</h1>
+                <h1>@lang('langs.item_purchase_report')</h1>
             </div>
         </div>
     </div>
@@ -56,37 +64,72 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.item_sales_no')</th>
-                            <th style="padding: 7px;">@lang('langs.customer_name')</th>
-                            <th style="padding: 7px;">@lang('langs.item_name')</th>
-                            <th style="padding: 7px;">@lang('langs.PayFromDT')</th>
-                            <th style="padding: 7px;">@lang('langs.PayToDT')</th>
-                            <th style="padding: 7px;">@lang('langs.Payment_Rate')</th>
-                            <th style="padding: 7px;">@lang('langs.DeductFromDT')</th>
-                            <th style="padding: 7px;">@lang('langs.DeductToDT')</th>
-                            <th style="padding: 7px;">@lang('langs.Deduct_Rate')</th>
-                            <th style="padding: 7px;">@lang('langs.Total_DT')</th>
-                            <th style="padding: 7px;">@lang('langs.Total_Rate')</th>
-                            <th style="padding: 7px;">@lang('langs.itemQuantity')</th>
+                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
+                            @if(isset($input['field']['item_name_id']))
+                                <th style="padding: 7px;"> @lang('langs.item_name')</th>
+
+                            @endif
+                            @if(isset($input['field']['item_quantity']))
+                                <th style="padding: 7px;"> @lang('langs.itemQuantity')</th>
+
+                            @endif
+
+                            @if(isset($input['field']['Purchase_Rate']))
+                                <th style="padding: 7px;"> @lang('langs.Purchase_Rate')</th>
+
+                            @endif
+
+                            @if(isset($input['field']['Sales_Rates']))
+                                <th style="padding: 7px;"> @lang('langs.Sales_Rates')</th>
+
+                            @endif
+                            @if(isset($input['field']['purchase_date']))
+                                <th> @lang('langs.purchase_date')</th>
+
+                            @endif
+                            @if(isset($input['field']['created_by']))
+                                <th style="padding: 7px;"> @lang('langs.created_by')</th>
+
+                            @endif
+
+                            @if(isset($input['field']['created_at']))
+                                <th style="padding: 7px;"> Created Date</th>
+
+                            @endif
 
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($item_sales_reports as $item_sales_report)
+                        @foreach($item_purchase_reports as $item_purchase_report)
                             <tr style="text-align: center;">
                                 <td style="padding: 7px;">{{ $loop->iteration }}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->customers->customer_name}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->item_names->item_name}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->PayFromDT}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->PayToDT}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->Payment_Rate}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->DeductFromDT}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->DeductToDT}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->Deduct_Rate}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->Total_DT}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->Total_Rate}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->itemQuantity}}</td>
+                                @if(isset($input['field']['item_name_id']))
+                                    <td class="ml-1 mr-1"
+                                        style="padding: 7px;">{{ $item_purchase_report->item_name->item_name}}</td>
+                                @endif
+
+                                @if(isset($input['field']['item_quantity']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->item_quantity}} </td>
+                                @endif
+                                @if(isset($input['field']['Purchase_Rate']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->Purchase_Rate}} </td>
+                                @endif
+                                @if(isset($input['field']['Sales_Rates']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
+                                @endif
+                                @if(isset($input['field']['purchase_date']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>
+
+                                @endif
+                                @if(isset($input['field']['created_by']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->created_bys->user_name}} </td>
+                                @endif
+                                @if(isset($input['field']['created_at']))
+                                    <td style="padding: 7px;">{{$item_purchase_report->created_at}} </td>
+                                @endif
+
                             </tr>
+
                         @endforeach
                         </tbody>
                     </table>

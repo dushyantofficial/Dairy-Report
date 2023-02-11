@@ -93,26 +93,36 @@
                                                style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
                                     </div>
                                 </div>
-                                <br>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Check All:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="checkbox"
+                                               id="checkall" >
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Fields:</label>
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="name" name="field[item_name]" value="item_name">
+                                        <input type="checkbox" id="name" class="check_all" name="field[item_name]" value="item_name">
                                         <label for="name"> @lang('langs.item_name') </label><br>
 
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="created_by" name="field[created_by]"
+                                        <input type="checkbox" id="created_by" class="check_all" name="field[created_by]"
                                                value="created_by">
                                         <label for="admission_date"> @lang('langs.created_by')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="created_at" name="field[created_at]"
+                                        <input type="checkbox" id="created_at" class="check_all" name="field[created_at]"
                                                value="created_at">
                                         <label for="admission_date"> @lang('langs.created_at')</label><br>
 
@@ -142,13 +152,18 @@
 @endsection
 @push('page_scripts')
     <script>
-        function toggle(source) {
-            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i] != source)
-                    checkboxes[i].checked = source.checked;
+        $('#checkall').change(function () {
+            $('.check_all').prop('checked',this.checked);
+        });
+
+        $('.check_all').change(function () {
+            if ($('.check_all:checked').length == $('.check_all').length){
+                $('#checkall').prop('checked',true);
             }
-        }
+            else {
+                $('#checkall').prop('checked',false);
+            }
+        });
     </script>
 
     <script type="text/javascript">
@@ -205,31 +220,5 @@
             @endif
         }
 
-        function pdfreport() {
-
-            html2canvas($('#my_report')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    @if(\Illuminate\Support\Facades\Auth::user()->role == config('constants.ROLE.ADMIN'))
-                    pdfMake.createPdf(docDefinition).download('<?php if (isset($user_report)) {
-                        echo $user_report->name;
-                    } ?>_Reports.pdf');
-                    @else
-                    pdfMake.createPdf(docDefinition).download('<?php if (isset(Auth::user()->name)) {
-                        echo Auth::user()->name;
-                    } ?>_Reports.pdf');
-                    @endif
-                }
-            });
-
-        }
-
-    </script>
 
 @endpush

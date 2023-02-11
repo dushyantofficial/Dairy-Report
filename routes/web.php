@@ -22,9 +22,6 @@ Route::get('clear_cache', function () {
     return redirect()->route('home')->with("success", "Cache is cleared");
 });
 
-Route::get('app', function () {
-    return view('demo');
-});
 
 Auth::routes();
 
@@ -75,6 +72,4 @@ Route::group(['middleware' => ['auth', 'check_lang']], function () {
     Route::get('item_name_report_export', [App\Http\Controllers\admin\ReportController::class, 'item_name_report_export'])->name('item_name_report_export');
     Route::get('customer_report_export', [App\Http\Controllers\admin\ReportController::class, 'customer_report_export'])->name('customer_report_export');
     Route::get('item_purchase_report_export', [App\Http\Controllers\admin\ReportController::class, 'item_purchase_report_export'])->name('item_purchase_report_export');
-    Route::get('student_report_export', [App\Http\Controllers\admin\ReportController::class, 'student_report_export'])->name('student_report_export');
-    Route::get('student_report', [App\Http\Controllers\admin\ReportController::class, 'student_report'])->name('student_report');
 });
