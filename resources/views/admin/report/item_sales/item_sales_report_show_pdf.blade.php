@@ -65,32 +65,46 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
-                            <th style="padding: 7px;"> @lang('langs.item_name')</th>
-                            <th style="padding: 7px;"> @lang('langs.itemQuantity')</th>
-
-                            <th style="padding: 7px;"> @lang('langs.Purchase_Rate')</th>
-                            <th style="padding: 7px;"> @lang('langs.Sales_Rates')</th>
-                            <th style="padding: 7px;"> @lang('langs.purchase_date')</th>
-                            <th style="padding: 7px;"> @lang('langs.created_by')</th>
-
-                            <th style="padding: 7px;"> Created Date</th>
+                            <th style="padding: 7px;">@lang('langs.item_sales_no')</th>
+                            <th style="padding: 7px;">@lang('langs.customer_name')</th>
+                            <th style="padding: 7px;">@lang('langs.item_name')</th>
+                            <th style="padding: 7px;">@lang('langs.itemQuantity')</th>
+                            <th style="padding: 7px;">@lang('langs.payment_from_date')</th>
+                            <th style="padding: 7px;">@lang('langs.payment_to_date')</th>
+                            <th style="padding: 7px;">@lang('langs.from_morning_evening')</th>
+                            <th style="padding: 7px;">@lang('langs.to_morning_evening')</th>
+                            <th style="padding: 7px;">@lang('langs.deduct_from_date')</th>
+                            <th style="padding: 7px;">@lang('langs.deduct_to_date')</th>
+                            <th style="padding: 7px;">@lang('langs.entry_date')</th>
+                            <th style="padding: 7px;">@lang('langs.deduct_morning_evening')</th>
+                            <th style="padding: 7px;">@lang('langs.payment')</th>
+                            <th style="padding: 7px;">@lang('langs.deduct_payment')</th>
+                            <th style="padding: 7px;">@lang('langs.total')</th>
+                            <th style="padding: 7px;">@lang('langs.created_by')</th>
+                            <th style="padding: 7px;">@lang('langs.created_at')</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($item_purchase_reports as $item_purchase_report)
+                        @foreach($item_sales_reports as $item_sales_report)
                             <tr style="text-align: center;">
                                 <td style="padding: 7px;">{{ $loop->iteration }}</td>
-                                <td class="ml-1 mr-1"
-                                    style="padding: 7px;">{{ $item_purchase_report->item_name->item_name}}</td>
-                                <td style="padding: 7px;">{{$item_purchase_report->item_quantity}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->Purchase_Rate}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->created_bys->user_name}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->created_at}} </td>
-
+                                <td class="ml-1 mr-1" >{{$item_sales_report->customers->customer_name}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->item_names->item_name->item_name}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->item_quantity}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->payment_from_date}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->payment_to_date}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->from_morning_evening}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->to_morning_evening}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->deduct_from_date}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->deduct_to_date}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->entry_date}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->deduct_morning_evening}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->payment}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->deduct_payment}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->total}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->created_name->user_name}}</td>
+                                <td style="padding: 7px;">{{$item_sales_report->created_at}}</td>
 
                             </tr>
 

@@ -11,11 +11,11 @@
                              <span class="pull-right float-right"><button type="button" onclick="printreportData()"
                                                                           class="btn btn-outline-warning">Print</button>&nbsp;&nbsp;
                  <a class="btn btn-outline-danger"
-                    href="{{route('item-purchase-report-pdf')}}?field={{request()}}">
+                    href="{{route('item-sales-report-pdf')}}?field={{request()}}">
                                 Pdf</a>
  <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">Excel File</button>&nbsp;&nbsp;
 
-                    <a href="{{route('item-purchase-report-show')}}"><button type="button"
+                    <a href="{{route('item-sales-report-show')}}"><button type="button"
                                                                              class="btn btn-outline-dark">Back</button></a>&nbsp</span><br><br>
                         </div>
                     </div>
@@ -24,12 +24,16 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body table-responsive" id="sampleTable">
-                            <h5 class="card-title">@lang('langs.item_purchase_report_table')</h5>
+                            <h5 class="card-title">@lang('langs.item_sales_report_table')</h5>
                             <div class="tile-body" id="my_report">
                                 <table id="sampleTable" class="table datatable">
                                     <thead>
                                     <tr>
-                                        <th>@lang('langs.customer_no')</th>
+                                        <th>@lang('langs.item_sales_no')</th>
+                                        @if(isset($input['field']['customer_id']))
+                                            <th> @lang('langs.customer_name')</th>
+
+                                        @endif
                                         @if(isset($input['field']['item_name_id']))
                                             <th> @lang('langs.item_name')</th>
 
@@ -40,18 +44,46 @@
 
                                         @endif
 
-                                        @if(isset($input['field']['Purchase_Rate']))
-                                            <th> @lang('langs.Purchase_Rate')</th>
+                                        @if(isset($input['field']['payment_from_date']))
+                                            <th> @lang('langs.payment_from_date')</th>
 
                                         @endif
 
-                                        @if(isset($input['field']['Sales_Rates']))
-                                            <th> @lang('langs.Sales_Rates')</th>
+                                        @if(isset($input['field']['payment_to_date']))
+                                            <th> @lang('langs.payment_to_date')</th>
 
                                         @endif
 
-                                        @if(isset($input['field']['purchase_date']))
-                                            <th> @lang('langs.purchase_date')</th>
+                                        @if(isset($input['field']['from_morning_evening']))
+                                            <th> @lang('langs.from_morning_evening')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['to_morning_evening']))
+                                            <th> @lang('langs.to_morning_evening')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['deduct_from_date']))
+                                            <th> @lang('langs.deduct_from_date')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['deduct_to_date']))
+                                            <th> @lang('langs.deduct_to_date')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['entry_date']))
+                                            <th> @lang('langs.entry_date')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['payment']))
+                                            <th> @lang('langs.payment')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['deduct_payment']))
+                                            <th> @lang('langs.deduct_payment')</th>
+
+                                        @endif
+                                        @if(isset($input['field']['total']))
+                                            <th> @lang('langs.total')</th>
 
                                         @endif
 
@@ -67,31 +99,75 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($item_purchases as $item_purchase)
+                                    @foreach($item_saless as $item_sales)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
 
+                                            @if(isset($input['field']['customer_id']))
+                                                <td>{{$item_sales->customers->customer_name}}</td>
+
+                                            @endif
                                             @if(isset($input['field']['item_name_id']))
-                                                <td>{{$item_purchase->item_name->item_name}} </td>
+                                                <td>{{$item_sales->item_names->item_name->item_name}}</td>
+
                                             @endif
+
                                             @if(isset($input['field']['item_quantity']))
-                                                <td>{{$item_purchase->item_quantity}} </td>
+                                                <td>{{$item_sales->item_quantity}}</td>
+
                                             @endif
-                                            @if(isset($input['field']['Purchase_Rate']))
-                                                <td>{{$item_purchase->Purchase_Rate}} </td>
+
+                                            @if(isset($input['field']['payment_from_date']))
+                                                <td>{{$item_sales->payment_from_date}}</td>
+
                                             @endif
-                                            @if(isset($input['field']['Sales_Rates']))
-                                                <td>{{$item_purchase->Sales_Rates}} </td>
+
+                                            @if(isset($input['field']['payment_to_date']))
+                                                <td>{{$item_sales->payment_to_date}}</td>
+
                                             @endif
-                                            @if(isset($input['field']['purchase_date']))
-                                                <td>{{$item_purchase->purchase_date}} </td>
+
+                                            @if(isset($input['field']['from_morning_evening']))
+                                                <td>{{$item_sales->from_morning_evening}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['to_morning_evening']))
+                                                <td>{{$item_sales->to_morning_evening}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['deduct_from_date']))
+                                                <td>{{$item_sales->deduct_from_date}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['deduct_to_date']))
+                                                <td>{{$item_sales->deduct_to_date}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['entry_date']))
+                                                <td>{{$item_sales->entry_date}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['payment']))
+                                                <td>{{$item_sales->payment}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['deduct_payment']))
+                                                <td>{{$item_sales->deduct_payment}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['total']))
+                                                <td>{{$item_sales->total}}</td>
+
                                             @endif
 
                                             @if(isset($input['field']['created_by']))
-                                                <td>{{$item_purchase->created_bys->user_name}} </td>
+                                                <td>{{$item_sales->created_name->user_name}}</td>
+
                                             @endif
+
                                             @if(isset($input['field']['created_at']))
-                                                <td>{{$item_purchase->created_at}} </td>
+                                                <td>{{$item_sales->created_at}}</td>
+
                                             @endif
 
                                         </tr>

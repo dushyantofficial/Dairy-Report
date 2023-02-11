@@ -199,6 +199,29 @@ class ReportController extends Controller
         }
     }
 
+    public function item_sales_report_export(Request $request)
+    {
+
+        $request->validate(
+            [
+                'field' => 'required'
+            ]
+        );
+
+        $input = $request->all();
+        $val = array_keys($input['field']);
+        $item_saless = ItemSales::select($val)->get();
+        if ($request->date) {
+            $date = $request->date;
+            $name = explode(' ', $date);
+            $start = date('Y-m-d', strtotime($name[0]));
+            $end = date('Y-m-d', strtotime($name[2]));
+            $item_saless = ItemSales::whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)->select($val)->get();
+        }
+        return view('admin.report.item_sales.item_sales_export_report', compact('item_saless', 'input'));
+    }
+
     public function item_sales_filter()
     {
 

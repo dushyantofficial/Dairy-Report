@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth', 'check_lang']], function () {
     Route::get('/item_sales_report_pdf', [App\Http\Controllers\admin\ReportController::class, 'item_sales_report_pdf'])->name('item-sales-report-pdf');
     Route::get('/item_purchase_report_pdf', [App\Http\Controllers\admin\ReportController::class, 'item_purchase_report_pdf'])->name('item-purchase-report-pdf');
 
-    Route::get('item_sales_filter', [App\Http\Controllers\admin\ReportController::class, 'item_sales_filter'])->name('item_sales_filter');
+    Route::get('item_sales_report_export', [App\Http\Controllers\admin\ReportController::class, 'item_sales_report_export'])->name('item_sales_report_export');
     Route::get('item_name_report_export', [App\Http\Controllers\admin\ReportController::class, 'item_name_report_export'])->name('item_name_report_export');
     Route::get('customer_report_export', [App\Http\Controllers\admin\ReportController::class, 'customer_report_export'])->name('customer_report_export');
     Route::get('item_purchase_report_export', [App\Http\Controllers\admin\ReportController::class, 'item_purchase_report_export'])->name('item_purchase_report_export');

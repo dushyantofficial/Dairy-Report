@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,11 @@ class ItemSales extends Model
     public function item_names()
     {
         return $this->belongsTo(ItemPurchase::class, 'item_name_id');
+    }
+
+    public function created_name()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public static $rules = [

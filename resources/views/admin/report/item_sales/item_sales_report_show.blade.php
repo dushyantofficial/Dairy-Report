@@ -63,6 +63,8 @@
                                         <th scope="col">@lang('langs.payment')</th>
                                         <th scope="col">@lang('langs.deduct_payment')</th>
                                         <th scope="col">@lang('langs.total')</th>
+                                        <th scope="col">@lang('langs.created_by')</th>
+                                        <th scope="col">@lang('langs.created_at')</th>
                                         {{--                                    <th scope="col">@lang('langs.item_sales_action')</th>--}}
                                     </tr>
                                     </thead>
@@ -85,6 +87,8 @@
                                                 <td>{{$item_sales->payment}}</td>
                                                 <td>{{$item_sales->deduct_payment}}</td>
                                                 <td>{{$item_sales->total}}</td>
+                                                <td>{{$item_sales->created_name->user_name}}</td>
+                                                <td>{{$item_sales->created_at}}</td>
 
                                             </tr>
                                         @endforeach
@@ -100,11 +104,11 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">@lang('langs.item_purchase_report_table')</h5>
+                            <h5 class="modal-title">@lang('langs.item_sales_report_table')</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="myform" action="{{route('item_purchase_report_export')}}" method="get">
+                            <form id="myform" action="{{route('item_sales_report_export')}}" method="get">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">
@@ -132,33 +136,57 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="item_name_id"  class="check_all" name="field[item_name_id]"
+                                        <input type="checkbox" id="customer_name"  class="check_all" name="field[customer_id]"
+                                               value="customer_id">
+                                        <label for="customer_name"> @lang('langs.customer_name') </label><br>
+                                        <input type="checkbox" id="payment_from_date"  class="check_all" name="field[payment_from_date]"
+                                               value="payment_from_date">
+                                        <label for="payment_from_date"> @lang('langs.payment_from_date')</label><br>
+
+                                        <input type="checkbox" id="to_morning_evening"  class="check_all" name="field[to_morning_evening]"
+                                               value="to_morning_evening">
+                                        <label for="to_morning_evening"> @lang('langs.to_morning_evening')</label><br>
+                                        <input type="checkbox" id="entry_date"  class="check_all" name="field[entry_date]"
+                                               value="entry_date">
+                                        <label for="entry_date"> @lang('langs.entry_date')</label><br>
+                                        <input type="checkbox" id="deduct_payment"  class="check_all" name="field[deduct_payment]"
+                                               value="deduct_payment">
+                                        <label for="deduct_payment"> @lang('langs.deduct_payment')</label><br>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="checkbox" id="item_name"  class="check_all" name="field[item_name_id]"
                                                value="item_name_id">
-                                        <label for="customer_name"> @lang('langs.item_name') </label><br>
-                                        <input type="checkbox" id="Sales_Rates"  class="check_all" name="field[Sales_Rates]"
-                                               value="Sales_Rates">
-                                        <label for="Sales_Rates"> @lang('langs.Sales_Rates')</label><br>
-                                        <input type="checkbox" id="purchase_date"  class="check_all" name="field[purchase_date]"
-                                               value="purchase_date">
-                                        <label for="Sales_Rates"> @lang('langs.purchase_date')</label><br>
+                                        <label for="bank_name"> @lang('langs.item_name')</label><br>
+                                        <input type="checkbox" id="payment_to_date"  class="check_all" name="field[payment_to_date]"
+                                               value="payment_to_date">
+                                        <label for="dob">@lang('langs.payment_to_date') </label><br>
+                                        <input type="checkbox" id="deduct_from_date"  class="check_all" name="field[deduct_from_date]"
+                                               value="deduct_from_date">
+                                        <label for="deduct_from_date"> @lang('langs.deduct_from_date')</label><br>
+                                        <input type="checkbox" id="deduct_morning_evening"  class="check_all" name="field[deduct_morning_evening]"
+                                               value="deduct_morning_evening">
+                                        <label for="deduct_morning_evening"> @lang('langs.deduct_morning_evening')</label><br>
+                                        <input type="checkbox" id="total"  class="check_all" name="field[total]"
+                                               value="total">
+                                        <label for="total"> @lang('langs.total')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
                                         <input type="checkbox" id="item_quantity"  class="check_all" name="field[item_quantity]"
-                                               value="item_sales_id">
-                                        <label for="bank_name"> @lang('langs.itemQuantity')</label><br>
-                                        <input type="checkbox" id="created_at"  class="check_all" name="field[created_at]"
-                                               value="created_at">
-                                        <label for="dob">@lang('langs.created_at') </label><br>
-
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input type="checkbox" id="Purchase_Rate"  class="check_all" name="field[Purchase_Rate]"
-                                               value="Purchase_Rate">
-                                        <label for="Purchase_Rate"> @lang('langs.Purchase_Rate')</label><br>
-                                        <input type="checkbox" id="created_by" class="check_all" name="field[created_by]"
+                                               value="item_quantity">
+                                        <label for="itemQuantity"> @lang('langs.itemQuantity')</label><br>
+                                        <input type="checkbox" id="from_morning_evening" class="check_all" name="field[from_morning_evening]"
+                                               value="from_morning_evening">
+                                        <label for="from_morning_evening"> @lang('langs.from_morning_evening')</label><br>
+                                        <input type="checkbox" id="payment_to_date"  class="check_all" name="field[payment_to_date]"
+                                               value="payment_to_date">
+                                        <label for="payment_to_date"> @lang('langs.payment_to_date')</label><br>
+                                        <input type="checkbox" id="payment"  class="check_all" name="field[payment]"
+                                               value="payment">
+                                        <label for="payment"> @lang('langs.payment')</label><br>
+                                        <input type="checkbox" id="created_by"  class="check_all" name="field[created_by]"
                                                value="created_by">
-                                        <label for="created_by"> @lang('langs.created_by')</label><br>
+                                        <label for="payment"> @lang('langs.created_by')</label><br>
                                     </div>
                                     <span style="color: red;margin-left: 161px;">{{$errors->first('field')}}</span>
                                 </div>
