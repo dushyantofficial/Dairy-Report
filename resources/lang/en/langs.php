@@ -161,4 +161,7 @@ return [
     //    Languages Message
     'lang' => 'The Language has been Changed Successfully! ..',
 
+    'select_date' => 'Select Date',
+    'check_all' => 'Check All',
+    'fields' => 'Fields',
 ];

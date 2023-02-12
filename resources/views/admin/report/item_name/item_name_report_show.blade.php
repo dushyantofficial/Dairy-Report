@@ -84,7 +84,7 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label>Select Date:</label>
+                                        <label>@lang('langs.select_date'):</label>
                                     </div>
                                     <div class="col-md-6">
                                         <input id="reportrange" name="date"
@@ -96,7 +96,7 @@
 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label>Check All:</label>
+                                        <label>@lang('langs.check_all'):</label>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="checkbox"
@@ -106,7 +106,7 @@
 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label>Fields:</label>
+                                        <label>@lang('langs.fields'):</label>
                                     </div>
 
                                     <div class="col-md-2">

@@ -151,4 +151,8 @@ return [
     //    Languages Message
     'lang' => 'ભાષા સફળતાપૂર્વક બદલાઈ ગઈ છે! ..',
 
+    'select_date' => 'તારીખ પસંદ કરો',
+    'check_all' => 'બધા તપાસો',
+    'fields' => 'ક્ષેત્રો',
+
 ];
