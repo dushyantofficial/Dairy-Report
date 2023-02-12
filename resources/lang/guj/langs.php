@@ -154,5 +154,6 @@ return [
     'select_date' => 'તારીખ પસંદ કરો',
     'check_all' => 'બધા તપાસો',
     'fields' => 'ક્ષેત્રો',
+    'deduct_mor_eve' => 'સવાર સાંજ બાદ કરો',
 
 ];

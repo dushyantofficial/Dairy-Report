@@ -164,4 +164,7 @@ return [
     'select_date' => 'Select Date',
     'check_all' => 'Check All',
     'fields' => 'Fields',
+    'deduct_mor_eve' => 'Deduct_Morn_Evening',
+
+
 ];

@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
+    <style>
+        .modal {
+            --bs-modal-width: 1270px;
+        }
+    </style>
     @include('admin.flash-message')
     <main id="main" class="main">
         <section class="section">
@@ -165,7 +170,7 @@
                                         <label for="deduct_from_date"> @lang('langs.deduct_from_date')</label><br>
                                         <input type="checkbox" id="deduct_morning_evening"  class="check_all" name="field[deduct_morning_evening]"
                                                value="deduct_morning_evening">
-                                        <label for="deduct_morning_evening"> @lang('langs.deduct_morning_evening')</label><br>
+                                        <label for="deduct_morning_evening"> @lang('langs.deduct_mor_eve')</label><br>
                                         <input type="checkbox" id="total"  class="check_all" name="field[total]"
                                                value="total">
                                         <label for="total"> @lang('langs.total')</label><br>
@@ -188,7 +193,7 @@
                                                value="created_by">
                                         <label for="payment"> @lang('langs.created_by')</label><br>
                                     </div>
-                                    <span style="color: red;margin-left: 161px;">{{$errors->first('field')}}</span>
+                                    <span style="color: red;margin-left: 421px;">{{$errors->first('field')}}</span>
                                 </div>
 
                                 <div class="modal-footer">

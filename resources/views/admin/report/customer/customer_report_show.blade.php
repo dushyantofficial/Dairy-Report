@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
+    <style>
+        .modal {
+            --bs-modal-width: 1041px;
+        }
+    </style>
 
     @include('admin.flash-message')
     <main id="main" class="main">
@@ -146,7 +151,7 @@
                                                value="user_id">
                                         <label for="user_id"> @lang('langs.user_name')</label><br>
                                     </div>
-                                    <span style="color: red;margin-left: 161px;">{{$errors->first('field')}}</span>
+                                    <span style="color: red;margin-left: 342px;">{{$errors->first('field')}}</span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
