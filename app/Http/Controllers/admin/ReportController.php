@@ -51,11 +51,18 @@ class ReportController extends Controller
         $input = $request->all();
         $val = array_keys($input['field']);
         $customer_reports = Customers::select($val)->get();
+        if ($request->date) {
+            $date = $request->date;
+            $name = explode(' ', $date);
+            $start = date('Y-m-d', strtotime($name[0]));
+            $end = date('Y-m-d', strtotime($name[2]));
+            $customer_reports = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->select($val)->get();
+        }
 
         $customerPaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.customer.customer_report_pdf', compact('customer_reports', 'input'))->setPaper($customerPaper);
         if (isset($start)) {
-            return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+            return $pdf->download($start . '_to_' . $end  . '_' . 'customer_report.pdf');
         } else {
             return $pdf->download('customer_report.pdf');
         }
@@ -131,9 +138,17 @@ class ReportController extends Controller
         $input = $request->all();
         $val = array_keys($input['field']);
         $item_name_reports = ItemName::select($val)->get();
+        if ($request->date) {
+            $date = $request->date;
+            $name = explode(' ', $date);
+            $start = date('Y-m-d', strtotime($name[0]));
+            $end = date('Y-m-d', strtotime($name[2]));
+            $item_name_reports = ItemName::whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)->select($val)->get();
+        }
         $item_namePaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.item_name.item_name_report_pdf', compact('item_name_reports', 'input'))->setPaper($item_namePaper);
-        if (isset($start)) {
+        if (isset($request->date)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
         } else {
             return $pdf->download('item_name_report.pdf');
@@ -222,11 +237,32 @@ class ReportController extends Controller
         return view('admin.report.item_sales.item_sales_export_report', compact('item_saless', 'input'));
     }
 
-    public function item_sales_filter()
+    public function item_sales_report_pdf(Request $request)
     {
 
-        return view('admin.report.item_sales.item_sales_filter');
+        $input = $request->all();
+
+        $val = array_keys($input['field']);
+        $item_sales_reports = ItemSales::select($val)->get();
+        if ($request->date) {
+            $date = $request->date;
+            $name = explode(' ', $date);
+            $start = date('Y-m-d', strtotime($name[0]));
+            $end = date('Y-m-d', strtotime($name[2]));
+            $item_sales_reports = ItemSales::whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)->select($val)->get();
+        }
+
+        $item_purchasePaper = array(0, 0, 1000.00, 900.80);
+        $pdf = PDF::loadView('admin.report.item_sales.item_sales_report_pdf', compact('item_sales_reports', 'input'))->setPaper($item_purchasePaper);
+        if (isset($request->date)) {
+            return $pdf->download($start . '_to_' . $end . '_' . 'item_sales_report.pdf');
+        } else {
+            return $pdf->download('item_sales_report.pdf');
+        }
+
     }
+
 
 //    Item purchase Activity
     public function item_purchase_report_show(Request $request)
@@ -270,12 +306,19 @@ class ReportController extends Controller
 
         $input = $request->all();
 
-
         $val = array_keys($input['field']);
         $item_purchase_reports = ItemPurchase::select($val)->get();
+        if ($request->date) {
+            $date = $request->date;
+            $name = explode(' ', $date);
+            $start = date('Y-m-d', strtotime($name[0]));
+            $end = date('Y-m-d', strtotime($name[2]));
+            $item_purchase_reports = ItemPurchase::whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end)->select($val)->get();
+        }
         $item_purchasePaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.item_purchase.item_purchase_report_pdf', compact('item_purchase_reports', 'input'))->setPaper($item_purchasePaper);
-        if (isset($start)) {
+        if (isset($request->date)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'item_purchase_report.pdf');
         } else {
             return $pdf->download('item_purchase_report.pdf');

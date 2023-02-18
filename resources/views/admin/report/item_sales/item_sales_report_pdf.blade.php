@@ -64,73 +64,155 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
+                            <th style="padding: 7px;">@lang('langs.item_sales_no')</th>
+                            @if(isset($input['field']['customer_id']))
+                                <th style="padding: 7px;"> @lang('langs.customer_name')</th>
+
+                            @endif
                             @if(isset($input['field']['item_name_id']))
                                 <th style="padding: 7px;"> @lang('langs.item_name')</th>
 
                             @endif
+
                             @if(isset($input['field']['item_quantity']))
                                 <th style="padding: 7px;"> @lang('langs.itemQuantity')</th>
 
                             @endif
 
-                            @if(isset($input['field']['Purchase_Rate']))
-                                <th style="padding: 7px;"> @lang('langs.Purchase_Rate')</th>
+                            @if(isset($input['field']['payment_from_date']))
+                                <th style="padding: 7px;"> @lang('langs.payment_from_date')</th>
 
                             @endif
 
-                            @if(isset($input['field']['Sales_Rates']))
-                                <th style="padding: 7px;"> @lang('langs.Sales_Rates')</th>
+                            @if(isset($input['field']['payment_to_date']))
+                                <th style="padding: 7px;"> @lang('langs.payment_to_date')</th>
 
                             @endif
-                            @if(isset($input['field']['purchase_date']))
-                                <th> @lang('langs.purchase_date')</th>
+
+                            @if(isset($input['field']['from_morning_evening']))
+                                <th style="padding: 7px;"> @lang('langs.from_morning_evening')</th>
 
                             @endif
+                            @if(isset($input['field']['to_morning_evening']))
+                                <th style="padding: 7px;"> @lang('langs.to_morning_evening')</th>
+
+                            @endif
+                            @if(isset($input['field']['deduct_from_date']))
+                                <th style="padding: 7px;"> @lang('langs.deduct_from_date')</th>
+
+                            @endif
+                            @if(isset($input['field']['deduct_to_date']))
+                                <th style="padding: 7px;"> @lang('langs.deduct_to_date')</th>
+
+                            @endif
+                            @if(isset($input['field']['entry_date']))
+                                <th style="padding: 7px;"> @lang('langs.entry_date')</th>
+
+                            @endif
+                            @if(isset($input['field']['payment']))
+                                <th style="padding: 7px;"> @lang('langs.payment')</th>
+
+                            @endif
+                            @if(isset($input['field']['deduct_payment']))
+                                <th style="padding: 7px;"> @lang('langs.deduct_payment')</th>
+
+                            @endif
+                            @if(isset($input['field']['total']))
+                                <th style="padding: 7px;"> @lang('langs.total')</th>
+
+                            @endif
+
                             @if(isset($input['field']['created_by']))
                                 <th style="padding: 7px;"> @lang('langs.created_by')</th>
 
                             @endif
 
                             @if(isset($input['field']['created_at']))
-                                <th style="padding: 7px;"> Created Date</th>
+                                <th style="padding: 7px;"> @lang('langs.created_at')</th>
 
                             @endif
-
                         </tr>
+
                         </thead>
                         <tbody>
-                        @foreach($item_purchase_reports as $item_purchase_report)
+                        @if(count($item_sales_reports)>0)
+                        @foreach($item_sales_reports as $item_sales)
                             <tr style="text-align: center;">
-                                <td style="padding: 7px;">{{ $loop->iteration }}</td>
+                                <td style="padding: 7px;">{{$loop->iteration}}</td>
+
+                                @if(isset($input['field']['customer_id']))
+                                    <td style="padding: 7px;">{{$item_sales->customers->customer_name}}</td>
+
+                                @endif
                                 @if(isset($input['field']['item_name_id']))
-                                    <td class="ml-1 mr-1"
-                                        style="padding: 7px;">{{ $item_purchase_report->item_name->item_name}}</td>
+                                    <td style="padding: 7px;">{{$item_sales->item_names->item_name->item_name}}</td>
+
                                 @endif
 
                                 @if(isset($input['field']['item_quantity']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->item_quantity}} </td>
-                                @endif
-                                @if(isset($input['field']['Purchase_Rate']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->Purchase_Rate}} </td>
-                                @endif
-                                @if(isset($input['field']['Sales_Rates']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
-                                @endif
-                                @if(isset($input['field']['purchase_date']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>
+                                    <td style="padding: 7px;">{{$item_sales->item_quantity}}</td>
 
                                 @endif
-                                @if(isset($input['field']['created_by']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->created_bys->user_name}} </td>
+
+                                @if(isset($input['field']['payment_from_date']))
+                                    <td style="padding: 7px;">{{$item_sales->payment_from_date}}</td>
+
                                 @endif
+
+                                @if(isset($input['field']['payment_to_date']))
+                                    <td style="padding: 7px;">{{$item_sales->payment_to_date}}</td>
+
+                                @endif
+
+                                @if(isset($input['field']['from_morning_evening']))
+                                    <td style="padding: 7px;">{{$item_sales->from_morning_evening}}</td>
+
+                                @endif
+                                @if(isset($input['field']['to_morning_evening']))
+                                    <td style="padding: 7px;">{{$item_sales->to_morning_evening}}</td>
+
+                                @endif
+                                @if(isset($input['field']['deduct_from_date']))
+                                    <td style="padding: 7px;">{{$item_sales->deduct_from_date}}</td>
+
+                                @endif
+                                @if(isset($input['field']['deduct_to_date']))
+                                    <td style="padding: 7px;">{{$item_sales->deduct_to_date}}</td>
+
+                                @endif
+                                @if(isset($input['field']['entry_date']))
+                                    <td style="padding: 7px;">{{$item_sales->entry_date}}</td>
+
+                                @endif
+                                @if(isset($input['field']['payment']))
+                                    <td style="padding: 7px;">{{$item_sales->payment}}</td>
+
+                                @endif
+                                @if(isset($input['field']['deduct_payment']))
+                                    <td style="padding: 7px;">{{$item_sales->deduct_payment}}</td>
+
+                                @endif
+                                @if(isset($input['field']['total']))
+                                    <td style="padding: 7px;">{{$item_sales->total}}</td>
+
+                                @endif
+
+                                @if(isset($input['field']['created_by']))
+                                    <td style="padding: 7px;">{{$item_sales->created_name->user_name}}</td>
+
+                                @endif
+
                                 @if(isset($input['field']['created_at']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->created_at}} </td>
+                                    <td style="padding: 7px;">{{$item_sales->created_at}}</td>
+
                                 @endif
 
                             </tr>
 
                         @endforeach
+                        @else
+                            <h2 class="text-center" style="color: red">Record Not Found</h2>
+                        @endif
                         </tbody>
                     </table>
                 </div>
