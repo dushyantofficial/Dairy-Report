@@ -10,13 +10,14 @@ class ItemName extends Model
 {
     use HasFactory;
 
-    public static $rules = [
-        'item_name' => 'required',
-    ];
     public $table = 'item_names';
     protected $fillable = [
         'item_name',
         'created_by',
+    ];
+
+    public static $rules = [
+        'item_name' => 'required',
     ];
 
     public function created_bys()

@@ -30,6 +30,20 @@ class ItemSales extends Model
         'created_by',
     ];
 
+    public static $rules = [
+        'payment_from_date' => 'required',
+        'payment_to_date' => 'required',
+        'item_quantity' => 'required',
+        'customer_photo' => 'required',
+        'item_name_id' => 'required',
+        'customer_id' => 'required',
+        'entry_date' => 'required',
+        'deduct_from_date' => 'required',
+        'deduct_to_date' => 'required',
+        'payment' => 'required',
+        'deduct_payment' => 'required',
+        'total' => 'required',
+    ];
 
     public function customers()
     {
@@ -46,18 +60,4 @@ class ItemSales extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public static $rules = [
-        'payment_from_date' => 'required',
-        'payment_to_date' => 'required',
-        'item_quantity' => 'required',
-        'customer_photo' => 'required',
-        'item_name_id' => 'required',
-        'customer_id' => 'required',
-        'entry_date' => 'required',
-        'deduct_from_date' => 'required',
-        'deduct_to_date' => 'required',
-        'payment' => 'required',
-        'deduct_payment' => 'required',
-        'total' => 'required',
-    ];
 }

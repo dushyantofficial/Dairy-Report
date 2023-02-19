@@ -3,6 +3,8 @@
 namespace App\Imports;
 
 use App\Models\admin\Customers;
+use App\Models\admin\Payment;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -27,7 +29,7 @@ class CustomerImport implements ToModel, WithHeadingRow
             'final_amount' => 'required',
         ])->validate();
 
-        return new Customers([
+       return new Customers([
             'customer_name' => $row['customer_name'],
             'customer_code' => $row['customer_code'],
             'user_id' => $row['user_id'],
@@ -38,5 +40,16 @@ class CustomerImport implements ToModel, WithHeadingRow
             'created_by' => $row['created_by'],
 //            'updated_at' => $row['updated_at'],
         ]);
+
+//        return new Payment([
+//            'customer_id' => 1,
+//            'created_by' => $row['created_by'],
+//            'payment_from_date' => '10-02-2023',
+//            'payment_to_date' => '10-03-2023',
+////            'updated_at' => $row['updated_at'],
+//        ]);
+
+//        return $customer;
     }
+
 }
