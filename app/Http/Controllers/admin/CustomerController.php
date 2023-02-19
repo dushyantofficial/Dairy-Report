@@ -15,6 +15,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
+
         $customers = Customers::all();
         return view('admin.customer.index', compact('customers'));
     }
