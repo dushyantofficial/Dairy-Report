@@ -28,6 +28,7 @@ class ReportController extends Controller
 
     public function customer_report_show_pdf(Request $request)
     {
+//        dd('customer_report_show_pdf');
         $filter_customer_reports = Customers::all();
         if ($request->date) {
             $date = $request->date;
@@ -37,7 +38,8 @@ class ReportController extends Controller
             $filter_customer_reports = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
         }
         $item_purchasePaper = array(0, 0, 1000.00, 900.80);
-        $pdf = PDF::loadView('admin.report.customer.customer_report_show_pdf', compact('filter_customer_reports'))->setPaper($item_purchasePaper);
+        $pdf = PDF::loadView('admin.report.customer.customer_report_show_pdf', compact('filter_customer_reports'))->setPaper($item_purchasePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
+
         if (isset($start)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
         } else {
@@ -48,16 +50,16 @@ class ReportController extends Controller
 
     public function customer_report_pdf(Request $request)
     {
+//        dd('customer_report_pdf');
         $input = $request->all();
         $val = array_keys($input['field']);
         $customer_reports = Customers::select($val)->get();
-
         $customerPaper = array(0, 0, 1000.00, 900.80);
-        $pdf = PDF::loadView('admin.report.customer.customer_report_pdf', compact('customer_reports', 'input'))->setPaper($customerPaper);
+        $pdf = PDF::loadView('admin.report.customer.customer_report_pdf', compact('customer_reports', 'input'))->setPaper($customerPaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
         if (isset($start)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
         } else {
-            return $pdf->download('customer_report.pdf');
+            return $pdf->download('item_purchase_report.pdf');
         }
     }
 

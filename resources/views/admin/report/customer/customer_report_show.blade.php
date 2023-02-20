@@ -38,8 +38,8 @@
                                     onclick="ExportToExcel('xlsx')">Excel
                             </button>
 
-                            <a class="btn btn-outline-warning"
-                               href="{{route('customer-report-show-pdf')}}?date={{request()->date}}">
+                            <a class="btn btn-outline-warning" id="Pairings_by_Table_call"
+                               href="#">
                                 Print </a>
                         </div>
                         </form>
@@ -85,6 +85,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <?php
+            $user=\Illuminate\Support\Facades\Auth::user();
+            ?>
+            <div id="table_print">
+                <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
+                <input type="hidden" id="mandali_code" value="{{$user->mandali_code}}">
+                <table class="table" id="pri_table" style="display: none">
+                    <thead>
+                    <tr>
+                        <th scope="col">@lang('langs.customer_no')</th>
+                        <th scope="col">@lang('langs.customer_name')</th>
+                        <th scope="col">@lang('langs.bank_name')</th>
+                        <th scope="col">@lang('langs.account_number')</th>
+                        <th scope="col">@lang('langs.ifsc_code')</th>
+                        <th scope="col">@lang('langs.final_amount')</th>
+                        <th scope="col">@lang('langs.created_at')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if(isset($filter_customers))
+                        @foreach($filter_customers as $customer)
+                            <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$customer->customer_name}}</td>
+                                <td>{{$customer->bank_name}}</td>
+                                <td>{{$customer->account_number}}</td>
+                                <td>{{$customer->ifsc_code}}</td>
+                                <td>{{$customer->final_amount}}</td>
+                                <td>{{$customer->created_at}}</td>
+
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
             </div>
             <div class="modal fade" id="verticalycentered" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
@@ -185,6 +221,40 @@
     });
 </script>
     <script type="text/javascript">
+        $(function () {
+            $("#Pairings_by_Table_call").click(function () {
+
+                $('#pri_table').show();
+                var mandali_address = $('#mandali_address').val();
+                var mandali_code = $('#mandali_code').val();
+                var date = $('#reportrange').val();
+
+                var contents = $("#table_print").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({"position": "absolute", "top": "-1000000px"});
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+
+                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('</head><body>');
+                //Append the external CSS file.
+                // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+                $('#pri_table').attr("style","display:none");
+            });
+        });
+
         $(function () {
 
             var start = moment().subtract(29, 'days');

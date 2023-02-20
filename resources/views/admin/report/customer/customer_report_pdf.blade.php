@@ -24,6 +24,16 @@
                 border: 1px solid #000;
                 border-collapse: collapse;
             }
+
+        }
+        @font-face {
+            font-family: "HindVadodara-SemiBold";
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
+        }
+        * {
+            font-family: "HindVadodara-SemiBold", sans-serif;
         }
 
     </style>
@@ -48,7 +58,7 @@
                 @endif
             </center>
             <div class="col-sm-6">
-                <h1>@lang('langs.customer_report')</h1>
+                <span>@lang('langs.customer_report')</span>
             </div>
         </div>
     </div>
@@ -62,39 +72,42 @@
                 <div id="leaderBoardSwissTable" class="print-table">
                     <table id="leader" class="table table-responsive" border="1" width="100%"
                            style="border-collapse: collapse">
+
                         <thead>
+
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
+
+                            <td style="padding: 7px;">@lang('langs.customer_no')</td>
                             @if(isset($input['field']['user_id']))
-                                <th style="padding: 7px;"> @lang('langs.user_name')</th>
+                                <td style="padding: 7px;"> @lang('langs.user_name')</td>
 
                             @endif
                             @if(isset($input['field']['customer_name']))
-                                <th style="padding: 7px;"> @lang('langs.customer_name')</th>
+                                <td style="padding: 7px;"> @lang('langs.customer_name')</td>
 
                             @endif
 
                             @if(isset($input['field']['bank_name']))
-                                <th style="padding: 7px;"> @lang('langs.bank_name')</th>
+                                <td style="padding: 7px;"> @lang('langs.bank_name')</td>
 
                             @endif
 
                             @if(isset($input['field']['account_number']))
-                                <th style="padding: 7px;"> @lang('langs.account_number')</th>
+                                <td style="padding: 7px;"> @lang('langs.account_number')</td>
 
                             @endif
                             @if(isset($input['field']['final_amount']))
-                                <th style="padding: 7px;"> @lang('langs.final_amount')</th>
+                                <td style="padding: 7px;"> @lang('langs.final_amount')</td>
 
                             @endif
 
                             @if(isset($input['field']['created_by']))
-                                <th style="padding: 7px;"> @lang('langs.created_by')</th>
+                                <td style="padding: 7px;"> @lang('langs.created_by')</td>
 
                             @endif
 
                             @if(isset($input['field']['created_at']))
-                                <th style="padding: 7px;"> Created Date</th>
+                                <td style="padding: 7px;"> Created Date</td>
 
                             @endif
 
