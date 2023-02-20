@@ -48,6 +48,11 @@ class Customers extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    public function customer()
+    {
+        return $this->hasOne(Payment::class, 'customer_id');
+    }
 }
 
 

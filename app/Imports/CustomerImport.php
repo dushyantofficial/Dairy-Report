@@ -3,8 +3,7 @@
 namespace App\Imports;
 
 use App\Models\admin\Customers;
-use App\Models\admin\Payment;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -29,17 +28,28 @@ class CustomerImport implements ToModel, WithHeadingRow
             'final_amount' => 'required',
         ])->validate();
 
-       return new Customers([
-            'customer_name' => $row['customer_name'],
-            'customer_code' => $row['customer_code'],
-            'user_id' => $row['user_id'],
-            'bank_name' => $row['bank_name'],
-            'account_number' => $row['account_number'],
-            'ifsc_code' => $row['ifsc_code'],
-            'final_amount' => $row['final_amount'],
-            'created_by' => $row['created_by'],
-//            'updated_at' => $row['updated_at'],
-        ]);
+        $input = collect($row)->toArray();
+        $customer = Customers::create($input);
+
+        $input['payment_from_date'] = '10-02-2023';
+        $input['payment_to_date'] = '10-03-2023';
+        $input['created_by'] = Auth::user()->id;
+        $payment = $customer->customer()->create($input);
+
+
+//       return redirect()->back();
+
+//       return new Customers([
+//            'customer_name' => $row['customer_name'],
+//            'customer_code' => $row['customer_code'],
+//            'user_id' => $row['user_id'],
+//            'bank_name' => $row['bank_name'],
+//            'account_number' => $row['account_number'],
+//            'ifsc_code' => $row['ifsc_code'],
+//            'final_amount' => $row['final_amount'],
+//            'created_by' => $row['created_by'],
+////            'updated_at' => $row['updated_at'],
+//        ]);
 
 //        return new Payment([
 //            'customer_id' => 1,
