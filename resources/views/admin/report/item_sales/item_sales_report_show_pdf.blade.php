@@ -26,7 +26,15 @@
                 border-collapse: collapse;
             }
         }
-
+        @font-face {
+            font-family: "HindVadodara-SemiBold";
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
+        }
+        * {
+            font-family: "HindVadodara-SemiBold", sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -65,23 +73,23 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.item_sales_no')</th>
-                            <th style="padding: 7px;">@lang('langs.customer_name')</th>
-                            <th style="padding: 7px;">@lang('langs.item_name')</th>
-                            <th style="padding: 7px;">@lang('langs.itemQuantity')</th>
-                            <th style="padding: 7px;">@lang('langs.payment_from_date')</th>
-                            <th style="padding: 7px;">@lang('langs.payment_to_date')</th>
-                            <th style="padding: 7px;">@lang('langs.from_morning_evening')</th>
-                            <th style="padding: 7px;">@lang('langs.to_morning_evening')</th>
-                            <th style="padding: 7px;">@lang('langs.deduct_from_date')</th>
-                            <th style="padding: 7px;">@lang('langs.deduct_to_date')</th>
-                            <th style="padding: 7px;">@lang('langs.entry_date')</th>
-                            <th style="padding: 7px;">@lang('langs.deduct_morning_evening')</th>
-                            <th style="padding: 7px;">@lang('langs.payment')</th>
-                            <th style="padding: 7px;">@lang('langs.deduct_payment')</th>
-                            <th style="padding: 7px;">@lang('langs.total')</th>
-                            <th style="padding: 7px;">@lang('langs.created_by')</th>
-                            <th style="padding: 7px;">@lang('langs.created_at')</th>
+                            <td style="padding: 7px;">@lang('langs.item_sales_no')</td>
+                            <td style="padding: 7px;">@lang('langs.customer_name')</td>
+                            <td style="padding: 7px;">@lang('langs.item_name')</td>
+                            <td style="padding: 7px;">@lang('langs.itemQuantity')</td>
+                            <td style="padding: 7px;">@lang('langs.payment_from_date')</td>
+                            <td style="padding: 7px;">@lang('langs.payment_to_date')</td>
+                            <td style="padding: 7px;">@lang('langs.from_morning_evening')</td>
+                            <td style="padding: 7px;">@lang('langs.to_morning_evening')</td>
+                            <td style="padding: 7px;">@lang('langs.deduct_from_date')</td>
+                            <td style="padding: 7px;">@lang('langs.deduct_to_date')</td>
+                            <td style="padding: 7px;">@lang('langs.entry_date')</td>
+                            <td style="padding: 7px;">@lang('langs.deduct_morning_evening')</td>
+                            <td style="padding: 7px;">@lang('langs.payment')</td>
+                            <td style="padding: 7px;">@lang('langs.deduct_payment')</td>
+                            <td style="padding: 7px;">@lang('langs.total')</td>
+                            <td style="padding: 7px;">@lang('langs.created_by')</td>
+                            <td style="padding: 7px;">@lang('langs.created_at')</td>
 
                         </tr>
                         </thead>

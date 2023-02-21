@@ -25,6 +25,15 @@
                 border-collapse: collapse;
             }
         }
+        @font-face {
+            font-family: "HindVadodara-SemiBold";
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
+        }
+        * {
+            font-family: "HindVadodara-SemiBold", sans-serif;
+        }
 
     </style>
 </head>
@@ -48,7 +57,7 @@
         @endif
           </center>
               <div class="col-sm-6">
-                <h1>@lang('langs.item_name_report')</h1>
+                <span>@lang('langs.item_name_report')</span>
             </div>
         </div>
     </div>
@@ -64,10 +73,10 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
-                            <th style="padding: 7px;"> @lang('langs.item_name')</th>
-                            <th style="padding: 7px;"> @lang('langs.created_by')</th>
-                            <th style="padding: 7px;">@lang('langs.created_at')</th>
+                            <td style="padding: 7px;">@lang('langs.customer_no')</td>
+                            <td style="padding: 7px;"> @lang('langs.item_name')</td>
+                            <td style="padding: 7px;"> @lang('langs.created_by')</td>
+                            <td style="padding: 7px;">@lang('langs.created_at')</td>
 
                         </tr>
                         </thead>

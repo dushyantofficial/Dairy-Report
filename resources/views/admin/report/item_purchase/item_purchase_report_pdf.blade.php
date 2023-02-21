@@ -25,6 +25,15 @@
                 border-collapse: collapse;
             }
         }
+        @font-face {
+            font-family: "HindVadodara-SemiBold";
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
+        }
+        * {
+            font-family: "HindVadodara-SemiBold", sans-serif;
+        }
 
     </style>
 </head>
@@ -48,7 +57,7 @@
                 @endif
             </center>
             <div class="col-sm-6">
-                <h1>@lang('langs.item_purchase_report')</h1>
+                <span>@lang('langs.item_purchase_report')</span>
             </div>
         </div>
     </div>
@@ -64,36 +73,36 @@
                            style="border-collapse: collapse">
                         <thead>
                         <tr class="text-center">
-                            <th style="padding: 7px;">@lang('langs.customer_no')</th>
+                            <td style="padding: 7px;">@lang('langs.customer_no')</td>
                             @if(isset($input['field']['item_name_id']))
-                                <th style="padding: 7px;"> @lang('langs.item_name')</th>
+                                <td style="padding: 7px;"> @lang('langs.item_name')</td>
 
                             @endif
                             @if(isset($input['field']['item_quantity']))
-                                <th style="padding: 7px;"> @lang('langs.itemQuantity')</th>
+                                <td style="padding: 7px;"> @lang('langs.itemQuantity')</td>
 
                             @endif
 
                             @if(isset($input['field']['Purchase_Rate']))
-                                <th style="padding: 7px;"> @lang('langs.Purchase_Rate')</th>
+                                <td style="padding: 7px;"> @lang('langs.Purchase_Rate')</td>
 
                             @endif
 
                             @if(isset($input['field']['Sales_Rates']))
-                                <th style="padding: 7px;"> @lang('langs.Sales_Rates')</th>
+                                <td style="padding: 7px;"> @lang('langs.Sales_Rates')</td>
 
                             @endif
                             @if(isset($input['field']['purchase_date']))
-                                <th> @lang('langs.purchase_date')</th>
+                                <td> @lang('langs.purchase_date')</td>
 
                             @endif
                             @if(isset($input['field']['created_by']))
-                                <th style="padding: 7px;"> @lang('langs.created_by')</th>
+                                <td style="padding: 7px;"> @lang('langs.created_by')</td>
 
                             @endif
 
                             @if(isset($input['field']['created_at']))
-                                <th style="padding: 7px;"> Created Date</th>
+                                <td style="padding: 7px;"> Created Date</td>
 
                             @endif
 
