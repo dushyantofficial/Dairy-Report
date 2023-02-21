@@ -10,18 +10,6 @@ class Customers extends Model
 {
     use HasFactory;
 
-    public $table = 'customers';
-    protected $fillable = [
-        'bank_name',
-        'customer_name',
-        'customer_code',
-        'account_number',
-        'user_id',
-        'ifsc_code',
-        'final_amount',
-        'created_by',
-    ];
-
     public static $rules = [
         'bank_name' => 'required',
         'customer_name' => 'required',
@@ -37,6 +25,17 @@ class Customers extends Model
         'ifsc_code' => 'required',
         'final_amount' => 'required',
 
+    ];
+    public $table = 'customers';
+    protected $fillable = [
+        'bank_name',
+        'customer_name',
+        'customer_code',
+        'account_number',
+        'user_id',
+        'ifsc_code',
+        'final_amount',
+        'created_by',
     ];
 
     public function user()

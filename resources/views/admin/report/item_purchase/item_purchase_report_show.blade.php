@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <?php
-                        $user=\Illuminate\Support\Facades\Auth::user();
+                        $user = \Illuminate\Support\Facades\Auth::user();
                         ?>
                         <div id="table_print">
                             <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="checkbox"
-                                               id="checkall" >
+                                               id="checkall">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -155,31 +155,38 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="item_name_id"  class="check_all" name="field[item_name_id]"
+                                        <input type="checkbox" id="item_name_id" class="check_all"
+                                               name="field[item_name_id]"
                                                value="item_name_id">
                                         <label for="customer_name"> @lang('langs.item_name') </label><br>
-                                        <input type="checkbox" id="Sales_Rates"  class="check_all" name="field[Sales_Rates]"
+                                        <input type="checkbox" id="Sales_Rates" class="check_all"
+                                               name="field[Sales_Rates]"
                                                value="Sales_Rates">
                                         <label for="Sales_Rates"> @lang('langs.Sales_Rates')</label><br>
-                                        <input type="checkbox" id="purchase_date"  class="check_all" name="field[purchase_date]"
+                                        <input type="checkbox" id="purchase_date" class="check_all"
+                                               name="field[purchase_date]"
                                                value="purchase_date">
                                         <label for="Sales_Rates"> @lang('langs.purchase_date')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="item_quantity"  class="check_all" name="field[item_quantity]"
+                                        <input type="checkbox" id="item_quantity" class="check_all"
+                                               name="field[item_quantity]"
                                                value="item_sales_id">
                                         <label for="bank_name"> @lang('langs.itemQuantity')</label><br>
-                                        <input type="checkbox" id="created_at"  class="check_all" name="field[created_at]"
+                                        <input type="checkbox" id="created_at" class="check_all"
+                                               name="field[created_at]"
                                                value="created_at">
                                         <label for="dob">@lang('langs.created_at') </label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="Purchase_Rate"  class="check_all" name="field[Purchase_Rate]"
+                                        <input type="checkbox" id="Purchase_Rate" class="check_all"
+                                               name="field[Purchase_Rate]"
                                                value="Purchase_Rate">
                                         <label for="Purchase_Rate"> @lang('langs.Purchase_Rate')</label><br>
-                                        <input type="checkbox" id="created_by" class="check_all" name="field[created_by]"
+                                        <input type="checkbox" id="created_by" class="check_all"
+                                               name="field[created_by]"
                                                value="created_by">
                                         <label for="created_by"> @lang('langs.created_by')</label><br>
                                     </div>
@@ -222,7 +229,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -235,7 +242,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
 
@@ -267,15 +274,14 @@
     </script>
     <script>
         $('#checkall').change(function () {
-            $('.check_all').prop('checked',this.checked);
+            $('.check_all').prop('checked', this.checked);
         });
 
         $('.check_all').change(function () {
-            if ($('.check_all:checked').length == $('.check_all').length){
-                $('#checkall').prop('checked',true);
-            }
-            else {
-                $('#checkall').prop('checked',false);
+            if ($('.check_all:checked').length == $('.check_all').length) {
+                $('#checkall').prop('checked', true);
+            } else {
+                $('#checkall').prop('checked', false);
             }
         });
     </script>

@@ -35,9 +35,9 @@ class HomeController extends Controller
             $item_purchase = ItemPurchase::count();
             return view('home', compact('users',
                 'customers', 'item_sales', 'item_purchase'));
-        }else{
+        } else {
             Auth::logout();
-            return redirect()->back()->with('danger','Customer Not Admin Panel Access');
+            return redirect()->back()->with('danger', 'Customer Not Admin Panel Access');
         }
     }
 }

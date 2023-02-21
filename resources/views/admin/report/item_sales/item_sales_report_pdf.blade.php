@@ -25,12 +25,14 @@
                 border-collapse: collapse;
             }
         }
+
         @font-face {
             font-family: "HindVadodara-SemiBold";
             font-style: normal;
             font-weight: normal;
             src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
         }
+
         * {
             font-family: "HindVadodara-SemiBold", sans-serif;
         }
@@ -50,7 +52,7 @@
             }
         @endphp
         <div class="row mb-2">
-            <center>  <h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
+            <center><h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
                 <h2>Bank Payment Statement</h2>
                 @if (request()->date)
                     <h2>Date :{{$start}} To :{{$end}} Shift :Morning To :Evening</h2>
@@ -145,80 +147,80 @@
                         </thead>
                         <tbody>
                         @if(count($item_sales_reports)>0)
-                        @foreach($item_sales_reports as $item_sales)
-                            <tr style="text-align: center;">
-                                <td style="padding: 7px;">{{$loop->iteration}}</td>
+                            @foreach($item_sales_reports as $item_sales)
+                                <tr style="text-align: center;">
+                                    <td style="padding: 7px;">{{$loop->iteration}}</td>
 
-                                @if(isset($input['field']['customer_id']))
-                                    <td style="padding: 7px;">{{$item_sales->customers->customer_name}}</td>
+                                    @if(isset($input['field']['customer_id']))
+                                        <td style="padding: 7px;">{{$item_sales->customers->customer_name}}</td>
 
-                                @endif
-                                @if(isset($input['field']['item_name_id']))
-                                    <td style="padding: 7px;">{{$item_sales->item_names->item_name->item_name}}</td>
+                                    @endif
+                                    @if(isset($input['field']['item_name_id']))
+                                        <td style="padding: 7px;">{{$item_sales->item_names->item_name->item_name}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['item_quantity']))
-                                    <td style="padding: 7px;">{{$item_sales->item_quantity}}</td>
+                                    @if(isset($input['field']['item_quantity']))
+                                        <td style="padding: 7px;">{{$item_sales->item_quantity}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['payment_from_date']))
-                                    <td style="padding: 7px;">{{$item_sales->payment_from_date}}</td>
+                                    @if(isset($input['field']['payment_from_date']))
+                                        <td style="padding: 7px;">{{$item_sales->payment_from_date}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['payment_to_date']))
-                                    <td style="padding: 7px;">{{$item_sales->payment_to_date}}</td>
+                                    @if(isset($input['field']['payment_to_date']))
+                                        <td style="padding: 7px;">{{$item_sales->payment_to_date}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['from_morning_evening']))
-                                    <td style="padding: 7px;">{{$item_sales->from_morning_evening}}</td>
+                                    @if(isset($input['field']['from_morning_evening']))
+                                        <td style="padding: 7px;">{{$item_sales->from_morning_evening}}</td>
 
-                                @endif
-                                @if(isset($input['field']['to_morning_evening']))
-                                    <td style="padding: 7px;">{{$item_sales->to_morning_evening}}</td>
+                                    @endif
+                                    @if(isset($input['field']['to_morning_evening']))
+                                        <td style="padding: 7px;">{{$item_sales->to_morning_evening}}</td>
 
-                                @endif
-                                @if(isset($input['field']['deduct_from_date']))
-                                    <td style="padding: 7px;">{{$item_sales->deduct_from_date}}</td>
+                                    @endif
+                                    @if(isset($input['field']['deduct_from_date']))
+                                        <td style="padding: 7px;">{{$item_sales->deduct_from_date}}</td>
 
-                                @endif
-                                @if(isset($input['field']['deduct_to_date']))
-                                    <td style="padding: 7px;">{{$item_sales->deduct_to_date}}</td>
+                                    @endif
+                                    @if(isset($input['field']['deduct_to_date']))
+                                        <td style="padding: 7px;">{{$item_sales->deduct_to_date}}</td>
 
-                                @endif
-                                @if(isset($input['field']['entry_date']))
-                                    <td style="padding: 7px;">{{$item_sales->entry_date}}</td>
+                                    @endif
+                                    @if(isset($input['field']['entry_date']))
+                                        <td style="padding: 7px;">{{$item_sales->entry_date}}</td>
 
-                                @endif
-                                @if(isset($input['field']['payment']))
-                                    <td style="padding: 7px;">{{$item_sales->payment}}</td>
+                                    @endif
+                                    @if(isset($input['field']['payment']))
+                                        <td style="padding: 7px;">{{$item_sales->payment}}</td>
 
-                                @endif
-                                @if(isset($input['field']['deduct_payment']))
-                                    <td style="padding: 7px;">{{$item_sales->deduct_payment}}</td>
+                                    @endif
+                                    @if(isset($input['field']['deduct_payment']))
+                                        <td style="padding: 7px;">{{$item_sales->deduct_payment}}</td>
 
-                                @endif
-                                @if(isset($input['field']['total']))
-                                    <td style="padding: 7px;">{{$item_sales->total}}</td>
+                                    @endif
+                                    @if(isset($input['field']['total']))
+                                        <td style="padding: 7px;">{{$item_sales->total}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['created_by']))
-                                    <td style="padding: 7px;">{{$item_sales->created_name->user_name}}</td>
+                                    @if(isset($input['field']['created_by']))
+                                        <td style="padding: 7px;">{{$item_sales->created_name->user_name}}</td>
 
-                                @endif
+                                    @endif
 
-                                @if(isset($input['field']['created_at']))
-                                    <td style="padding: 7px;">{{$item_sales->created_at}}</td>
+                                    @if(isset($input['field']['created_at']))
+                                        <td style="padding: 7px;">{{$item_sales->created_at}}</td>
 
-                                @endif
+                                    @endif
 
-                            </tr>
+                                </tr>
 
-                        @endforeach
+                            @endforeach
                         @else
                             <h2 class="text-center" style="color: red">Record Not Found</h2>
                         @endif

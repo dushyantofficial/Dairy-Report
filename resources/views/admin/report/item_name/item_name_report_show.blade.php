@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <?php
-                        $user=\Illuminate\Support\Facades\Auth::user();
+                        $user = \Illuminate\Support\Facades\Auth::user();
                         ?>
                         <div id="table_print">
                             <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="checkbox"
-                                               id="checkall" >
+                                               id="checkall">
                                     </div>
                                 </div>
 
@@ -144,19 +144,22 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="name" class="check_all" name="field[item_name]" value="item_name">
+                                        <input type="checkbox" id="name" class="check_all" name="field[item_name]"
+                                               value="item_name">
                                         <label for="name"> @lang('langs.item_name') </label><br>
 
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="created_by" class="check_all" name="field[created_by]"
+                                        <input type="checkbox" id="created_by" class="check_all"
+                                               name="field[created_by]"
                                                value="created_by">
                                         <label for="admission_date"> @lang('langs.created_by')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="created_at" class="check_all" name="field[created_at]"
+                                        <input type="checkbox" id="created_at" class="check_all"
+                                               name="field[created_at]"
                                                value="created_at">
                                         <label for="admission_date"> @lang('langs.created_at')</label><br>
 
@@ -187,15 +190,14 @@
 @push('page_scripts')
     <script>
         $('#checkall').change(function () {
-            $('.check_all').prop('checked',this.checked);
+            $('.check_all').prop('checked', this.checked);
         });
 
         $('.check_all').change(function () {
-            if ($('.check_all:checked').length == $('.check_all').length){
-                $('#checkall').prop('checked',true);
-            }
-            else {
-                $('#checkall').prop('checked',false);
+            if ($('.check_all:checked').length == $('.check_all').length) {
+                $('#checkall').prop('checked', true);
+            } else {
+                $('#checkall').prop('checked', false);
             }
         });
     </script>
@@ -246,7 +248,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -259,7 +261,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
 

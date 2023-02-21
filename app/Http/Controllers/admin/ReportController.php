@@ -65,7 +65,7 @@ class ReportController extends Controller
         $customerPaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.customer.customer_report_pdf', compact('customer_reports', 'input'))->setPaper($customerPaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
         if (isset($start)) {
-            return $pdf->download($start . '_to_' . $end  . '_' . 'customer_report.pdf');
+            return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
         } else {
             return $pdf->download('item_purchase_report.pdf');
         }

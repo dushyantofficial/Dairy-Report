@@ -31,7 +31,7 @@ class CustomerController extends Controller
     {
         $request->validate(Customers::$rules);
         $validatedData = $request->validate([
-          'account_number' => 'required|unique:customers,account_number'
+            'account_number' => 'required|unique:customers,account_number'
         ]);
 
         $input = $request->all();
@@ -59,7 +59,7 @@ class CustomerController extends Controller
         $request->validate($rules);
         $customers = Customers::find($id);
         $validatedData = $request->validate([
-            'account_number' => 'required|unique:customers,account_number,'. $customers->id,
+            'account_number' => 'required|unique:customers,account_number,' . $customers->id,
         ]);
 
         $input = $request->all();
@@ -86,7 +86,7 @@ class CustomerController extends Controller
         $request->validate($rules);
         $customer = Customers::where('user_id', Auth::user()->id)->first();
         $validatedData = $request->validate([
-            'account_number' => 'required|unique:customers,account_number,'. $customer->id,
+            'account_number' => 'required|unique:customers,account_number,' . $customer->id,
         ]);
 
         $input = $request->all();

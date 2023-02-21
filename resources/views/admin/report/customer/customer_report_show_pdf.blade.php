@@ -26,12 +26,14 @@
                 border-collapse: collapse;
             }
         }
+
         @font-face {
             font-family: "HindVadodara-SemiBold";
             font-style: normal;
             font-weight: normal;
             src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
         }
+
         * {
             font-family: "HindVadodara-SemiBold", sans-serif;
         }
@@ -50,7 +52,7 @@
             }
         @endphp
         <div class="row mb-2">
-            <center>  <h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
+            <center><h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
                 <h2>Bank Payment Statement</h2>
                 @if (request()->date)
                     <h2>Date :{{$start}} To :{{$end}} Shift :Morning To :Evening</h2>

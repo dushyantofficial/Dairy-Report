@@ -11,6 +11,13 @@ class ItemPurchase extends Model
     use HasFactory;
 
 
+    public static $rules = [
+        'item_name_id' => 'required',
+        'item_quantity' => 'required',
+        'Purchase_Rate' => 'required',
+        'Sales_Rates' => 'required',
+        'purchase_date' => 'required',
+    ];
     public $table = 'item_purchases';
     protected $fillable = [
         'item_name_id',
@@ -19,15 +26,6 @@ class ItemPurchase extends Model
         'Sales_Rates',
         'created_by',
         'purchase_date',
-    ];
-
-
-    public static $rules = [
-        'item_name_id' => 'required',
-        'item_quantity' => 'required',
-        'Purchase_Rate' => 'required',
-        'Sales_Rates' => 'required',
-        'purchase_date' => 'required',
     ];
 
     public function item_name()

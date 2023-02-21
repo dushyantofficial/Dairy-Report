@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <?php
-                        $user=\Illuminate\Support\Facades\Auth::user();
+                        $user = \Illuminate\Support\Facades\Auth::user();
                         ?>
                         <div id="table_print">
                             <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="checkbox"
-                                               id="checkall" >
+                                               id="checkall">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -199,55 +199,69 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="customer_name"  class="check_all" name="field[customer_id]"
+                                        <input type="checkbox" id="customer_name" class="check_all"
+                                               name="field[customer_id]"
                                                value="customer_id">
                                         <label for="customer_name"> @lang('langs.customer_name') </label><br>
-                                        <input type="checkbox" id="payment_from_date"  class="check_all" name="field[payment_from_date]"
+                                        <input type="checkbox" id="payment_from_date" class="check_all"
+                                               name="field[payment_from_date]"
                                                value="payment_from_date">
                                         <label for="payment_from_date"> @lang('langs.payment_from_date')</label><br>
 
-                                        <input type="checkbox" id="to_morning_evening"  class="check_all" name="field[to_morning_evening]"
+                                        <input type="checkbox" id="to_morning_evening" class="check_all"
+                                               name="field[to_morning_evening]"
                                                value="to_morning_evening">
                                         <label for="to_morning_evening"> @lang('langs.to_morning_evening')</label><br>
-                                        <input type="checkbox" id="entry_date"  class="check_all" name="field[entry_date]"
+                                        <input type="checkbox" id="entry_date" class="check_all"
+                                               name="field[entry_date]"
                                                value="entry_date">
                                         <label for="entry_date"> @lang('langs.entry_date')</label><br>
-                                        <input type="checkbox" id="deduct_payment"  class="check_all" name="field[deduct_payment]"
+                                        <input type="checkbox" id="deduct_payment" class="check_all"
+                                               name="field[deduct_payment]"
                                                value="deduct_payment">
                                         <label for="deduct_payment"> @lang('langs.deduct_payment')</label><br>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="item_name"  class="check_all" name="field[item_name_id]"
+                                        <input type="checkbox" id="item_name" class="check_all"
+                                               name="field[item_name_id]"
                                                value="item_name_id">
                                         <label for="bank_name"> @lang('langs.item_name')</label><br>
-                                        <input type="checkbox" id="payment_to_date"  class="check_all" name="field[payment_to_date]"
+                                        <input type="checkbox" id="payment_to_date" class="check_all"
+                                               name="field[payment_to_date]"
                                                value="payment_to_date">
                                         <label for="dob">@lang('langs.payment_to_date') </label><br>
-                                        <input type="checkbox" id="deduct_from_date"  class="check_all" name="field[deduct_from_date]"
+                                        <input type="checkbox" id="deduct_from_date" class="check_all"
+                                               name="field[deduct_from_date]"
                                                value="deduct_from_date">
                                         <label for="deduct_from_date"> @lang('langs.deduct_from_date')</label><br>
-                                        <input type="checkbox" id="deduct_morning_evening"  class="check_all" name="field[deduct_morning_evening]"
+                                        <input type="checkbox" id="deduct_morning_evening" class="check_all"
+                                               name="field[deduct_morning_evening]"
                                                value="deduct_morning_evening">
                                         <label for="deduct_morning_evening"> @lang('langs.deduct_mor_eve')</label><br>
-                                        <input type="checkbox" id="total"  class="check_all" name="field[total]"
+                                        <input type="checkbox" id="total" class="check_all" name="field[total]"
                                                value="total">
                                         <label for="total"> @lang('langs.total')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" id="item_quantity"  class="check_all" name="field[item_quantity]"
+                                        <input type="checkbox" id="item_quantity" class="check_all"
+                                               name="field[item_quantity]"
                                                value="item_quantity">
                                         <label for="itemQuantity"> @lang('langs.itemQuantity')</label><br>
-                                        <input type="checkbox" id="from_morning_evening" class="check_all" name="field[from_morning_evening]"
+                                        <input type="checkbox" id="from_morning_evening" class="check_all"
+                                               name="field[from_morning_evening]"
                                                value="from_morning_evening">
-                                        <label for="from_morning_evening"> @lang('langs.from_morning_evening')</label><br>
-                                        <input type="checkbox" id="payment_to_date"  class="check_all" name="field[payment_to_date]"
+                                        <label
+                                            for="from_morning_evening"> @lang('langs.from_morning_evening')</label><br>
+                                        <input type="checkbox" id="payment_to_date" class="check_all"
+                                               name="field[payment_to_date]"
                                                value="payment_to_date">
                                         <label for="payment_to_date"> @lang('langs.payment_to_date')</label><br>
-                                        <input type="checkbox" id="payment"  class="check_all" name="field[payment]"
+                                        <input type="checkbox" id="payment" class="check_all" name="field[payment]"
                                                value="payment">
                                         <label for="payment"> @lang('langs.payment')</label><br>
-                                        <input type="checkbox" id="created_by"  class="check_all" name="field[created_by]"
+                                        <input type="checkbox" id="created_by" class="check_all"
+                                               name="field[created_by]"
                                                value="created_by">
                                         <label for="payment"> @lang('langs.created_by')</label><br>
                                     </div>
@@ -290,7 +304,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -303,7 +317,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
 
@@ -336,15 +350,14 @@
 
     <script>
         $('#checkall').change(function () {
-            $('.check_all').prop('checked',this.checked);
+            $('.check_all').prop('checked', this.checked);
         });
 
         $('.check_all').change(function () {
-            if ($('.check_all:checked').length == $('.check_all').length){
-                $('#checkall').prop('checked',true);
-            }
-            else {
-                $('#checkall').prop('checked',false);
+            if ($('.check_all:checked').length == $('.check_all').length) {
+                $('#checkall').prop('checked', true);
+            } else {
+                $('#checkall').prop('checked', false);
             }
         });
     </script>

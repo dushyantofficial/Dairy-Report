@@ -8,15 +8,20 @@
                     <div class="row">
 
                         <div class="col-6"><a class="btn btn-outline-danger"
-                    href="{{route('item-sales-report-pdf')}}?field={{request()}}">
+                                              href="{{route('item-sales-report-pdf')}}?field={{request()}}">
                                 Pdf</a>
- <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">Excel</button>&nbsp;&nbsp;
-                                  <a class="btn btn-outline-warning" id="Pairings_by_Table_call"
-                                     href="#">
+                            <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">
+                                Excel
+                            </button>&nbsp;&nbsp;
+                            <a class="btn btn-outline-warning" id="Pairings_by_Table_call"
+                               href="#">
                                 Print </a>
 
-                    <a href="{{route('item-sales-report-show')}}"><button type="button"
-                                                                             class="btn btn-outline-dark">Back</button></a>&nbsp</span><br><br>
+                            <a href="{{route('item-sales-report-show')}}">
+                                <button type="button"
+                                        class="btn btn-outline-dark">Back
+                                </button>
+                            </a>&nbsp</span><br><br>
                         </div>
                     </div>
                 </div>
@@ -179,7 +184,7 @@
                     </div>
                 </div>
                 <?php
-                $user=\Illuminate\Support\Facades\Auth::user();
+                $user = \Illuminate\Support\Facades\Auth::user();
                 ?>
                 <div id="table_print">
                     <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -360,7 +365,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -373,7 +378,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
 

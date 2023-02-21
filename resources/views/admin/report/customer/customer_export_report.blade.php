@@ -8,10 +8,12 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-6">
-                 <a class="btn btn-outline-danger"
-                    href="{{route('customer-report-pdf')}}?field={{request()}}">
+                            <a class="btn btn-outline-danger"
+                               href="{{route('customer-report-pdf')}}?field={{request()}}">
                                 Pdf</a>
-                    <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">Excel</button>&nbsp;&nbsp;
+                            <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">
+                                Excel
+                            </button>&nbsp;&nbsp;
                             <span class="pull-right float-right"><button type="button"
                                                                          id="Pairings_by_Table_call"
                                                                          class="btn btn-outline-warning">Print</button>
@@ -105,7 +107,7 @@
                                 </table>
                             </div>
                             <?php
-                            $user=\Illuminate\Support\Facades\Auth::user();
+                            $user = \Illuminate\Support\Facades\Auth::user();
                             ?>
                             <div id="table_print">
                                 <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -219,7 +221,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -232,7 +234,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
         $(function () {

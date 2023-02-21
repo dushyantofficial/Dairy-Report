@@ -25,12 +25,14 @@
                 border-collapse: collapse;
             }
         }
+
         @font-face {
             font-family: "HindVadodara-SemiBold";
             font-style: normal;
             font-weight: normal;
             src: url('{{base_path().'/storage/'}}HindVadodara-SemiBold.ttf') format('truetype');
         }
+
         * {
             font-family: "HindVadodara-SemiBold", sans-serif;
         }
@@ -41,22 +43,22 @@
 <section class="content-header">
     <div class="container-fluid">
         @php
-        $user = \Illuminate\Support\Facades\Auth::user();
-        if (request()->date) {
-            $date = request()->date;
-            $name = explode(' ', $date);
-            $start = date('Y-m-d', strtotime($name[0]));
-            $end = date('Y-m-d', strtotime($name[2]));
-        }
+            $user = \Illuminate\Support\Facades\Auth::user();
+            if (request()->date) {
+                $date = request()->date;
+                $name = explode(' ', $date);
+                $start = date('Y-m-d', strtotime($name[0]));
+                $end = date('Y-m-d', strtotime($name[2]));
+            }
         @endphp
         <div class="row mb-2">
-          <center>  <h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
-            <h2>Bank Payment Statement</h2>
-              @if (request()->date)
-            <h2>Date :{{$start}} To :{{$end}} Shift :Morning To :Evening</h2>
-        @endif
-          </center>
-              <div class="col-sm-6">
+            <center><h2>{{$user->mandali_address}} - {{$user->mandali_code}}</h2>
+                <h2>Bank Payment Statement</h2>
+                @if (request()->date)
+                    <h2>Date :{{$start}} To :{{$end}} Shift :Morning To :Evening</h2>
+                @endif
+            </center>
+            <div class="col-sm-6">
                 <span>@lang('langs.item_name_report')</span>
             </div>
         </div>

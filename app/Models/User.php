@@ -20,6 +20,7 @@ class User extends Authenticatable
     ];
 
     use HasApiTokens, HasFactory, Notifiable;
+
     public static $profile = [
         'mandali_code' => 'required',
         'email' => 'required',

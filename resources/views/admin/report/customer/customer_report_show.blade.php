@@ -87,7 +87,7 @@
                 </div>
             </div>
             <?php
-            $user=\Illuminate\Support\Facades\Auth::user();
+            $user = \Illuminate\Support\Facades\Auth::user();
             ?>
             <div id="table_print">
                 <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="checkbox"
-                                             id="checkall" >
+                                               id="checkall">
                                     </div>
                                 </div>
 
@@ -161,29 +161,33 @@
 
                                     <div class="col-md-2">
                                         <input type="checkbox" id="customer_name" name="field[customer_name]"
-                                             class="check_all"  value="customer_name">
+                                               class="check_all" value="customer_name">
                                         <label for="customer_name"> @lang('langs.customer_name') </label><br>
                                         <input type="checkbox" id="final_amount" name="field[final_amount]"
                                                class="check_all" value="final_amount">
                                         <label for="admission_number"> @lang('langs.final_amount')</label><br>
                                         <input type="checkbox" id="created_by" name="field[created_by]"
-                                               class="check_all"  value="created_by">
+                                               class="check_all" value="created_by">
                                         <label for="admission_number"> @lang('langs.created_by')</label><br>
                                     </div>
 
                                     <div class="col-md-2">
-                                        <input type="checkbox"   class="check_all"  id="bank_name" name="field[bank_name]" value="bank_name">
+                                        <input type="checkbox" class="check_all" id="bank_name" name="field[bank_name]"
+                                               value="bank_name">
                                         <label for="bank_name"> @lang('langs.bank_name')</label><br>
-                                        <input type="checkbox"   class="check_all"  id="created_at" name="field[created_at]"
+                                        <input type="checkbox" class="check_all" id="created_at"
+                                               name="field[created_at]"
                                                value="created_at">
                                         <label for="dob">@lang('langs.created_at')</label><br>
 
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="checkbox" class="check_all"  id="account_number" name="field[account_number]"
+                                        <input type="checkbox" class="check_all" id="account_number"
+                                               name="field[account_number]"
                                                value="account_number">
                                         <label for="account_number"> @lang('langs.account_number')</label><br>
-                                        <input type="checkbox"  class="check_all"  id="account_number" name="field[user_id]"
+                                        <input type="checkbox" class="check_all" id="account_number"
+                                               name="field[user_id]"
                                                value="user_id">
                                         <label for="user_id"> @lang('langs.user_name')</label><br>
                                     </div>
@@ -206,20 +210,19 @@
 @endsection
 @push('page_scripts')
 
-<script>
-    $('#checkall').change(function () {
-        $('.check_all').prop('checked',this.checked);
-    });
+    <script>
+        $('#checkall').change(function () {
+            $('.check_all').prop('checked', this.checked);
+        });
 
-    $('.check_all').change(function () {
-        if ($('.check_all:checked').length == $('.check_all').length){
-            $('#checkall').prop('checked',true);
-        }
-        else {
-            $('#checkall').prop('checked',false);
-        }
-    });
-</script>
+        $('.check_all').change(function () {
+            if ($('.check_all:checked').length == $('.check_all').length) {
+                $('#checkall').prop('checked', true);
+            } else {
+                $('#checkall').prop('checked', false);
+            }
+        });
+    </script>
     <script type="text/javascript">
         $(function () {
             $("#Pairings_by_Table_call").click(function () {
@@ -238,7 +241,7 @@
                 frameDoc.document.open();
                 //Create a new HTML document.
 
-                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('<html><head><title> </title><center>' + mandali_address + '-' + mandali_code + '<center>Bank Payment Statement<br><center>Date:' + date + '');
                 frameDoc.document.write('</head><body>');
                 //Append the external CSS file.
                 // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
@@ -251,7 +254,7 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-                $('#pri_table').attr("style","display:none");
+                $('#pri_table').attr("style", "display:none");
             });
         });
 
