@@ -107,7 +107,7 @@
                             @endif
 
                             @if(isset($input['field']['created_at']))
-                                <td style="padding: 7px;"> Created Date</td>
+                                <td style="padding: 7px;"> @lang('langs.created_at')</td>
 
                             @endif
 
