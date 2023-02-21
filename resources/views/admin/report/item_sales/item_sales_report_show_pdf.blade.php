@@ -57,7 +57,7 @@
                 @endif
             </center>
             <div class="col-sm-6">
-                <h1>@lang('langs.item_purchase_report')</h1>
+                <span>@lang('langs.item_purchase_report')</span>
             </div>
         </div>
     </div>
