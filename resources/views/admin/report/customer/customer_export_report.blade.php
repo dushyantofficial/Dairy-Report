@@ -8,14 +8,13 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-6">
-                                           <span class="pull-right float-right"><button type="button"
-                                                                                        id="Pairings_by_Table_call"
-                                                                                        class="btn btn-info">Print</button>
                  <a class="btn btn-outline-danger"
                     href="{{route('customer-report-pdf')}}?field={{request()}}">
                                 Pdf</a>
-                    <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">Excel File</button>&nbsp;&nbsp;
-
+                    <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">Excel</button>&nbsp;&nbsp;
+                            <span class="pull-right float-right"><button type="button"
+                                                                         id="Pairings_by_Table_call"
+                                                                         class="btn btn-outline-warning">Print</button>
                     <a href="{{route('customer-report-show')}}"><button type="button"
                                                                         class="btn btn-outline-dark">Back</button></a>&nbsp</span><br><br>
                         </div>

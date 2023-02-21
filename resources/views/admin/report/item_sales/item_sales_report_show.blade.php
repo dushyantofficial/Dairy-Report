@@ -36,8 +36,9 @@
                             <button type="button" class="btn btn-outline-primary"
                                     onclick="ExportToExcel('xlsx')">Excel
                             </button>
-                            <a href="{{route('item-sales-report-show')}}"
-                               class="btn btn-outline-warning ml-3">Print</a>
+                            <a class="btn btn-outline-warning" id="Pairings_by_Table_call"
+                               href="#">
+                                Print </a>
 
                         </div>
                         </form>
@@ -101,6 +102,63 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <?php
+                        $user=\Illuminate\Support\Facades\Auth::user();
+                        ?>
+                        <div id="table_print">
+                            <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
+                            <input type="hidden" id="mandali_code" value="{{$user->mandali_code}}">
+                            <table class="table" id="pri_table" style="display: none">
+                                <thead>
+                                <tr>
+                                    <th scope="col">@lang('langs.item_sales_no')</th>
+                                    <th scope="col">@lang('langs.customer_name')</th>
+                                    <th scope="col">@lang('langs.item_name')</th>
+                                    <th scope="col">@lang('langs.itemQuantity')</th>
+                                    <th scope="col">@lang('langs.payment_from_date')</th>
+                                    <th scope="col">@lang('langs.payment_to_date')</th>
+                                    <th scope="col">@lang('langs.from_morning_evening')</th>
+                                    <th scope="col">@lang('langs.to_morning_evening')</th>
+                                    <th scope="col">@lang('langs.deduct_from_date')</th>
+                                    <th scope="col">@lang('langs.deduct_to_date')</th>
+                                    <th scope="col">@lang('langs.entry_date')</th>
+                                    <th scope="col">@lang('langs.deduct_morning_evening')</th>
+                                    <th scope="col">@lang('langs.payment')</th>
+                                    <th scope="col">@lang('langs.deduct_payment')</th>
+                                    <th scope="col">@lang('langs.total')</th>
+                                    <th scope="col">@lang('langs.created_by')</th>
+                                    <th scope="col">@lang('langs.created_at')</th>
+                                    {{--                                    <th scope="col">@lang('langs.item_sales_action')</th>--}}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if(isset($filter_item_sales))
+                                    @foreach($filter_item_sales as $item_sales)
+                                        <tr>
+                                            <th scope="row">{{$loop->iteration}}</th>
+                                            <td>{{$item_sales->customers->customer_name}}</td>
+                                            <td>{{$item_sales->item_names->item_name->item_name}}</td>
+                                            <td>{{$item_sales->item_quantity}}</td>
+                                            <td>{{$item_sales->payment_from_date}}</td>
+                                            <td>{{$item_sales->payment_to_date}}</td>
+                                            <td>{{$item_sales->from_morning_evening}}</td>
+                                            <td>{{$item_sales->to_morning_evening}}</td>
+                                            <td>{{$item_sales->deduct_from_date}}</td>
+                                            <td>{{$item_sales->deduct_to_date}}</td>
+                                            <td>{{$item_sales->entry_date}}</td>
+                                            <td>{{$item_sales->deduct_morning_evening}}</td>
+                                            <td>{{$item_sales->payment}}</td>
+                                            <td>{{$item_sales->deduct_payment}}</td>
+                                            <td>{{$item_sales->total}}</td>
+                                            <td>{{$item_sales->created_name->user_name}}</td>
+                                            <td>{{$item_sales->created_at}}</td>
+
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -213,6 +271,68 @@
 
 @endsection
 @push('page_scripts')
+
+    <script type="text/javascript">
+        $(function () {
+            $("#Pairings_by_Table_call").click(function () {
+
+                $('#pri_table').show();
+                var mandali_address = $('#mandali_address').val();
+                var mandali_code = $('#mandali_code').val();
+                var date = $('#reportrange').val();
+
+                var contents = $("#table_print").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({"position": "absolute", "top": "-1000000px"});
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+
+                frameDoc.document.write('<html><head><title> </title><center>'+mandali_address+'-'+mandali_code+'<center>Bank Payment Statement<br><center>Date:'+date+'');
+                frameDoc.document.write('</head><body>');
+                //Append the external CSS file.
+                // frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+                $('#pri_table').attr("style","display:none");
+            });
+        });
+
+        $(function () {
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+
+            $('.daterange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+        });
+    </script>
 
     <script>
         $('#checkall').change(function () {
