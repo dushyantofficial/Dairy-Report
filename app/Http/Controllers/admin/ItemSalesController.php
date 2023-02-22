@@ -89,6 +89,18 @@ class ItemSalesController extends Controller
         $item_saless->delete($id);
         return redirect(route('item_sales.index'))->with('danger', Lang::get('langs.flash_del'));
 
-    }
 
+    }
+    public function getQuantity(Request $request)
+    {
+        $quantity=ItemPurchase::select('item_quantity')->where('id',$request->id)->first();
+//        dd($quantity);
+        return $quantity;
+    }
+    public function getPayment(Request $request)
+    {
+        $quantity=ItemSales::select('payment','deduct_payment')->where([['customer_id',$request->id],['deduct_to_date',$request->to_date],['deduct_from_date',$request->from_date]])->first();
+//        dd($quantity);
+        return $quantity;
+    }
 }

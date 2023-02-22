@@ -21,7 +21,7 @@
                                     <label for="inputNanme4" class="form-label">@lang('langs.from_date')</label>
                                     <input type="date" name="payment_from_date" value="{{old('payment_from_date')}}"
                                            class="form-control @error('payment_from_date') is-invalid @enderror"
-                                           id="inputNanme4">
+                                           id="from_date">
                                     @error('payment_from_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -30,7 +30,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.to_date')</label>
                                     <input type="date" name="payment_to_date" value="{{old('payment_to_date')}}"
                                            class="form-control @error('payment_to_date') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="to_date">
                                     @error('payment_to_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -61,7 +61,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.from_date')</label>
                                     <input type="date" name="deduct_from_date" value="{{old('deduct_from_date')}}"
                                            class="form-control @error('deduct_from_date') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="deduct_from_date">
                                     @error('deduct_from_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -71,7 +71,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.to_date')</label>
                                     <input type="date" name="deduct_to_date" value="{{old('deduct_to_date')}}"
                                            class="form-control @error('deduct_to_date') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="deduct_to_date">
                                     @error('deduct_to_date')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -103,7 +103,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.payment')</label>
                                     <input type="number" name="payment" value="{{old('payment')}}"
                                            class="form-control @error('payment') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="payment">
                                     @error('payment')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -112,7 +112,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.deduct_payment')</label>
                                     <input type="number" name="deduct_payment" value="{{old('deduct_payment')}}"
                                            class="form-control @error('deduct_payment') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="deduct_payment">
                                     @error('deduct_payment')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -121,7 +121,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.total')</label>
                                     <input type="number" name="total" value="{{old('total')}}"
                                            class="form-control @error('total') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="total">
                                     @error('total')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -131,7 +131,7 @@
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.customer_name')</label>
                                     <select class="form-control select2 @error('customer_id') is-invalid @enderror"
-                                            name="customer_id">
+                                            name="customer_id" id="customer_id">
                                         <option value="">---@lang('langs.select_customer_name')---</option>
                                         @foreach($customers as $customer)
                                             <option
@@ -145,7 +145,7 @@
                                 <div class="col-6">
                                     <label for="inputEmail4" class="form-label">@lang('langs.item_name')</label>
                                     <select class="form-control select2 @error('item_name_id') is-invalid @enderror"
-                                            name="item_name_id">
+                                            name="item_name_id" id="opt_level">
                                         <option value="">---@lang('langs.select_item_name')---</option>
                                         @foreach($item_namess as $item_names)
                                             <option
@@ -160,7 +160,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.itemQuantity')</label>
                                     <input type="number" name="item_quantity" value="{{old('item_quantity')}}"
                                            class="form-control @error('item_quantity') is-invalid @enderror"
-                                           id="inputEmail4">
+                                           id="item_quantity">
                                     @error('item_quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -175,7 +175,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+                                <input type="hidden" value="" id="qitme">
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-outline-primary">@lang('langs.save')</button>
                                     <a href="{{route('item_sales.index')}}" type="reset"
@@ -197,9 +197,70 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+
         $(document).ready(function () {
             $('.select2').select2();
         });
 
+
+        $(document).ready(function($) {
+            $("#opt_level").on('change', function() {
+
+                var level = $(this).val();
+                // alert(level);
+                if(level){
+                    $.ajax({
+                        type:'GET',
+                        url:"{{ route('get_quantity') }}",
+                        data:{'id':level},
+                        success:function(data){
+                            // console.log();
+                            $('#qitme').val(data.item_quantity);
+
+                            // console.log(qitme);
+                        }
+                    });
+                }
+            });
+
+
+            $("#customer_id").on('change', function() {
+                var id = $(this).val();
+                var to_date = $('#deduct_to_date').val();
+                var from_date = $("#deduct_from_date").val();
+                // alert(to_date, from_date);
+                if(id){
+                    $.ajax({
+                        type:'GET',
+                        url:"{{ route('get_payment') }}",
+                        data:{'id':id,'to_date':to_date,'from_date':from_date},
+                        success:function(data){
+                            // console.log(data);
+                            var payment=data.payment;
+                            var deduct_payment=data.deduct_payment;
+                            var total = payment-deduct_payment;
+                            $('#payment').val(payment);
+                            $('#deduct_payment').val(deduct_payment);
+                            $('#total').val(total);
+
+                            // console.log(qitme);
+                        }
+                    });
+                }
+            });
+
+            $('#item_quantity').on('keyup', function () {
+                var tval= $(this).val();
+                var qitme = $('#qitme').val();
+                // alert(qitme);
+                if(tval < qitme){
+
+                }else {
+                    alert('Please enter valid item quantity');
+                    $('#item_quantity').val(' ');
+                }
+
+            });
+        });
     </script>
 @endpush
