@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
+use Psy\Util\Json;
 
 class ItemSalesController extends Controller
 {
@@ -94,13 +95,15 @@ class ItemSalesController extends Controller
     public function getQuantity(Request $request)
     {
         $quantity=ItemPurchase::select('item_quantity')->where('id',$request->id)->first();
-//        dd($quantity);
         return $quantity;
     }
     public function getPayment(Request $request)
     {
-        $quantity=ItemSales::select('payment','deduct_payment')->where([['customer_id',$request->id],['deduct_to_date',$request->to_date],['deduct_from_date',$request->from_date]])->first();
-//        dd($quantity);
-        return $quantity;
+        $quantity=ItemSales::select('deduct_payment')->where([['customer_id',$request->id],['deduct_to_date',$request->to_date],['deduct_from_date',$request->from_date]])->first();
+        $final_amount=Customers::select('final_amount')->where('id',$request->id)->first();
+        $data=array();
+        $data['deduct_payment']=$quantity['deduct_payment'];
+        $data['final_amount']=$final_amount['final_amount'];
+        return $data;
     }
 }

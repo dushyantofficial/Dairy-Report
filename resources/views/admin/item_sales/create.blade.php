@@ -236,14 +236,14 @@
                         data:{'id':id,'to_date':to_date,'from_date':from_date},
                         success:function(data){
                             // console.log(data);
-                            var payment=data.payment;
-                            var deduct_payment=data.deduct_payment;
-                            var total = payment-deduct_payment;
+                            var payment=data.final_amount;
+                            var deduct_paymen=data.deduct_payment;
+                            var total = payment-deduct_paymen;
                             $('#payment').val(payment);
-                            $('#deduct_payment').val(deduct_payment);
+                            $('#deduct_payment').val(deduct_paymen);
                             $('#total').val(total);
 
-                            // console.log(qitme);
+
                         }
                     });
                 }
