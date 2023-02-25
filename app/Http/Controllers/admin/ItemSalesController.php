@@ -20,7 +20,7 @@ class ItemSalesController extends Controller
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')){
             $item_saless = ItemSales::all();
-            return view('admin.customer.index', compact('item_saless'));
+            return view('admin.item_sales.index', compact('item_saless'));
         }
         $item_saless = ItemSales::where('created_by',$user->id)->get();
         return view('admin.item_sales.index', compact('item_saless'));

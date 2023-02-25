@@ -18,7 +18,7 @@ class ItemPurchaseController extends Controller
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')){
             $item_purchases = ItemPurchase::all();
-            return view('admin.customer.index', compact('item_purchases'));
+            return view('admin.item_purchase.index', compact('item_purchases'));
         }
         $item_purchases = ItemPurchase::where('created_by',$user->id)->get();
         return view('admin.item_purchase.index', compact('item_purchases'));
