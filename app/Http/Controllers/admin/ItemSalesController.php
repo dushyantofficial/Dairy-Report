@@ -17,15 +17,26 @@ class ItemSalesController extends Controller
 {
     public function index()
     {
-        $item_saless = ItemSales::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')){
+            $item_saless = ItemSales::all();
+            return view('admin.customer.index', compact('item_saless'));
+        }
+        $item_saless = ItemSales::where('created_by',$user->id)->get();
         return view('admin.item_sales.index', compact('item_saless'));
     }
 
 
     public function create()
     {
-        $customers = Customers::all();
-        $item_namess = ItemPurchase::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')) {
+            $customers = Customers::all();
+            $item_namess = ItemPurchase::all();
+            return view('admin.item_sales.create', compact('item_namess', 'customers'));
+        }
+        $customers = Customers::where('user_id',$user->id)->get();
+        $item_namess = ItemPurchase::where('created_by',$user->id)->get();
         return view('admin.item_sales.create', compact('item_namess', 'customers'));
     }
 

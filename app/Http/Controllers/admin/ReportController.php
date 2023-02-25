@@ -9,33 +9,65 @@ use App\Models\admin\ItemPurchase;
 use App\Models\admin\ItemSales;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
 //    Customer Activity
     public function customer_report_show(Request $request)
     {
-        $filter_customers = Customers::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')) {
+            $filter_customers = Customers::all();
+            if ($request->date) {
+                $date = $request->date;
+                $name = explode(' ', $date);
+                $start = date('Y-m-d', strtotime($name[0]));
+                $end = date('Y-m-d', strtotime($name[2]));
+                $filter_customers = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
+            }
+            return view('admin.report.customer.customer_report_show', compact('filter_customers'));
+        }
+        $filter_customers = Customers::where('user_id',$user->id)->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
             $start = date('Y-m-d', strtotime($name[0]));
             $end = date('Y-m-d', strtotime($name[2]));
-            $filter_customers = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
+            $filter_customers = Customers::where('user_id',$user->id)->whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
         }
         return view('admin.report.customer.customer_report_show', compact('filter_customers'));
     }
 
     public function customer_report_show_pdf(Request $request)
     {
-//        dd('customer_report_show_pdf');
-        $filter_customer_reports = Customers::all();
+
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')) {
+            $filter_customer_reports = Customers::all();
+            if ($request->date) {
+                $date = $request->date;
+                $name = explode(' ', $date);
+                $start = date('Y-m-d', strtotime($name[0]));
+                $end = date('Y-m-d', strtotime($name[2]));
+                $filter_customer_reports = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
+            }
+            $item_purchasePaper = array(0, 0, 1000.00, 900.80);
+            $pdf = PDF::loadView('admin.report.customer.customer_report_show_pdf', compact('filter_customer_reports'))->setPaper($item_purchasePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
+
+            if (isset($start)) {
+                return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+            } else {
+                return $pdf->download('customer_report.pdf');
+            }
+        }
+        $filter_customer_reports = Customers::where('user_id',$user->id)->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
             $start = date('Y-m-d', strtotime($name[0]));
             $end = date('Y-m-d', strtotime($name[2]));
-            $filter_customer_reports = Customers::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
+            $filter_customer_reports = Customers::where('user_id',$user->id)->whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
         }
         $item_purchasePaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.customer.customer_report_show_pdf', compact('filter_customer_reports'))->setPaper($item_purchasePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));

@@ -62,6 +62,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">@lang('langs.customer_no')</th>
+                                    <th scope="col">@lang('langs.user_name')</th>
                                     <th scope="col">@lang('langs.customer_name')</th>
                                     <th scope="col">@lang('langs.bank_name')</th>
                                     <th scope="col">@lang('langs.account_number')</th>
@@ -74,7 +75,8 @@
                                 @foreach($customers as $customer)
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
-                                        <td>{{$customer->user->customer_name}}</td>
+                                        <td>{{$customer->user->user_name}}</td>
+                                        <td>{{$customer->customer_name}}</td>
                                         <td>{{$customer->bank_name}}</td>
                                         <td>{{$customer->account_number}}</td>
                                         <td>{{$customer->ifsc_code}}</td>

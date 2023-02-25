@@ -12,7 +12,12 @@ class ItemNameController extends Controller
 {
     public function index()
     {
-        $item_names = ItemName::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')){
+            $item_names = ItemName::all();
+            return view('admin.customer.index', compact('item_names'));
+        }
+        $item_names = ItemName::where('created_by',$user->id)->get();
         return view('admin.item_name.index', compact('item_names'));
     }
 

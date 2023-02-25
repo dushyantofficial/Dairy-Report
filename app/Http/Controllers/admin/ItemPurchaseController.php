@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\Customers;
 use App\Models\admin\ItemName;
 use App\Models\admin\ItemPurchase;
 use App\Models\admin\ItemSales;
@@ -14,7 +15,12 @@ class ItemPurchaseController extends Controller
 {
     public function index()
     {
-        $item_purchases = ItemPurchase::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')){
+            $item_purchases = ItemPurchase::all();
+            return view('admin.customer.index', compact('item_purchases'));
+        }
+        $item_purchases = ItemPurchase::where('created_by',$user->id)->get();
         return view('admin.item_purchase.index', compact('item_purchases'));
     }
 

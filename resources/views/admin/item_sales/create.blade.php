@@ -103,7 +103,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.payment')</label>
                                     <input type="number" name="payment" value="{{old('payment')}}"
                                            class="form-control @error('payment') is-invalid @enderror"
-                                           id="payment">
+                                           id="payment" readonly>
                                     @error('payment')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -112,7 +112,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.deduct_payment')</label>
                                     <input type="number" name="deduct_payment" value="{{old('deduct_payment')}}"
                                            class="form-control @error('deduct_payment') is-invalid @enderror"
-                                           id="deduct_payment">
+                                           id="deduct_payment" readonly>
                                     @error('deduct_payment')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -121,7 +121,7 @@
                                     <label for="inputEmail4" class="form-label">@lang('langs.total')</label>
                                     <input type="number" name="total" value="{{old('total')}}"
                                            class="form-control @error('total') is-invalid @enderror"
-                                           id="total">
+                                           id="total" readonly>
                                     @error('total')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

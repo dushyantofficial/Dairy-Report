@@ -159,12 +159,13 @@ return [
 
 
     //    Languages Message
-    'lang' => 'The Language has been Changed Successfully! ..',
+    'lang' => 'The Language has been Changed Successfully!...',
 
     'select_date' => 'Select Date',
     'check_all' => 'Check All',
     'fields' => 'Fields',
     'deduct_mor_eve' => 'Deduct_Morn_Evening',
+    'Import_file_successfully' => 'Import file SuccessFully!...',
 
 
 ];

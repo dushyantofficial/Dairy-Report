@@ -15,15 +15,24 @@ class CustomerController extends Controller
 {
     public function index()
     {
-
-        $customers = Customers::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')){
+            $customers = Customers::all();
+            return view('admin.customer.index', compact('customers'));
+        }
+        $customers = Customers::where('user_id',$user->id)->get();
         return view('admin.customer.index', compact('customers'));
     }
 
 
     public function create()
     {
-        $users = User::all();
+        $user = Auth::user();
+        if ($user->role == config('constants.ROLE.ADMIN')) {
+            $users = User::all();
+            return view('admin.customer.create', compact('users'));
+        }
+        $users = User::where('id',$user->id)->get();
         return view('admin.customer.create', compact('users'));
     }
 
@@ -103,7 +112,7 @@ class CustomerController extends Controller
 
         Excel::import(new CustomerImport(), request()->file('file'));
 
-        return redirect()->back()->with('success', 'Import file SuccessFully!...');
+        return redirect()->back()->with('success', Lang::get('langs.Import_file_successfully'));
     }
 
 

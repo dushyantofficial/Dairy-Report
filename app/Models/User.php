@@ -25,7 +25,7 @@ class User extends Authenticatable
         'mandali_code' => 'required',
         'email' => 'required',
         'user_name' => 'required',
-        'mobile_number' => 'required|min:10:max:10',
+        'mobile_number' => 'required|min:10|max:10',
         'gender' => 'required',
 
     ];
