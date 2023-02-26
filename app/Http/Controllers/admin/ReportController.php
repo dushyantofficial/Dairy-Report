@@ -614,7 +614,7 @@ class ReportController extends Controller
         }
         return view('admin.report.item_purchase.item_purchase_export_report', compact('item_purchases', 'input'));
     }
-    }
+
 
 }
 
