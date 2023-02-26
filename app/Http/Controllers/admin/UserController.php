@@ -18,11 +18,11 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->role == config('constants.ROLE.ADMIN')){
+        if ($user->role == config('constants.ROLE.ADMIN')) {
             $users = User::all();
             return view('admin.user.index', compact('users'));
         }
-        $users = User::where('id',$user->id)->get();
+        $users = User::where('id', $user->id)->get();
         return view('admin.user.index', compact('users'));
     }
 

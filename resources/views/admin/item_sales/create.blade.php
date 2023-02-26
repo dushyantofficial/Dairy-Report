@@ -203,17 +203,17 @@
         });
 
 
-        $(document).ready(function($) {
-            $("#opt_level").on('change', function() {
+        $(document).ready(function ($) {
+            $("#opt_level").on('change', function () {
 
                 var level = $(this).val();
                 // alert(level);
-                if(level){
+                if (level) {
                     $.ajax({
-                        type:'GET',
-                        url:"{{ route('get_quantity') }}",
-                        data:{'id':level},
-                        success:function(data){
+                        type: 'GET',
+                        url: "{{ route('get_quantity') }}",
+                        data: {'id': level},
+                        success: function (data) {
                             // console.log();
                             $('#qitme').val(data.item_quantity);
 
@@ -224,21 +224,21 @@
             });
 
 
-            $("#customer_id").on('change', function() {
+            $("#customer_id").on('change', function () {
                 var id = $(this).val();
                 var to_date = $('#deduct_to_date').val();
                 var from_date = $("#deduct_from_date").val();
                 // alert(to_date, from_date);
-                if(id){
+                if (id) {
                     $.ajax({
-                        type:'GET',
-                        url:"{{ route('get_payment') }}",
-                        data:{'id':id,'to_date':to_date,'from_date':from_date},
-                        success:function(data){
+                        type: 'GET',
+                        url: "{{ route('get_payment') }}",
+                        data: {'id': id, 'to_date': to_date, 'from_date': from_date},
+                        success: function (data) {
                             // console.log(data);
-                            var payment=data.final_amount;
-                            var deduct_paymen=data.deduct_payment;
-                            var total = payment-deduct_paymen;
+                            var payment = data.final_amount;
+                            var deduct_paymen = data.deduct_payment;
+                            var total = payment - deduct_paymen;
                             $('#payment').val(payment);
                             $('#deduct_payment').val(deduct_paymen);
                             $('#total').val(total);
@@ -250,12 +250,12 @@
             });
 
             $('#item_quantity').on('keyup', function () {
-                var tval= $(this).val();
+                var tval = $(this).val();
                 var qitme = $('#qitme').val();
                 // alert(qitme);
-                if(tval < qitme){
+                if (tval < qitme) {
 
-                }else {
+                } else {
                     alert('Please enter valid item quantity');
                     $('#item_quantity').val(' ');
                 }

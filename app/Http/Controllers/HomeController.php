@@ -29,12 +29,12 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 //        if ($user->role == config('constants.ROLE.ADMIN')) {
-            $users = User::count();
-            $customers = Customers::count();
-            $item_sales = ItemSales::count();
-            $item_purchase = ItemPurchase::count();
-            return view('home', compact('users',
-                'customers', 'item_sales', 'item_purchase'));
+        $users = User::count();
+        $customers = Customers::count();
+        $item_sales = ItemSales::count();
+        $item_purchase = ItemPurchase::count();
+        return view('home', compact('users',
+            'customers', 'item_sales', 'item_purchase'));
 //        }
 //        else {
 //            Auth::logout();

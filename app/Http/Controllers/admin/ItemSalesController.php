@@ -11,18 +11,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
-use Psy\Util\Json;
 
 class ItemSalesController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        if ($user->role == config('constants.ROLE.ADMIN')){
+        if ($user->role == config('constants.ROLE.ADMIN')) {
             $item_saless = ItemSales::all();
             return view('admin.item_sales.index', compact('item_saless'));
         }
-        $item_saless = ItemSales::where('created_by',$user->id)->get();
+        $item_saless = ItemSales::where('created_by', $user->id)->get();
         return view('admin.item_sales.index', compact('item_saless'));
     }
 
@@ -35,8 +34,8 @@ class ItemSalesController extends Controller
             $item_namess = ItemPurchase::all();
             return view('admin.item_sales.create', compact('item_namess', 'customers'));
         }
-        $customers = Customers::where('user_id',$user->id)->get();
-        $item_namess = ItemPurchase::where('created_by',$user->id)->get();
+        $customers = Customers::where('user_id', $user->id)->get();
+        $item_namess = ItemPurchase::where('created_by', $user->id)->get();
         return view('admin.item_sales.create', compact('item_namess', 'customers'));
     }
 
@@ -103,18 +102,20 @@ class ItemSalesController extends Controller
 
 
     }
+
     public function getQuantity(Request $request)
     {
-        $quantity=ItemPurchase::select('item_quantity')->where('id',$request->id)->first();
+        $quantity = ItemPurchase::select('item_quantity')->where('id', $request->id)->first();
         return $quantity;
     }
+
     public function getPayment(Request $request)
     {
-        $quantity=ItemSales::select('deduct_payment')->where([['customer_id',$request->id],['deduct_to_date',$request->to_date],['deduct_from_date',$request->from_date]])->first();
-        $final_amount=Customers::select('final_amount')->where('id',$request->id)->first();
-        $data=array();
-        $data['deduct_payment']=$quantity['deduct_payment'];
-        $data['final_amount']=$final_amount['final_amount'];
+        $quantity = ItemSales::select('deduct_payment')->where([['customer_id', $request->id], ['deduct_to_date', $request->to_date], ['deduct_from_date', $request->from_date]])->first();
+        $final_amount = Customers::select('final_amount')->where('id', $request->id)->first();
+        $data = array();
+        $data['deduct_payment'] = $quantity['deduct_payment'];
+        $data['final_amount'] = $final_amount['final_amount'];
         return $data;
     }
 }

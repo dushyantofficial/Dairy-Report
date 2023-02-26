@@ -16,11 +16,11 @@ class CustomerController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->role == config('constants.ROLE.ADMIN')){
+        if ($user->role == config('constants.ROLE.ADMIN')) {
             $customers = Customers::all();
             return view('admin.customer.index', compact('customers'));
         }
-        $customers = Customers::where('user_id',$user->id)->get();
+        $customers = Customers::where('user_id', $user->id)->get();
         return view('admin.customer.index', compact('customers'));
     }
 
@@ -32,7 +32,7 @@ class CustomerController extends Controller
             $users = User::all();
             return view('admin.customer.create', compact('users'));
         }
-        $users = User::where('id',$user->id)->get();
+        $users = User::where('id', $user->id)->get();
         return view('admin.customer.create', compact('users'));
     }
 
