@@ -72,17 +72,17 @@ class ItemSalesController extends Controller
     public function update(Request $request, $id)
     {
         $rules = ItemSales::$rules;
-        $rules['CustPhoto'] = 'nullable';
+        $rules['customer_photo'] = 'nullable';
         $request->validate($rules);
         $item_saless = ItemSales::find($id);
         $input = $request->all();
-        if ($request->hasFile("CustPhoto")) {
-            $img = $request->file("CustPhoto");
-            if (Storage::exists('public/images' . $item_saless->CustPhoto)) {
-                Storage::delete('public/images' . $item_saless->CustPhoto);
+        if ($request->hasFile("customer_photo")) {
+            $img = $request->file("customer_photo");
+            if (Storage::exists('public/images' . $item_saless->customer_photo)) {
+                Storage::delete('public/images' . $item_saless->customer_photo);
             }
             $img->store('public/images');
-            $input['CustPhoto'] = $img->hashName();
+            $input['customer_photo'] = $img->hashName();
             $item_saless->update($input);
 
         }

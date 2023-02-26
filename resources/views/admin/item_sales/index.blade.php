@@ -36,7 +36,7 @@
                                     <th scope="col">@lang('langs.total')</th>
                                     <th scope="col">@lang('langs.created_by')</th>
                                     <th scope="col">@lang('langs.created_at')</th>
-                                    {{--                                    <th scope="col">@lang('langs.item_sales_action')</th>--}}
+                                    <th scope="col">@lang('langs.item_sales_action')</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +59,17 @@
                                         <td>{{$item_sales->total}}</td>
                                         <td>{{$item_sales->created_name->user_name}}</td>
                                         <td>{{$item_sales->created_at}}</td>
-
+                                        <td>
+                                            {!! Form::open(['route' => ['item_sales.destroy', $item_sales->id], 'method' => 'delete']) !!}
+                                            <div class='btn-group'>
+                                                <a href="{{ route('item_sales.edit', [$item_sales->id]) }}"
+                                                   class='btn btn-info btn-xs'>
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                {!! Form::button('<i class="bi bi-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                            </div>
+                                            {!! Form::close() !!}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
