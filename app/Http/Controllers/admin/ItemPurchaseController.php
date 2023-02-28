@@ -16,10 +16,10 @@ class ItemPurchaseController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_purchases = ItemPurchase::all();
+            $item_purchases = ItemPurchase::orderBy('id','desc')->get();
             return view('admin.item_purchase.index', compact('item_purchases'));
         }
-        $item_purchases = ItemPurchase::where('created_by', $user->id)->get();
+        $item_purchases = ItemPurchase::where('created_by', $user->id)->orderBy('id','desc')->get();
         return view('admin.item_purchase.index', compact('item_purchases'));
     }
 

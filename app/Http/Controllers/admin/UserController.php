@@ -19,10 +19,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $users = User::all();
+            $users = User::orderBy('id','desc')->get();
             return view('admin.user.index', compact('users'));
         }
-        $users = User::where('id', $user->id)->get();
+        $users = User::where('id', $user->id)->orderBy('id','desc')->get();
         return view('admin.user.index', compact('users'));
     }
 

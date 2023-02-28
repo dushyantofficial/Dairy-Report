@@ -18,7 +18,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $filter_customers = Customers::all();
+            $filter_customers = Customers::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -28,7 +28,7 @@ class ReportController extends Controller
             }
             return view('admin.report.customer.customer_report_show', compact('filter_customers'));
         }
-        $filter_customers = Customers::where('user_id', $user->id)->get();
+        $filter_customers = Customers::where('user_id', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -44,7 +44,7 @@ class ReportController extends Controller
 
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $filter_customer_reports = Customers::all();
+            $filter_customer_reports = Customers::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -61,7 +61,7 @@ class ReportController extends Controller
                 return $pdf->download('customer_report.pdf');
             }
         }
-        $filter_customer_reports = Customers::where('user_id', $user->id)->get();
+        $filter_customer_reports = Customers::where('user_id', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -166,7 +166,7 @@ class ReportController extends Controller
 
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_names = ItemName::all();
+            $item_names = ItemName::orderBy('id','desc')->get();
             if ($request->date || $request->item_name) {
                 $item_names = ItemName::all();
                 $date = $request->date;
@@ -179,7 +179,7 @@ class ReportController extends Controller
             }
             return view('admin.report.item_name.item_name_report_show', compact('item_names'));
         }
-        $item_names = ItemName::where('created_by', $user->id)->get();
+        $item_names = ItemName::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date || $request->item_name) {
             $item_names = ItemName::all();
             $date = $request->date;
@@ -197,7 +197,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_name_reports = ItemName::all();
+            $item_name_reports = ItemName::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -214,7 +214,7 @@ class ReportController extends Controller
                 return $pdf->download('item_name_report.pdf');
             }
         }
-        $item_name_reports = ItemName::where('created_by', $user->id)->get();
+        $item_name_reports = ItemName::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -315,7 +315,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $filter_item_sales = ItemSales::all();
+            $filter_item_sales = ItemSales::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -327,7 +327,7 @@ class ReportController extends Controller
             }
             return view('admin.report.item_sales.item_sales_report_show', compact('filter_item_sales'));
         }
-        $filter_item_sales = ItemSales::where('created_by', $user->id)->get();
+        $filter_item_sales = ItemSales::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -345,7 +345,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_sales_reports = ItemSales::all();
+            $item_sales_reports = ItemSales::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -362,7 +362,7 @@ class ReportController extends Controller
                 return $pdf->download('item_sales_report.pdf');
             }
         }
-        $item_sales_reports = ItemSales::where('created_by', $user->id)->get();
+        $item_sales_reports = ItemSales::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -469,7 +469,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $filter_item_purchase = ItemPurchase::all();
+            $filter_item_purchase = ItemPurchase::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -481,7 +481,7 @@ class ReportController extends Controller
             }
             return view('admin.report.item_purchase.item_purchase_report_show', compact('filter_item_purchase'));
         }
-        $filter_item_purchase = ItemPurchase::where('created_by', $user->id)->get();
+        $filter_item_purchase = ItemPurchase::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);
@@ -499,7 +499,7 @@ class ReportController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_purchase_reports = ItemPurchase::all();
+            $item_purchase_reports = ItemPurchase::orderBy('id','desc')->get();
             if ($request->date) {
                 $date = $request->date;
                 $name = explode(' ', $date);
@@ -516,7 +516,7 @@ class ReportController extends Controller
                 return $pdf->download('item_purchase_report.pdf');
             }
         }
-        $item_purchase_reports = ItemPurchase::where('created_by', $user->id)->get();
+        $item_purchase_reports = ItemPurchase::where('created_by', $user->id)->orderBy('id','desc')->get();
         if ($request->date) {
             $date = $request->date;
             $name = explode(' ', $date);

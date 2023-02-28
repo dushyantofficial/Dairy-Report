@@ -17,10 +17,10 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $customers = Customers::all();
+            $customers = Customers::orderBy('id','desc')->get();
             return view('admin.customer.index', compact('customers'));
         }
-        $customers = Customers::where('user_id', $user->id)->get();
+        $customers = Customers::where('user_id', $user->id)->orderBy('id','desc')->get();
         return view('admin.customer.index', compact('customers'));
     }
 

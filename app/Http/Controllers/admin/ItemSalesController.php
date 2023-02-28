@@ -18,10 +18,10 @@ class ItemSalesController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_saless = ItemSales::all();
+            $item_saless = ItemSales::orderBy('id','desc')->get();
             return view('admin.item_sales.index', compact('item_saless'));
         }
-        $item_saless = ItemSales::where('created_by', $user->id)->get();
+        $item_saless = ItemSales::where('created_by', $user->id)->orderBy('id','desc')->get();
         return view('admin.item_sales.index', compact('item_saless'));
     }
 

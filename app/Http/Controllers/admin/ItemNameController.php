@@ -14,10 +14,10 @@ class ItemNameController extends Controller
     {
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {
-            $item_names = ItemName::all();
+            $item_names = ItemName::orderBy('id','desc')->get();
             return view('admin.item_name.index', compact('item_names'));
         }
-        $item_names = ItemName::where('created_by', $user->id)->get();
+        $item_names = ItemName::where('created_by', $user->id)->orderBy('id','desc')->get();
         return view('admin.item_name.index', compact('item_names'));
     }
 
