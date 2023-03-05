@@ -99,6 +99,36 @@
         </li><!-- End Report Section -->
 
 
+        {{--Payment Report Section--}}
+        <li class="nav-item @if(Request::is('payment-register-report*') || Request::is('payment-register-report*')) active collapse @endif">
+            <a class="nav-link @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) active collapse @endif"
+               data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gem"></i><span>@lang('langs.payment_report')</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="icons-nav"
+                class="nav-content  @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) collapse show @endif"
+                data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{route('payment-register-report')}}"
+                       class="{{ Request::is('payment-register-report*') ? 'active' : '' }} ">
+                        <i class="bi bi-circle"></i><span>@lang('langs.payment_register_report')</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{{route('payment-deduct-report')}}"
+                       class="{{ Request::is('payment-deduct-report*') ? 'active' : '' }} ">
+                        <i class="bi bi-circle"></i><span>@lang('langs.payment_deduct_report')</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </li><!-- End Payment Report Section -->
+
+
     </ul>
 
 </aside><!-- End Sidebar-->

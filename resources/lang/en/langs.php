@@ -167,5 +167,15 @@ return [
     'deduct_mor_eve' => 'Deduct_Morn_Evening',
     'Import_file_successfully' => 'Import file SuccessFully!...',
 
+    //Payment Filter
+    'payment_report' => 'Payment Report',
+    'payment_register_report' => 'Payment Register Report',
+    'payment_deduct_report' => 'Payment Deduct Report',
+
+
+    'from_customer_code' => 'From Customer Code',
+    'to_customer_code' => 'To Customer Code',
+
+
 
 ];

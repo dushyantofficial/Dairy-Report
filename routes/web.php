@@ -76,4 +76,9 @@ Route::group(['middleware' => ['auth', 'check_lang']], function () {
 
     Route::get('get-quantity', [App\Http\Controllers\admin\ItemSalesController::class, 'getQuantity'])->name('get_quantity');
     Route::get('get_payment', [App\Http\Controllers\admin\ItemSalesController::class, 'getPayment'])->name('get_payment');
+
+//Payment Report Route
+    Route::get('payment_register_report', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_register_report'])->name('payment-register-report');
+    Route::get('payment_deduct_report', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_deduct_report'])->name('payment-deduct-report');
+
 });
