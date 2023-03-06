@@ -39,6 +39,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_id']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
                                         @if(isset($input['field']['item_name_id']))
                                             <th> @lang('langs.item_name')</th>
 
@@ -110,6 +114,10 @@
 
                                             @if(isset($input['field']['customer_id']))
                                                 <td>{{$item_sales->customers->customer_name}}</td>
+
+                                            @endif
+                                            @if(isset($input['field']['customer_id']))
+                                                <td>{{$item_sales->customers->customer_code}}</td>
 
                                             @endif
                                             @if(isset($input['field']['item_name_id']))
@@ -197,6 +205,10 @@
                                 <th> @lang('langs.customer_name')</th>
 
                             @endif
+                            @if(isset($input['field']['customer_id']))
+                                <th> @lang('langs.customer_code')</th>
+
+                            @endif
                             @if(isset($input['field']['item_name_id']))
                                 <th> @lang('langs.item_name')</th>
 
@@ -269,6 +281,10 @@
 
                                     @if(isset($input['field']['customer_id']))
                                         <td>{{$item_sales->customers->customer_name}}</td>
+
+                                    @endif
+                                    @if(isset($input['field']['customer_id']))
+                                        <td>{{$item_sales->customers->customer_code}}</td>
 
                                     @endif
                                     @if(isset($input['field']['item_name_id']))

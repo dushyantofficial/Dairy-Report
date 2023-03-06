@@ -80,6 +80,7 @@
                             <td style="padding: 7px;">@lang('langs.customer_no')</td>
                             <td style="padding: 7px;">@lang('langs.user_name')</td>
                             <td style="padding: 7px;"> @lang('langs.customer_name')</td>
+                            <td style="padding: 7px;"> @lang('langs.customer_code')</td>
                             <td style="padding: 7px;"> @lang('langs.bank_name')</td>
                             <td style="padding: 7px;"> @lang('langs.account_number')</td>
                             <td style="padding: 7px;"> @lang('langs.ifsc_code')</td>
@@ -95,6 +96,7 @@
                                 <td class="ml-1 mr-1"
                                     style="padding: 7px;">{{ $customer_report->user->user_name}}</td>
                                 <td style="padding: 7px;">{{$customer_report->customer_name}} </td>
+                                <td style="padding: 7px;">{{$customer_report->customer_code}} </td>
                                 <td style="padding: 7px;">{{$customer_report->bank_name}} </td>
                                 <td style="padding: 7px;">{{$customer_report->account_number}} </td>
                                 <td style="padding: 7px;">{{$customer_report->ifsc_code}} </td>

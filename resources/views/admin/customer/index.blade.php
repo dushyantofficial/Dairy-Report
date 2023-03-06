@@ -71,6 +71,7 @@
                                     <th scope="col">@lang('langs.customer_no')</th>
                                     <th scope="col">@lang('langs.user_name')</th>
                                     <th scope="col">@lang('langs.customer_name')</th>
+                                    <th scope="col">@lang('langs.customer_code')</th>
                                     <th scope="col">@lang('langs.bank_name')</th>
                                     <th scope="col">@lang('langs.account_number')</th>
                                     <th scope="col">@lang('langs.ifsc_code')</th>
@@ -84,6 +85,7 @@
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>{{$customer->user->user_name}}</td>
                                         <td>{{$customer->customer_name}}</td>
+                                        <td>{{$customer->customer_code}}</td>
                                         <td>{{$customer->bank_name}}</td>
                                         <td>{{$customer->account_number}}</td>
                                         <td>{{$customer->ifsc_code}}</td>

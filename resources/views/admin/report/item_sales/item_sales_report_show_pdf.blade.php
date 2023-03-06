@@ -77,6 +77,7 @@
                         <tr class="text-center">
                             <td style="padding: 7px;">@lang('langs.item_sales_no')</td>
                             <td style="padding: 7px;">@lang('langs.customer_name')</td>
+                            <td style="padding: 7px;">@lang('langs.customer_code')</td>
                             <td style="padding: 7px;">@lang('langs.item_name')</td>
                             <td style="padding: 7px;">@lang('langs.itemQuantity')</td>
                             <td style="padding: 7px;">@lang('langs.payment_from_date')</td>
@@ -100,6 +101,7 @@
                             <tr style="text-align: center;">
                                 <td style="padding: 7px;">{{ $loop->iteration }}</td>
                                 <td class="ml-1 mr-1">{{$item_sales_report->customers->customer_name}}</td>
+                                <td class="ml-1 mr-1">{{$item_sales_report->customers->customer_code}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->item_names->item_name->item_name}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->item_quantity}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->payment_from_date}}</td>

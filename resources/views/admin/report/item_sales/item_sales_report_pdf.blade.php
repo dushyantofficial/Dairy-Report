@@ -80,6 +80,10 @@
                                 <td style="padding: 7px;"> @lang('langs.customer_name')</td>
 
                             @endif
+                            @if(isset($input['field']['customer_id']))
+                                <td style="padding: 7px;"> @lang('langs.customer_code')</td>
+
+                            @endif
                             @if(isset($input['field']['item_name_id']))
                                 <td style="padding: 7px;"> @lang('langs.item_name')</td>
 
@@ -153,6 +157,10 @@
 
                                     @if(isset($input['field']['customer_id']))
                                         <td style="padding: 7px;">{{$item_sales->customers->customer_name}}</td>
+
+                                    @endif
+                                    @if(isset($input['field']['customer_id']))
+                                        <td style="padding: 7px;">{{$item_sales->customers->customer_code}}</td>
 
                                     @endif
                                     @if(isset($input['field']['item_name_id']))

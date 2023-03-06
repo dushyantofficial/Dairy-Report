@@ -40,6 +40,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_code']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
 
                                         @if(isset($input['field']['bank_name']))
                                             <th> @lang('langs.bank_name')</th>
@@ -80,6 +84,9 @@
                                             @endif
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
+                                            @endif
+                                            @if(isset($input['field']['customer_code']))
+                                                <td>{{$customer->customer_code}} </td>
                                             @endif
                                             @if(isset($input['field']['bank_name']))
                                                 <td>{{$customer->bank_name}} </td>
@@ -125,6 +132,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_code']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
 
                                         @if(isset($input['field']['bank_name']))
                                             <th> @lang('langs.bank_name')</th>
@@ -166,6 +177,10 @@
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
                                             @endif
+                                            @if(isset($input['field']['customer_code']))
+                                                <td>{{$customer->customer_code}} </td>
+                                            @endif
+
                                             @if(isset($input['field']['bank_name']))
                                                 <td>{{$customer->bank_name}} </td>
                                             @endif

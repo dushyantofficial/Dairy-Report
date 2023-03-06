@@ -88,6 +88,10 @@
                                 <td style="padding: 7px;"> @lang('langs.customer_name')</td>
 
                             @endif
+                            @if(isset($input['field']['customer_code']))
+                                <td style="padding: 7px;"> @lang('langs.customer_code')</td>
+
+                            @endif
 
                             @if(isset($input['field']['bank_name']))
                                 <td style="padding: 7px;"> @lang('langs.bank_name')</td>
@@ -126,6 +130,9 @@
 
                                 @if(isset($input['field']['customer_name']))
                                     <td style="padding: 7px;">{{$customer_report->customer_name}} </td>
+                                @endif
+                                @if(isset($input['field']['customer_code']))
+                                    <td style="padding: 7px;">{{$customer_report->customer_code}} </td>
                                 @endif
                                 @if(isset($input['field']['bank_name']))
                                     <td style="padding: 7px;">{{$customer_report->bank_name}} </td>
