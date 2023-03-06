@@ -59,17 +59,17 @@
 
 
         {{--Report Section--}}
-        <li class="nav-item @if(Request::is('customer-report-show*') || Request::is('item-name-report-show*') || Request::is('item-sales-report-show*')) active collapse @endif">
-            <a class="nav-link @if(Request::is('customer-report-show*') || Request::is('item-name-report-show*') || Request::is('item-sales-report-show*')) active collapse @endif"
+        <li class="nav-item ">
+            <a class="nav-link collapsed @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active @endif "
                data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>@lang('langs.report')</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="ri-bill-line"></i><span>@lang('langs.report')</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="icons-nav"
-                class="nav-content  @if(Request::is('customer-report-show*') || Request::is('item-name-report-show*') || Request::is('item-sales-report-show*')) collapse show @endif"
+                class="nav-content collapse @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active show @endif"
                 data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{route('customer-report-show')}}"
-                       class="{{ Request::is('customer-report-show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('customer_report_show*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.customer_report')</span>
                     </a>
                 </li>
@@ -77,56 +77,58 @@
 
                 <li>
                     <a href="{{route('item-name-report-show')}}"
-                       class="{{ Request::is('item-name-report-show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_name_report_show*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_name_report')</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{route('item-sales-report-show')}}"
-                       class="{{ Request::is('item-sales-report-show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_sales_report_show*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_sales_report')</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{route('item-purchase-report-show')}}"
-                       class="{{ Request::is('item-purchase-report-show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_purchase_report_show*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_purchase_report')</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Report Section -->
+        </li>
+
+        <!-- End Report Section -->
 
 
         {{--Payment Report Section--}}
-        <li class="nav-item @if(Request::is('payment-register-report*') || Request::is('payment-register-report*')) active collapse @endif">
-            <a class="nav-link @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) active collapse @endif"
-               data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>@lang('langs.payment_report')</span><i class="bi bi-chevron-down ms-auto"></i>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed @if(Request::is('*payment_register_report*') ||  Request::is('*payment_deduct_report*')) active @endif" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bar-chart"></i><span>@lang('langs.payment_report')</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="icons-nav"
-                class="nav-content  @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) collapse show @endif"
-                data-bs-parent="#sidebar-nav">
+            <ul id="charts-nav" class="nav-content collapse @if(Request::is('*payment_register_report*') ||  Request::is('*payment_deduct_report*')) active show @endif" data-bs-parent="#sidebar-nav">
+
                 <li>
                     <a href="{{route('payment-register-report')}}"
-                       class="{{ Request::is('payment-register-report*') ? 'active' : '' }} ">
+                       class="{{ Request::is('payment_register_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.payment_register_report')</span>
                     </a>
                 </li>
 
-
                 <li>
                     <a href="{{route('payment-deduct-report')}}"
-                       class="{{ Request::is('payment-deduct-report*') ? 'active' : '' }} ">
+                       class="{{ Request::is('payment_deduct_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.payment_deduct_report')</span>
                     </a>
                 </li>
 
-
-
             </ul>
-        </li><!-- End Payment Report Section -->
+        </li>
+
+        <!-- End Payment Report Section -->
 
 
     </ul>

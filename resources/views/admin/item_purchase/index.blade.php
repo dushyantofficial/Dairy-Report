@@ -34,8 +34,8 @@
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>{{$item_purchase->item_name->item_name}}</td>
                                         <td>{{$item_purchase->item_quantity}}</td>
-                                        <td>{{$item_purchase->Purchase_Rate}}</td>
-                                        <td>{{$item_purchase->Sales_Rates}}</td>
+                                        <td>{{get_rupee_currency($item_purchase->Purchase_Rate)}}</td>
+                                        <td>{{get_rupee_currency($item_purchase->Sales_Rates)}}</td>
                                         <td>{{$item_purchase->purchase_date}}</td>
                                         <td>
                                             {!! Form::open(['route' => ['item_purchase.destroy', $item_purchase->id], 'method' => 'delete']) !!}

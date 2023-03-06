@@ -57,6 +57,7 @@
                                     <tr>
                                         <th scope="col">@lang('langs.customer_no')</th>
                                         <th scope="col">@lang('langs.customer_name')</th>
+                                        <th scope="col">@lang('langs.customer_code')</th>
                                         <th scope="col">@lang('langs.bank_name')</th>
                                         <th scope="col">@lang('langs.account_number')</th>
                                         <th scope="col">@lang('langs.ifsc_code')</th>
@@ -70,10 +71,11 @@
                                             <tr>
                                                 <th scope="row">{{$loop->iteration}}</th>
                                                 <td>{{$customer->customer_name}}</td>
+                                                <td>{{$customer->customer_code}}</td>
                                                 <td>{{$customer->bank_name}}</td>
                                                 <td>{{$customer->account_number}}</td>
                                                 <td>{{$customer->ifsc_code}}</td>
-                                                <td>{{$customer->final_amount}}</td>
+                                                <td>{{get_rupee_currency($customer->final_amount)}}</td>
                                                 <td>{{$customer->created_at}}</td>
 
                                             </tr>
@@ -97,6 +99,7 @@
                     <tr>
                         <th scope="col">@lang('langs.customer_no')</th>
                         <th scope="col">@lang('langs.customer_name')</th>
+                        <th scope="col">@lang('langs.customer_code')</th>
                         <th scope="col">@lang('langs.bank_name')</th>
                         <th scope="col">@lang('langs.account_number')</th>
                         <th scope="col">@lang('langs.ifsc_code')</th>
@@ -110,10 +113,11 @@
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$customer->customer_name}}</td>
+                                <td>{{$customer->customer_code}}</td>
                                 <td>{{$customer->bank_name}}</td>
                                 <td>{{$customer->account_number}}</td>
                                 <td>{{$customer->ifsc_code}}</td>
-                                <td>{{$customer->final_amount}}</td>
+                                <td>{{get_rupee_currency($customer->final_amount)}}</td>
                                 <td>{{$customer->created_at}}</td>
 
                             </tr>
@@ -179,6 +183,11 @@
                                                name="field[created_at]"
                                                value="created_at">
                                         <label for="dob">@lang('langs.created_at')</label><br>
+                                        <input type="checkbox" class="check_all" id="customer_code"
+                                               name="field[customer_code]"
+                                               value="customer_code">
+                                        <label for="dob">@lang('langs.customer_code')</label><br>
+
 
                                     </div>
                                     <div class="col-md-2">
@@ -294,7 +303,6 @@
     @endphp
 
     <script>
-
         function ExportToExcel(type, fn, dl) {
             var elt = document.getElementById('my_report')
             var wb = XLSX.utils.table_to_book(elt, {sheet: "sheet1"});

@@ -21,6 +21,7 @@
                                 <tr>
                                     <th scope="col">@lang('langs.item_sales_no')</th>
                                     <th scope="col">@lang('langs.customer_name')</th>
+                                    <th scope="col">@lang('langs.customer_code')</th>
                                     <th scope="col">@lang('langs.item_name')</th>
                                     <th scope="col">@lang('langs.itemQuantity')</th>
                                     <th scope="col">@lang('langs.payment_from_date')</th>
@@ -44,6 +45,7 @@
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <td>{{$item_sales->customers->customer_name}}</td>
+                                        <td>{{$item_sales->customers->customer_code}}</td>
                                         <td>{{$item_sales->item_names->item_name->item_name}}</td>
                                         <td>{{$item_sales->item_quantity}}</td>
                                         <td>{{$item_sales->payment_from_date}}</td>
@@ -54,9 +56,9 @@
                                         <td>{{$item_sales->deduct_to_date}}</td>
                                         <td>{{$item_sales->entry_date}}</td>
                                         <td>{{$item_sales->deduct_morning_evening}}</td>
-                                        <td>{{$item_sales->payment}}</td>
-                                        <td>{{$item_sales->deduct_payment}}</td>
-                                        <td>{{$item_sales->total}}</td>
+                                        <td>{{get_rupee_currency($item_sales->payment)}}</td>
+                                        <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
+                                        <td>{{get_rupee_currency($item_sales->total)}}</td>
                                         <td>{{$item_sales->created_name->user_name}}</td>
                                         <td>{{$item_sales->created_at}}</td>
                                         <td>

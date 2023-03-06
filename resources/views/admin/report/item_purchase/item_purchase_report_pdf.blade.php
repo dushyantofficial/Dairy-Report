@@ -123,10 +123,10 @@
                                     <td style="padding: 7px;">{{$item_purchase_report->item_quantity}} </td>
                                 @endif
                                 @if(isset($input['field']['Purchase_Rate']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->Purchase_Rate}} </td>
+                                    <td style="padding: 7px;">{{get_rupee_currency($item_purchase_report->Purchase_Rate)}} </td>
                                 @endif
                                 @if(isset($input['field']['Sales_Rates']))
-                                    <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
+                                    <td style="padding: 7px;">{{get_rupee_currency($item_purchase_report->Sales_Rates)}} </td>
                                 @endif
                                 @if(isset($input['field']['purchase_date']))
                                     <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>

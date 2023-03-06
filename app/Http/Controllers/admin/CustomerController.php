@@ -109,8 +109,8 @@ class CustomerController extends Controller
         $this->validate(request(), [
             'file' => 'required|mimes:xls,csv,xlsx,txt',
         ]);
-
-        Excel::import(new CustomerImport(), request()->file('file'));
+//dd(\request()->date);
+        Excel::import(new CustomerImport(), request()->file('file'),\request()->date);
 
         return redirect()->back()->with('success', Lang::get('langs.Import_file_successfully'));
     }

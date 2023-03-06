@@ -80,6 +80,10 @@
                                 <td style="padding: 7px;"> @lang('langs.customer_name')</td>
 
                             @endif
+                            @if(isset($input['field']['customer_id']))
+                                <td style="padding: 7px;"> @lang('langs.customer_code')</td>
+
+                            @endif
                             @if(isset($input['field']['item_name_id']))
                                 <td style="padding: 7px;"> @lang('langs.item_name')</td>
 
@@ -155,6 +159,10 @@
                                         <td style="padding: 7px;">{{$item_sales->customers->customer_name}}</td>
 
                                     @endif
+                                    @if(isset($input['field']['customer_id']))
+                                        <td style="padding: 7px;">{{$item_sales->customers->customer_code}}</td>
+
+                                    @endif
                                     @if(isset($input['field']['item_name_id']))
                                         <td style="padding: 7px;">{{$item_sales->item_names->item_name->item_name}}</td>
 
@@ -196,15 +204,15 @@
 
                                     @endif
                                     @if(isset($input['field']['payment']))
-                                        <td style="padding: 7px;">{{$item_sales->payment}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['deduct_payment']))
-                                        <td style="padding: 7px;">{{$item_sales->deduct_payment}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['total']))
-                                        <td style="padding: 7px;">{{$item_sales->total}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->total)}}</td>
 
                                     @endif
 

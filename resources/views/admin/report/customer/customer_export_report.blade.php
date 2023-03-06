@@ -40,6 +40,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_code']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
 
                                         @if(isset($input['field']['bank_name']))
                                             <th> @lang('langs.bank_name')</th>
@@ -81,6 +85,9 @@
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
                                             @endif
+                                            @if(isset($input['field']['customer_code']))
+                                                <td>{{$customer->customer_code}} </td>
+                                            @endif
                                             @if(isset($input['field']['bank_name']))
                                                 <td>{{$customer->bank_name}} </td>
                                             @endif
@@ -91,7 +98,7 @@
                                                 <td>{{$customer->ifsc_code}} </td>
                                             @endif
                                             @if(isset($input['field']['final_amount']))
-                                                <td>{{$customer->final_amount}} </td>
+                                                <td>{{get_rupee_currency($customer->final_amount)}} </td>
                                             @endif
                                             @if(isset($input['field']['created_by']))
                                                 <td>{{$customer->created_bys->user_name}} </td>
@@ -125,6 +132,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_code']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
 
                                         @if(isset($input['field']['bank_name']))
                                             <th> @lang('langs.bank_name')</th>
@@ -166,11 +177,15 @@
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
                                             @endif
+                                            @if(isset($input['field']['customer_code']))
+                                                <td>{{$customer->customer_code}} </td>
+                                            @endif
+
                                             @if(isset($input['field']['bank_name']))
                                                 <td>{{$customer->bank_name}} </td>
                                             @endif
                                             @if(isset($input['field']['account_number']))
-                                                <td>{{$customer->account_number}} </td>
+                                                <td>{{get_rupee_currency($customer->account_number)}} </td>
                                             @endif
                                             @if(isset($input['field']['ifsc_code']))
                                                 <td>{{$customer->ifsc_code}} </td>

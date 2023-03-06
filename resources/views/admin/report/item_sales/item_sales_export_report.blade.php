@@ -39,6 +39,10 @@
                                             <th> @lang('langs.customer_name')</th>
 
                                         @endif
+                                        @if(isset($input['field']['customer_id']))
+                                            <th> @lang('langs.customer_code')</th>
+
+                                        @endif
                                         @if(isset($input['field']['item_name_id']))
                                             <th> @lang('langs.item_name')</th>
 
@@ -112,6 +116,10 @@
                                                 <td>{{$item_sales->customers->customer_name}}</td>
 
                                             @endif
+                                            @if(isset($input['field']['customer_id']))
+                                                <td>{{$item_sales->customers->customer_code}}</td>
+
+                                            @endif
                                             @if(isset($input['field']['item_name_id']))
                                                 <td>{{$item_sales->item_names->item_name->item_name}}</td>
 
@@ -153,15 +161,15 @@
 
                                             @endif
                                             @if(isset($input['field']['payment']))
-                                                <td>{{$item_sales->payment}}</td>
+                                                <td>{{get_rupee_currency($item_sales->payment)}}</td>
 
                                             @endif
                                             @if(isset($input['field']['deduct_payment']))
-                                                <td>{{$item_sales->deduct_payment}}</td>
+                                                <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                             @endif
                                             @if(isset($input['field']['total']))
-                                                <td>{{$item_sales->total}}</td>
+                                                <td>{{get_rupee_currency($item_sales->total)}}</td>
 
                                             @endif
 
@@ -195,6 +203,10 @@
                             <th>@lang('langs.item_sales_no')</th>
                             @if(isset($input['field']['customer_id']))
                                 <th> @lang('langs.customer_name')</th>
+
+                            @endif
+                            @if(isset($input['field']['customer_id']))
+                                <th> @lang('langs.customer_code')</th>
 
                             @endif
                             @if(isset($input['field']['item_name_id']))
@@ -271,6 +283,10 @@
                                         <td>{{$item_sales->customers->customer_name}}</td>
 
                                     @endif
+                                    @if(isset($input['field']['customer_id']))
+                                        <td>{{$item_sales->customers->customer_code}}</td>
+
+                                    @endif
                                     @if(isset($input['field']['item_name_id']))
                                         <td>{{$item_sales->item_names->item_name->item_name}}</td>
 
@@ -312,15 +328,15 @@
 
                                     @endif
                                     @if(isset($input['field']['payment']))
-                                        <td>{{$item_sales->payment}}</td>
+                                        <td>{{get_rupee_currency($item_sales->payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['deduct_payment']))
-                                        <td>{{$item_sales->deduct_payment}}</td>
+                                        <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['total']))
-                                        <td>{{$item_sales->total}}</td>
+                                        <td>{{get_rupee_currency($item_sales->total)}}</td>
 
                                     @endif
 
