@@ -60,10 +60,13 @@
 
         {{--Report Section--}}
         <li class="nav-item ">
-            <a class="nav-link collapsed @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active @endif " data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>@lang('langs.report')</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active @endif "
+               data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri-bill-line"></i><span>@lang('langs.report')</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="icons-nav" class="nav-content collapse @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active show @endif" data-bs-parent="#sidebar-nav">
+            <ul id="icons-nav"
+                class="nav-content collapse @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active show @endif"
+                data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{route('customer-report-show')}}"
                        class="{{ Request::is('customer_report_show*') ? 'active' : '' }} ">
