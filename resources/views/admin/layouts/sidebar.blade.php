@@ -100,12 +100,17 @@
 
 
         {{--Payment Report Section--}}
-        <li class="nav-item @if(Request::is('payment-register-report*') || Request::is('payment-register-report*')) active collapse @endif">
-            <a class="nav-link @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) active collapse @endif"
-               data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+
+
+
+
+
+        <li class="nav-item @if(Request::is('payment-register-report*') || Request::is('payment-register-report*'))  @endif">
+            <a class="nav-link @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*'))  @endif"
+               data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-gem"></i><span>@lang('langs.payment_report')</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="icons-nav"
+            <ul id="charts-nav"
                 class="nav-content  @if(Request::is('payment-register-report*') || Request::is('payment-deduct-report*')) collapse show @endif"
                 data-bs-parent="#sidebar-nav">
                 <li>

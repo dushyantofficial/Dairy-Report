@@ -90,9 +90,9 @@
                                                 <td>{{$item_sales->deduct_to_date}}</td>
                                                 <td>{{$item_sales->entry_date}}</td>
                                                 <td>{{$item_sales->deduct_morning_evening}}</td>
-                                                <td>{{$item_sales->payment}}</td>
-                                                <td>{{$item_sales->deduct_payment}}</td>
-                                                <td>{{$item_sales->total}}</td>
+                                                <td>{{get_rupee_currency($item_sales->payment)}}</td>
+                                                <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
+                                                <td>{{get_rupee_currency($item_sales->total)}}</td>
                                                 <td>{{$item_sales->created_name->user_name}}</td>
                                                 <td>{{$item_sales->created_at}}</td>
 
@@ -148,9 +148,9 @@
                                             <td>{{$item_sales->deduct_to_date}}</td>
                                             <td>{{$item_sales->entry_date}}</td>
                                             <td>{{$item_sales->deduct_morning_evening}}</td>
-                                            <td>{{$item_sales->payment}}</td>
-                                            <td>{{$item_sales->deduct_payment}}</td>
-                                            <td>{{$item_sales->total}}</td>
+                                            <td>{{get_rupee_currency($item_sales->payment)}}</td>
+                                            <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
+                                            <td>{{get_rupee_currency($item_sales->total)}}</td>
                                             <td>{{$item_sales->created_name->user_name}}</td>
                                             <td>{{$item_sales->created_at}}</td>
 

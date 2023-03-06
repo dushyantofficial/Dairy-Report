@@ -83,10 +83,10 @@
                                                 <td>{{$item_purchase->item_quantity}} </td>
                                             @endif
                                             @if(isset($input['field']['Purchase_Rate']))
-                                                <td>{{$item_purchase->Purchase_Rate}} </td>
+                                                <td>{{get_rupee_currency($item_purchase->Purchase_Rate)}} </td>
                                             @endif
                                             @if(isset($input['field']['Sales_Rates']))
-                                                <td>{{$item_purchase->Sales_Rates}} </td>
+                                                <td>{{get_rupee_currency($item_purchase->Sales_Rates)}} </td>
                                             @endif
                                             @if(isset($input['field']['purchase_date']))
                                                 <td>{{$item_purchase->purchase_date}} </td>
@@ -165,10 +165,10 @@
                                             <td>{{$item_purchase->item_quantity}} </td>
                                         @endif
                                         @if(isset($input['field']['Purchase_Rate']))
-                                            <td>{{$item_purchase->Purchase_Rate}} </td>
+                                            <td>{{get_rupee_currency($item_purchase->Purchase_Rate)}} </td>
                                         @endif
                                         @if(isset($input['field']['Sales_Rates']))
-                                            <td>{{$item_purchase->Sales_Rates}} </td>
+                                            <td>{{get_rupee_currency($item_purchase->Sales_Rates)}} </td>
                                         @endif
                                         @if(isset($input['field']['purchase_date']))
                                             <td>{{$item_purchase->purchase_date}} </td>

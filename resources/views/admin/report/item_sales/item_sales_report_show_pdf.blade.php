@@ -110,9 +110,9 @@
                                 <td style="padding: 7px;">{{$item_sales_report->deduct_to_date}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->entry_date}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->deduct_morning_evening}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->payment}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->deduct_payment}}</td>
-                                <td style="padding: 7px;">{{$item_sales_report->total}}</td>
+                                <td style="padding: 7px;">{{get_rupee_currency($item_sales_report->payment)}}</td>
+                                <td style="padding: 7px;">{{get_rupee_currency($item_sales_report->deduct_payment)}}</td>
+                                <td style="padding: 7px;">{{get_rupee_currency($item_sales_report->total)}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->created_name->user_name}}</td>
                                 <td style="padding: 7px;">{{$item_sales_report->created_at}}</td>
 

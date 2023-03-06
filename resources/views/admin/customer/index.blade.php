@@ -13,12 +13,20 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-5">
                                             <form action="{{ route('import') }}" method="POST"
                                                   enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="file" name="file"
-                                                       class="form-control @error('file') is-invalid @enderror"><span>
+                                                        <input id="reportrange" name="date"
+                                                               @if(request('date') != 'null') value="{{request('date')}}"
+                                                               @endif class="pull-left form-control daterange"
+                                                             >
+
+
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="file" name="file"
+                                                   class="form-control @error('file') is-invalid @enderror"><span>
                   @error('file')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -26,9 +34,8 @@
                 <span style="color: red">{{$errors->first('customer_name')}}</span><br>
                 <span style="color: red">{{$errors->first('user_name')}}</span><br>
                 <span style="color: red">{{$errors->first('mobile_number')}}</span>
-
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-2">
                                             <button class="btn btn-outline-success">Import</button>
                                             </span>
                                         </div>
@@ -80,7 +87,7 @@
                                         <td>{{$customer->bank_name}}</td>
                                         <td>{{$customer->account_number}}</td>
                                         <td>{{$customer->ifsc_code}}</td>
-                                        <td>{{$customer->final_amount}}</td>
+                                        <td>{{get_rupee_currency($customer->final_amount)}}</td>
                                         <td>
                                             {!! Form::open(['route' => ['customer.destroy', $customer->id], 'method' => 'delete']) !!}
                                             <div class='btn-group'>
@@ -107,5 +114,34 @@
         </section>
     </main>
 @endsection
+@push('page_scripts')
 
+    <script>
+        $(function () {
 
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                $('.daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+
+            $('.daterange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+        });
+    </script>
+
+@endpush

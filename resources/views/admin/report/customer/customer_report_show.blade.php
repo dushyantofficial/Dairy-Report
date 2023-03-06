@@ -73,7 +73,7 @@
                                                 <td>{{$customer->bank_name}}</td>
                                                 <td>{{$customer->account_number}}</td>
                                                 <td>{{$customer->ifsc_code}}</td>
-                                                <td>{{$customer->final_amount}}</td>
+                                                <td>{{get_rupee_currency($customer->final_amount)}}</td>
                                                 <td>{{$customer->created_at}}</td>
 
                                             </tr>
@@ -113,7 +113,7 @@
                                 <td>{{$customer->bank_name}}</td>
                                 <td>{{$customer->account_number}}</td>
                                 <td>{{$customer->ifsc_code}}</td>
-                                <td>{{$customer->final_amount}}</td>
+                                <td>{{get_rupee_currency($customer->final_amount)}}</td>
                                 <td>{{$customer->created_at}}</td>
 
                             </tr>
@@ -294,7 +294,6 @@
     @endphp
 
     <script>
-
         function ExportToExcel(type, fn, dl) {
             var elt = document.getElementById('my_report')
             var wb = XLSX.utils.table_to_book(elt, {sheet: "sheet1"});

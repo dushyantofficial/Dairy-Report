@@ -137,7 +137,7 @@
                                     <td style="padding: 7px;">{{$customer_report->ifsc_code}} </td>
                                 @endif
                                 @if(isset($input['field']['final_amount']))
-                                    <td style="padding: 7px;">{{$customer_report->final_amount}} </td>
+                                    <td style="padding: 7px;">{{get_rupee_currency($customer_report->final_amount)}} </td>
                                 @endif
                                 @if(isset($input['field']['created_by']))
                                     <td style="padding: 7px;">{{$customer_report->created_bys->user_name}} </td>

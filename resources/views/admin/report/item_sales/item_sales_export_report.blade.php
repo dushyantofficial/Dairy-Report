@@ -153,15 +153,15 @@
 
                                             @endif
                                             @if(isset($input['field']['payment']))
-                                                <td>{{$item_sales->payment}}</td>
+                                                <td>{{get_rupee_currency($item_sales->payment)}}</td>
 
                                             @endif
                                             @if(isset($input['field']['deduct_payment']))
-                                                <td>{{$item_sales->deduct_payment}}</td>
+                                                <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                             @endif
                                             @if(isset($input['field']['total']))
-                                                <td>{{$item_sales->total}}</td>
+                                                <td>{{get_rupee_currency($item_sales->total)}}</td>
 
                                             @endif
 
@@ -312,15 +312,15 @@
 
                                     @endif
                                     @if(isset($input['field']['payment']))
-                                        <td>{{$item_sales->payment}}</td>
+                                        <td>{{get_rupee_currency($item_sales->payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['deduct_payment']))
-                                        <td>{{$item_sales->deduct_payment}}</td>
+                                        <td>{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['total']))
-                                        <td>{{$item_sales->total}}</td>
+                                        <td>{{get_rupee_currency($item_sales->total)}}</td>
 
                                     @endif
 

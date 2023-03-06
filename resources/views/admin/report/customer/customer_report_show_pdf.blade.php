@@ -85,7 +85,7 @@
                             <td style="padding: 7px;"> @lang('langs.ifsc_code')</td>
                             <td style="padding: 7px;"> @lang('langs.final_amount')</td>
                             <td style="padding: 7px;"> @lang('langs.created_by')</td>
-                            <td style="padding: 7px;"> Created Date</td>
+                            <td style="padding: 7px;"> @lang('langs.created_at')</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -98,7 +98,7 @@
                                 <td style="padding: 7px;">{{$customer_report->bank_name}} </td>
                                 <td style="padding: 7px;">{{$customer_report->account_number}} </td>
                                 <td style="padding: 7px;">{{$customer_report->ifsc_code}} </td>
-                                <td style="padding: 7px;">{{$customer_report->final_amount}} </td>
+                                <td style="padding: 7px;">{{get_rupee_currency($customer_report->final_amount)}} </td>
                                 <td style="padding: 7px;">{{$customer_report->created_bys->user_name}} </td>
                                 <td style="padding: 7px;">{{$customer_report->created_at}} </td>
 

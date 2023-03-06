@@ -196,15 +196,15 @@
 
                                     @endif
                                     @if(isset($input['field']['payment']))
-                                        <td style="padding: 7px;">{{$item_sales->payment}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['deduct_payment']))
-                                        <td style="padding: 7px;">{{$item_sales->deduct_payment}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->deduct_payment)}}</td>
 
                                     @endif
                                     @if(isset($input['field']['total']))
-                                        <td style="padding: 7px;">{{$item_sales->total}}</td>
+                                        <td style="padding: 7px;">{{get_rupee_currency($item_sales->total)}}</td>
 
                                     @endif
 

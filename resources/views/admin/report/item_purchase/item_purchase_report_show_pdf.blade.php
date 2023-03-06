@@ -95,8 +95,8 @@
                                 <td class="ml-1 mr-1"
                                     style="padding: 7px;">{{ $item_purchase_report->item_name->item_name}}</td>
                                 <td style="padding: 7px;">{{$item_purchase_report->item_quantity}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->Purchase_Rate}} </td>
-                                <td style="padding: 7px;">{{$item_purchase_report->Sales_Rates}} </td>
+                                <td style="padding: 7px;">{{get_rupee_currency($item_purchase_report->Purchase_Rate)}} </td>
+                                <td style="padding: 7px;">{{get_rupee_currency($item_purchase_report->Sales_Rates)}} </td>
                                 <td style="padding: 7px;">{{$item_purchase_report->purchase_date}} </td>
                                 <td style="padding: 7px;">{{$item_purchase_report->created_bys->user_name}} </td>
                                 <td style="padding: 7px;">{{$item_purchase_report->created_at}} </td>

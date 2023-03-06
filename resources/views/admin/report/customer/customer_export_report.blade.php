@@ -91,7 +91,7 @@
                                                 <td>{{$customer->ifsc_code}} </td>
                                             @endif
                                             @if(isset($input['field']['final_amount']))
-                                                <td>{{$customer->final_amount}} </td>
+                                                <td>{{get_rupee_currency($customer->final_amount)}} </td>
                                             @endif
                                             @if(isset($input['field']['created_by']))
                                                 <td>{{$customer->created_bys->user_name}} </td>
@@ -170,7 +170,7 @@
                                                 <td>{{$customer->bank_name}} </td>
                                             @endif
                                             @if(isset($input['field']['account_number']))
-                                                <td>{{$customer->account_number}} </td>
+                                                <td>{{get_rupee_currency($customer->account_number)}} </td>
                                             @endif
                                             @if(isset($input['field']['ifsc_code']))
                                                 <td>{{$customer->ifsc_code}} </td>
