@@ -177,5 +177,8 @@ return [
     'to_customer_code' => 'To Customer Code',
 
 
+    'without_account_number' => 'Without Account Number',
+
+
 
 ];

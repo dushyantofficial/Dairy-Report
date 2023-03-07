@@ -5,21 +5,114 @@
         .modal {
             --bs-modal-width: 1041px;
         }
-    </style>
 
+    </style>
     @include('admin.flash-message')
     <main id="main" class="main">
         <section class="section">
             <div class="row">
+                {{--                Payment Report Filter--}}
+                <div class="col-lg-12">
+                    <div class="card " id="divMsg" style="display:none">
+                        <div class="card-body table-responsive" id="sampleTable">
+                            <center><h5 class="card-title">@lang('langs.payment_register_report')</h5></center>
+                            <div class="tile-body" id="my_report">
+                                <form id="myform" action="{{route('payment-register-report')}}" method="get">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>@lang('langs.fields'):</label>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <label for="customer_name"> @lang('langs.from_customer_code') </label>
+                                            <input type="number" id="customer_name" name="customer_from_code"
+                                                   class="form-control" value="{{old('customer_from_code')}}" required>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label for="bank_name"> @lang('langs.to_customer_code')</label>
+                                            <input type="number" class="form-control" id="bank_name"
+                                                   name="customer_to_code"
+                                                   value="{{old('customer_to_code')}}" required>
+
+                                        </div>
+                                        <span style="color: red;margin-left: 342px;">{{$errors->first('field')}}</span>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>@lang('langs.select_date'):</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input id="reportrange" name="date"
+                                                   @if(request('date') != 'null') value="{{request('date')}}"
+                                                   @endif class="pull-left form-control daterange"
+                                                   style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>@lang('langs.bank_name'):</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select
+                                                class="form-control select2 @error('bank_name') is-invalid @enderror"
+                                                name="bank_name" id="customer_id">
+                                                <option value="">---@lang('langs.bank_name')---</option>
+                                                @foreach($bank_names as $bank_name)
+                                                    <option
+                                                        value="{{$bank_name->id}}" {{ old('bank_name') == $bank_name->id ? 'selected' : '' }}>{{$bank_name->bank_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>@lang('langs.account_number'):</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="customer_name" name="check"
+                                                   onclick="onlyOne(this)" value="account_number">
+                                            <label for="account_number"> @lang('langs.account_number') </label><br>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="without_account_number" name="check"
+                                                   onclick="onlyOne(this)"
+                                                   class="check_all" value="without_account_number">
+                                            <label
+                                                for="customer_name"> @lang('langs.without_account_number') </label><br>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <center>
+                                        <button type="button" class="btn btn-outline-secondary"
+                                                onClick="showHideDiv('divMsg')" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-primary">Filter</button>
+
+                                    </center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Payment Report Filter End--}}
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-6">
                             <button type="button" class="btn btn-outline-success"
-                                    data-bs-toggle="modal" data-bs-target="#payment_report">Filter
+                                    id="payment_report" onClick="showHideDiv('divMsg')">Filter
                             </button>
                             </span>
                             <a href="{{route('payment-register-report')}}" class="btn btn-outline-dark ml-3">Reset</a>
-
 
                             <a class="btn btn-outline-danger"
                                href="{{route('customer-report-show-pdf')}}?date={{request()->date}}">
@@ -55,7 +148,9 @@
                                         <th scope="col">@lang('langs.customer_code')</th>
                                         <th scope="col">@lang('langs.mobile_number')</th>
                                         <th scope="col">@lang('langs.bank_name')</th>
+                                        @if(request()->check == 'account_number' || request()->check == null)
                                         <th scope="col">@lang('langs.account_number')</th>
+                                        @endif
                                         <th scope="col">@lang('langs.ifsc_code')</th>
                                         <th scope="col">@lang('langs.final_amount')</th>
                                         <th scope="col">@lang('langs.created_at')</th>
@@ -70,7 +165,9 @@
                                                 <td>{{$customer->customer_code}}</td>
                                                 <td>{{$customer->user->mobile_number}}</td>
                                                 <td>{{$customer->bank_name}}</td>
+                                                @if(request()->check == 'account_number' || request()->check == null)
                                                 <td>{{$customer->account_number}}</td>
+                                                @endif
                                                 <td>{{$customer->ifsc_code}}</td>
                                                 <td>{{$customer->final_amount}}</td>
                                                 <td>{{$customer->created_at}}</td>
@@ -99,7 +196,9 @@
                         <th scope="col">@lang('langs.customer_code')</th>
                         <th scope="col">@lang('langs.mobile_number')</th>
                         <th scope="col">@lang('langs.bank_name')</th>
+                        @if(request()->check == 'account_number' || request()->check == null)
                         <th scope="col">@lang('langs.account_number')</th>
+                        @endif
                         <th scope="col">@lang('langs.ifsc_code')</th>
                         <th scope="col">@lang('langs.final_amount')</th>
                         <th scope="col">@lang('langs.created_at')</th>
@@ -114,7 +213,9 @@
                                 <td>{{$customer->customer_code}}</td>
                                 <td>{{$customer->user->mobile_number}}</td>
                                 <td>{{$customer->bank_name}}</td>
+                                @if(request()->check == 'account_number' || request()->check == null)
                                 <td>{{$customer->account_number}}</td>
+                                @endif
                                 <td>{{$customer->ifsc_code}}</td>
                                 <td>{{$customer->final_amount}}</td>
                                 <td>{{$customer->created_at}}</td>
@@ -125,64 +226,6 @@
                     </tbody>
                 </table>
             </div>
-{{--                Payment Report Filter--}}
-                <div class="modal fade" id="payment_report" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">@lang('langs.payment_register_report')</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="myform" action="{{route('payment-register-report')}}" method="get">
-                                    @csrf
-                                 <div class="row">
-                                        <div class="col-md-4">
-                                            <label>@lang('langs.fields'):</label>
-                                        </div>
-
-
-                                        <div class="col-md-3">
-                                            <label for="customer_name"> @lang('langs.from_customer_code') </label>
-                                            <input type="number" id="customer_name" name="customer_from_code"
-                                                   class="form-control" value="{{old('customer_from_code')}}" required>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="bank_name"> @lang('langs.to_customer_code')</label>
-                                            <input type="number" class="form-control" id="bank_name" name="customer_to_code"
-                                                   value="{{old('customer_to_code')}}" required>
-
-                                        </div>
-                                        <span style="color: red;margin-left: 342px;">{{$errors->first('field')}}</span>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>@lang('langs.select_date'):</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input id="reportrange" name="date"
-                                                   @if(request('date') != 'null') value="{{request('date')}}"
-                                                   @endif class="pull-left form-control daterange"
-                                                   style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class="modal-footer">
-                                        <center>
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button type="submit" class="btn btn-outline-primary">Filter</button>
-                                        </center>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Vertically centered Modal-->
 
 {{--                Setup Filter--}}
 
@@ -267,7 +310,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- End Vertically centered Modal-->
+                </div><!-- End Vertically centered Modal-->
 
         </section>
     </main>
@@ -275,6 +318,35 @@
 @endsection
 @push('page_scripts')
 
+    <script>
+        function onlyOne(checkbox) {
+            var checkboxes = document.getElementsByName('check')
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        function showHideDiv(ele) {
+            var srcElement = document.getElementById(ele);
+            if (srcElement != null) {
+                if (srcElement.style.display == "block") {
+                    srcElement.style.display = 'none';
+                } else {
+                    srcElement.style.display = 'block';
+                }
+                return false;
+            }
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
     <script>
         $('#checkall').change(function () {
             $('.check_all').prop('checked', this.checked);

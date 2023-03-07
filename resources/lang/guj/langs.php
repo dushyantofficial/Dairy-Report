@@ -157,5 +157,17 @@ return [
     'deduct_mor_eve' => 'સવાર સાંજ બાદ કરો',
     'Import_file_successfully' => 'ફાઈલ સફળતાપૂર્વક ઉમરાઈ ગયી છે!...',
 
+    //Payment Filter
+    'payment_report' => 'ચુકવણી અહેવાલ',
+    'payment_register_report' => 'ચુકવણી રજિસ્ટર રિપોર્ટ',
+    'payment_deduct_report' => 'ચુકવણી કપાત રિપોર્ટ',
+
+
+    'from_customer_code' => 'ગ્રાહક કોડમાંથી',
+    'to_customer_code' => 'ગ્રાહક કોડ માટે',
+
+
+    'without_account_number' => 'એકાઉન્ટ નંબર વગર',
+
 
 ];
