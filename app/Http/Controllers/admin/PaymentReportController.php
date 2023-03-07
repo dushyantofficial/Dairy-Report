@@ -21,9 +21,8 @@ class PaymentReportController extends Controller
                 $end = date('Y-m-d', strtotime($name[2]));
 
                 $filter_payment_register = Customers::where(function ($query) use ($request,$start,$end){
-                    $query->orWhere('customer_code',$request->customer_from_code);
-                    $query->orWhere('customer_code',$request->customer_to_code);
-                    $query->orWhere('bank_name',$request->bank_name);
+                    $query->whereBetween('customer_code',[$request->customer_from_code,$request->customer_to_code]);
+                    $query->orWhere('bank_name','==',$request->bank_name);
                     $query->whereDate('created_at', '>=', $start);
                     $query->whereDate('created_at', '>=', $end);
                 })->get();

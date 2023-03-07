@@ -65,7 +65,7 @@
                                                 <option value="">---@lang('langs.bank_name')---</option>
                                                 @foreach($bank_names as $bank_name)
                                                     <option
-                                                        value="{{$bank_name->id}}" {{ old('bank_name') == $bank_name->id ? 'selected' : '' }}>{{$bank_name->bank_name}}</option>
+                                                        value="{{$bank_name->bank_name}}" {{ old('bank_name') == $bank_name->bank_name ? 'selected' : '' }}>{{$bank_name->bank_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
