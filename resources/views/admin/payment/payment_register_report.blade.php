@@ -8,6 +8,7 @@
 
     </style>
     @include('admin.flash-message')
+{{--    @dd(request()->check)--}}
     <main id="main" class="main">
         <section class="section">
             <div class="row">
@@ -28,14 +29,15 @@
                                         <div class="col-md-3">
                                             <label for="customer_name"> @lang('langs.from_customer_code') </label>
                                             <input type="number" id="customer_name" name="customer_from_code"
-                                                   class="form-control" value="{{old('customer_from_code')}}" required>
+                                                   class="form-control" value="{{request()->customer_from_code}}"
+                                                   required>
                                         </div>
 
                                         <div class="col-md-3">
                                             <label for="bank_name"> @lang('langs.to_customer_code')</label>
                                             <input type="number" class="form-control" id="bank_name"
                                                    name="customer_to_code"
-                                                   value="{{old('customer_to_code')}}" required>
+                                                   value="{{request()->customer_to_code}}" required>
 
                                         </div>
                                         <span style="color: red;margin-left: 342px;">{{$errors->first('field')}}</span>
@@ -60,12 +62,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <select
-                                                class="form-control select2 @error('bank_name') is-invalid @enderror"
+                                                class="form-control @error('bank_name') is-invalid @enderror"
                                                 name="bank_name" id="customer_id">
                                                 <option value="">---@lang('langs.bank_name')---</option>
                                                 @foreach($bank_names as $bank_name)
                                                     <option
-                                                        value="{{$bank_name->bank_name}}" {{ old('bank_name') == $bank_name->bank_name ? 'selected' : '' }}>{{$bank_name->bank_name}}</option>
+                                                        value="{{$bank_name->bank_name}}" {{ request()->bank_name == $bank_name->bank_name ? 'selected' : '' }}>{{$bank_name->bank_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -78,13 +80,13 @@
                                         </div>
                                         <div class="col-md-3">
                                             <input type="checkbox" id="customer_name" name="check"
-                                                   onclick="onlyOne(this)" value="account_number">
+                                                   onclick="onlyOne(this)" value="account_number" @if (request()->check == 'account_number') checked @endif>
                                             <label for="account_number"> @lang('langs.account_number') </label><br>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="checkbox" id="without_account_number" name="check"
                                                    onclick="onlyOne(this)"
-                                                   class="check_all" value="without_account_number">
+                                                   class="check_all" value="without_account_number" @if (request()->check == 'without_account_number') checked @endif>
                                             <label
                                                 for="customer_name"> @lang('langs.without_account_number') </label><br>
                                         </div>
