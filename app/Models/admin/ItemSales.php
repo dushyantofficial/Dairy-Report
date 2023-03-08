@@ -23,6 +23,7 @@ class ItemSales extends Model
         'payment' => 'required',
         'deduct_payment' => 'required',
         'total' => 'required',
+        'total_quantity' => 'required',
     ];
     public $table = 'item_sales';
     protected $fillable = [
@@ -37,6 +38,7 @@ class ItemSales extends Model
         'payment',
         'deduct_payment',
         'total',
+        'total_quantity',
         'customer_id',
         'item_name_id',
         'item_quantity',

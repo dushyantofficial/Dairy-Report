@@ -26,6 +26,7 @@ class CreateItemSalesTable extends Migration
             $table->double('payment');
             $table->double('deduct_payment');
             $table->double('total');
+            $table->double('total_quantity');
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('item_name_id')->unsigned();
             $table->double('item_quantity');

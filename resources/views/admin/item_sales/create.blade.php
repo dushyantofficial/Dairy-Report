@@ -167,6 +167,17 @@
                                 </div>
 
                                 <div class="col-6">
+                                    <label for="inputEmail4" class="form-label">@lang('langs.total_quantity')</label>
+                                    <input type="number" name="total_quantity" value="{{old('total_quantity')}}"
+                                           class="form-control @error('total_quantity') is-invalid @enderror"
+                                           id="total_quantity">
+                                    @error('item_quantity')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+
+                                <div class="col-12">
                                     <label for="inputEmail4" class="form-label">@lang('langs.CustPhoto')</label>
                                     <input type="file" name="customer_photo" value="{{old('customer_photo')}}"
                                            class="form-control @error('customer_photo') is-invalid @enderror"

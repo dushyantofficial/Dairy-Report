@@ -155,6 +155,7 @@ return [
     'entry_date' => 'Entry Date',
     'payment' => 'Payment',
     'total' => 'Total',
+    'total_quantity' => 'Total Quantity',
     'deduction' => 'Deduction',
 
 
