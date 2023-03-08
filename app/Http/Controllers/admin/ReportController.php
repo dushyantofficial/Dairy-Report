@@ -251,7 +251,7 @@ class ReportController extends Controller
             $item_namePaper = array(0, 0, 1000.00, 900.80);
             $pdf = PDF::loadView('admin.report.item_name.item_name_report_pdf', compact('item_name_reports', 'input'))->setPaper($item_namePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
             if (isset($request->date)) {
-                return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+                return $pdf->download($start . '_to_' . $end . '_' . 'item_name_report.pdf');
             } else {
                 return $pdf->download('item_name_report.pdf');
             }
@@ -268,7 +268,7 @@ class ReportController extends Controller
         $item_namePaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.report.item_name.item_name_report_pdf', compact('item_name_reports', 'input'))->setPaper($item_namePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
         if (isset($request->date)) {
-            return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+            return $pdf->download($start . '_to_' . $end . '_' . 'item_name_report.pdf');
         } else {
             return $pdf->download('item_name_report.pdf');
         }

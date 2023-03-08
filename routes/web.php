@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth', 'check_lang']], function () {
 
 //Payment Report Route
     Route::get('payment_register_report', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_register_report'])->name('payment-register-report');
+    Route::get('payment_register_report_pdf', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_register_report_pdf'])->name('payment-register-report-pdf');
     Route::get('payment_deduct_report', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_deduct_report'])->name('payment-deduct-report');
+    Route::get('payment_deduct_report_pdf', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_deduct_report_pdf'])->name('payment-deduct-report-pdf');
 
 });

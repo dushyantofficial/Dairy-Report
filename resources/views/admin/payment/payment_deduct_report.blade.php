@@ -117,7 +117,10 @@
                             <a href="{{route('payment-deduct-report')}}" class="btn btn-outline-dark ml-3">Reset</a>
 
                             <a class="btn btn-outline-danger"
-                               href="{{route('customer-report-show-pdf')}}?date={{request()->date}}">
+                               href="{{route('payment-deduct-report-pdf')}}?date={{request()->date}}&
+                               customer_from_code={{request()->customer_from_code}}&
+                               customer_to_code={{request()->customer_to_code}}&
+                                check={{request()->check}}">
                                 Pdf </a>
 
                             <button type="button" class="btn btn-outline-info"
