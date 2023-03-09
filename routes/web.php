@@ -82,5 +82,6 @@ Route::group(['middleware' => ['auth', 'check_lang']], function () {
     Route::get('payment_register_report_pdf', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_register_report_pdf'])->name('payment-register-report-pdf');
     Route::get('payment_deduct_report', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_deduct_report'])->name('payment-deduct-report');
     Route::get('payment_deduct_report_pdf', [App\Http\Controllers\admin\PaymentReportController::class, 'payment_deduct_report_pdf'])->name('payment-deduct-report-pdf');
+    Route::get('remove_negative_amount', [App\Http\Controllers\admin\ItemSalesController::class, 'remove_negative_amount'])->name('remove-negative-amount');
 
 });

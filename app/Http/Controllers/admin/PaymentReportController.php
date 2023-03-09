@@ -116,11 +116,8 @@ class PaymentReportController extends Controller
                 $start = date('Y-m-d', strtotime($name[0]));
                 $end = date('Y-m-d', strtotime($name[2]));
 
-                $filter_payment_deduct = Customers::where(function ($query) use ($request,$start,$end){
-                    $query->whereBetween('customer_code',[$request->customer_from_code,$request->customer_to_code]);
-                    $query->orWhere('bank_name','==',$request->bank_name);
-                    $query->whereDate('created_at', '>=', $start);
-                    $query->whereDate('created_at', '>=', $end);
+                $filter_payment_deduct = ItemSales::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->whereHas('customers', function ($query) use ($request) {
+                    $query->whereBetween('customer_code', [$request->customer_from_code, $request->customer_to_code]);
                 })->get();
 
             }
@@ -133,7 +130,9 @@ class PaymentReportController extends Controller
             $name = explode(' ', $date);
             $start = date('Y-m-d', strtotime($name[0]));
             $end = date('Y-m-d', strtotime($name[2]));
-            $filter_customers = Customers::where('user_id', $user->id)->whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->get();
+            $filter_customers = Customers::where('user_id', $user->id)->whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->whereHas('customers', function ($query) use ($request) {
+                $query->whereBetween('customer_code', [$request->customer_from_code, $request->customer_to_code]);
+            })->get();
         }
         return view('admin.payment.payment_deduct_report', compact('filter_payment_deduct', 'bank_names'));
     }
@@ -149,16 +148,15 @@ class PaymentReportController extends Controller
                 $name = explode(' ', $date);
                 $start = date('Y-m-d', strtotime($name[0]));
                 $end = date('Y-m-d', strtotime($name[2]));
-                $payment_deduct_report_pdfs = ItemSales::where(function ($query) use ($request,$start,$end){
-                    $query->whereDate('created_at', '>=', $start);
-                    $query->whereDate('created_at', '>=', $end);
+                $payment_deduct_report_pdfs = ItemSales::whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->whereHas('customers', function ($query) use ($request) {
+                    $query->whereBetween('customer_code', [$request->customer_from_code, $request->customer_to_code]);
                 })->get();
             }
             $item_purchasePaper = array(0, 0, 1000.00, 900.80);
             $pdf = PDF::loadView('admin.payment.payment_deduct_report_pdf', compact('payment_deduct_report_pdfs'))->setPaper($item_purchasePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
 
             if (isset($start)) {
-                return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+                return $pdf->download($start . '_to_' . $end . '_' . 'payment_deduct_report.pdf');
             } else {
                 return $pdf->download('payment_deduct_report.pdf');
             }
@@ -169,16 +167,15 @@ class PaymentReportController extends Controller
             $name = explode(' ', $date);
             $start = date('Y-m-d', strtotime($name[0]));
             $end = date('Y-m-d', strtotime($name[2]));
-            $payment_deduct_report_pdfs = ItemSales::where('user_id', $user->id)->where(function ($query) use ($request,$start,$end){
-                $query->whereDate('created_at', '>=', $start);
-                $query->whereDate('created_at', '>=', $end);
+            $payment_deduct_report_pdfs = ItemSales::where('user_id', $user->id)->whereDate('created_at', '>=', $start)->whereDate('created_at', '<=', $end)->whereHas('customers', function ($query) use ($request) {
+                $query->whereBetween('customer_code', [$request->customer_from_code, $request->customer_to_code]);
             })->get();
         }
         $item_purchasePaper = array(0, 0, 1000.00, 900.80);
         $pdf = PDF::loadView('admin.payment.payment_deduct_report_pdf', compact('payment_deduct_report_pdfs'))->setPaper($item_purchasePaper)->set_option('font_dir', storage_path(''))->set_option('font_cache', storage_path(''));
 
         if (isset($start)) {
-            return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
+            return $pdf->download($start . '_to_' . $end . '_' . 'payment_deduct_report.pdf');
         } else {
             return $pdf->download('payment_deduct_report.pdf');
         }

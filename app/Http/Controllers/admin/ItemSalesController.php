@@ -118,4 +118,14 @@ class ItemSalesController extends Controller
         $data['final_amount'] = $final_amount['final_amount'];
         return $data;
     }
+
+    public function remove_negative_amount(Request $request){
+        $item_sales = ItemSales::find($request->id);
+        $amount = $item_sales->total;
+        $replace = str_ireplace( array( '\'', '"',
+            ',' , '-', '<', '>' ), ' ', $amount);
+        $input['total'] = $replace;
+        $item_sales->update($input);
+        return redirect()->back()->with('success','Remove Negative Amount');
+    }
 }
