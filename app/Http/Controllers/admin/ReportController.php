@@ -101,7 +101,7 @@ class ReportController extends Controller
             if (isset($start)) {
                 return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
             } else {
-                return $pdf->download('item_purchase_report.pdf');
+                return $pdf->download('customer_report.pdf');
             }
         }
         $customer_reports = Customers::where('user_id', $user->id)->select($val)->get();
@@ -118,7 +118,7 @@ class ReportController extends Controller
         if (isset($start)) {
             return $pdf->download($start . '_to_' . $end . '_' . 'customer_report.pdf');
         } else {
-            return $pdf->download('item_purchase_report.pdf');
+            return $pdf->download('customer_report.pdf');
         }
     }
 
@@ -132,7 +132,6 @@ class ReportController extends Controller
         );
 
         $input = $request->all();
-//        $users = User::find($request->name);
         $val = array_keys($input['field']);
         $user = Auth::user();
         if ($user->role == config('constants.ROLE.ADMIN')) {

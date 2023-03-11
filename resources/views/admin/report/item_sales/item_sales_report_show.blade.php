@@ -1,6 +1,31 @@
 @extends('admin.layouts.app')
 @section('content')
     <style>
+
+        @media print {
+
+            div table {
+                width: 80%;
+                margin: 0;
+
+            }
+
+            .print-table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+            .print-table #pri_table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+        }
+
+    </style>
+    <style>
         .modal {
             --bs-modal-width: 1270px;
         }
@@ -111,7 +136,8 @@
                         <div id="table_print">
                             <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
                             <input type="hidden" id="mandali_code" value="{{$user->mandali_code}}">
-                            <table class="table" id="pri_table" style="display: none">
+                            <table id="pri_table" class="table table-responsive" border="1" width="100%"
+                                   style="border-collapse: collapse;display: none">
                                 <thead>
                                 <tr>
                                     <th scope="col">@lang('langs.item_sales_no')</th>

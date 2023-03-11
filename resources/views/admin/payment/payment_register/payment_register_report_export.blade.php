@@ -5,7 +5,7 @@
         @media print {
 
             div table {
-                width: 80%;
+                width: 100%;
                 margin: 0;
 
             }
@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-6">
                             <a class="btn btn-outline-danger"
-                               href="{{route('customer-report-pdf')}}?field={{request()}}">
+                               href="{{route('payment-register-report-export-pdf')}}?field={{request()}}">
                                 Pdf</a>
                             <button type="button" onclick="ExportToExcel('xlsx')" class="btn btn-outline-success">
                                 Excel
@@ -41,8 +41,8 @@
                             <span class="pull-right float-right"><button type="button"
                                                                          id="Pairings_by_Table_call"
                                                                          class="btn btn-outline-warning">Print</button>
-                    <a href="{{route('customer-report-show')}}"><button type="button"
-                                                                        class="btn btn-outline-dark">Back</button></a>&nbsp</span><br><br>
+                    <a href="{{route('payment-register-report')}}"><button type="button"
+                                                                           class="btn btn-outline-dark">Back</button></a>&nbsp</span><br><br>
                         </div>
                     </div>
                 </div>
@@ -50,14 +50,14 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body table-responsive" id="sampleTable">
-                            <h5 class="card-title">@lang('langs.customer_report_table')</h5>
+                            <h5 class="card-title">@lang('langs.payment_register_report')</h5>
                             <div class="tile-body" id="my_report">
                                 <table id="sampleTable" class="table datatable">
                                     <thead>
                                     <tr>
                                         <th>@lang('langs.customer_no')</th>
                                         @if(isset($input['field']['user_id']))
-                                            <th> @lang('langs.user_name')</th>
+                                            <th> @lang('langs.mobile_number')</th>
                                         @endif
 
                                         @if(isset($input['field']['customer_name']))
@@ -86,10 +86,6 @@
                                             <th> @lang('langs.final_amount')</th>
 
                                         @endif
-                                        @if(isset($input['field']['created_by']))
-                                            <th> @lang('langs.created_by')</th>
-
-                                        @endif
 
 
                                         @if(isset($input['field']['created_at']))
@@ -104,7 +100,7 @@
                                             <td>{{$loop->iteration}}</td>
 
                                             @if(isset($input['field']['user_id']))
-                                                <td>{{$customer->user->user_name}} </td>
+                                                <td>{{$customer->user->mobile_number}} </td>
                                             @endif
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
@@ -124,9 +120,7 @@
                                             @if(isset($input['field']['final_amount']))
                                                 <td>{{get_rupee_currency($customer->final_amount)}} </td>
                                             @endif
-                                            @if(isset($input['field']['created_by']))
-                                                <td>{{$customer->created_bys->user_name}} </td>
-                                            @endif
+
 
                                             @if(isset($input['field']['created_at']))
                                                 <td>{{$customer->created_at}} </td>
@@ -150,7 +144,7 @@
                                     <tr>
                                         <th>@lang('langs.customer_no')</th>
                                         @if(isset($input['field']['user_id']))
-                                            <th> @lang('langs.user_name')</th>
+                                            <th> @lang('langs.mobile_number')</th>
                                         @endif
 
                                         @if(isset($input['field']['customer_name']))
@@ -179,11 +173,6 @@
                                             <th> @lang('langs.final_amount')</th>
 
                                         @endif
-                                        @if(isset($input['field']['created_by']))
-                                            <th> @lang('langs.created_by')</th>
-
-                                        @endif
-
 
                                         @if(isset($input['field']['created_at']))
                                             <th> @lang('langs.created_at')</th>
@@ -197,7 +186,7 @@
                                             <td>{{$loop->iteration}}</td>
 
                                             @if(isset($input['field']['user_id']))
-                                                <td>{{$customer->user->user_name}} </td>
+                                                <td>{{$customer->user->mobile_number}} </td>
                                             @endif
                                             @if(isset($input['field']['customer_name']))
                                                 <td>{{$customer->customer_name}} </td>
@@ -217,9 +206,6 @@
                                             @endif
                                             @if(isset($input['field']['final_amount']))
                                                 <td>{{$customer->final_amount}} </td>
-                                            @endif
-                                            @if(isset($input['field']['created_by']))
-                                                <td>{{$customer->created_bys->user_name}} </td>
                                             @endif
 
                                             @if(isset($input['field']['created_at']))

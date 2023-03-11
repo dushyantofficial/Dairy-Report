@@ -2,6 +2,31 @@
 @extends('admin.layouts.app')
 @section('content')
     <style>
+
+        @media print {
+
+            div table {
+                width: 80%;
+                margin: 0;
+
+            }
+
+            .print-table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+            .print-table #pri_table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+        }
+
+    </style>
+    <style>
         .modal {
             --bs-modal-width: 1041px;
         }
@@ -195,37 +220,43 @@
             <div id="table_print">
                 <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
                 <input type="hidden" id="mandali_code" value="{{$user->mandali_code}}">
-                <table class="table" id="pri_table" style="display: none">
+                <table id="pri_table" class="table table-responsive" border="1" width="100%"
+                       style="border-collapse: collapse;display: none">
                     <thead>
                     <tr>
-                        <th scope="col">@lang('langs.customer_no')</th>
+                        <th scope="col">@lang('langs.item_sales_no')</th>
                         <th scope="col">@lang('langs.customer_name')</th>
                         <th scope="col">@lang('langs.customer_code')</th>
-                        <th scope="col">@lang('langs.mobile_number')</th>
-                        <th scope="col">@lang('langs.bank_name')</th>
-                        @if(request()->check == 'account_number' || request()->check == null)
-                            <th scope="col">@lang('langs.account_number')</th>
-                        @endif
-                        <th scope="col">@lang('langs.ifsc_code')</th>
-                        <th scope="col">@lang('langs.final_amount')</th>
+                        <th scope="col">@lang('langs.item_name')</th>
+                        <th scope="col">@lang('langs.itemQuantity')</th>
+                        <th scope="col">@lang('langs.payment_from_date')</th>
+                        <th scope="col">@lang('langs.payment_to_date')</th>
+                        <th scope="col">@lang('langs.entry_date')</th>
+                        <th scope="col">@lang('langs.payment')</th>
+                        <th scope="col">@lang('langs.deduct_payment')</th>
+                        <th scope="col">@lang('langs.total')</th>
                         <th scope="col">@lang('langs.created_at')</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if(isset($filter_payment_register))
-                        @foreach($filter_payment_register as $customer)
+                    @if(isset($filter_payment_deduct))
+                        @foreach($filter_payment_deduct as $payment_deduct)
+                            <tr>
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$customer->customer_name}}</td>
-                                <td>{{$customer->customer_code}}</td>
-                                <td>{{$customer->user->mobile_number}}</td>
-                                <td>{{$customer->bank_name}}</td>
-                                @if(request()->check == 'account_number' || request()->check == null)
-                                    <td>{{$customer->account_number}}</td>
-                                @endif
-                                <td>{{$customer->ifsc_code}}</td>
-                                <td>{{$customer->final_amount}}</td>
-                                <td>{{$customer->created_at}}</td>
+                                <td>{{$payment_deduct->customers->customer_name}}</td>
+                                <td>{{$payment_deduct->customers->customer_code}}</td>
+                                <td>{{$payment_deduct->item_names->item_name->item_name}}</td>
+                                <td>{{$payment_deduct->item_quantity}}</td>
+                                <td>{{$payment_deduct->payment_from_date}}</td>
+                                <td>{{$payment_deduct->payment_to_date}}</td>
+                                <td>{{$payment_deduct->entry_date}}</td>
+                                <td>{{get_rupee_currency($payment_deduct->payment)}}</td>
+                                <td>{{get_rupee_currency($payment_deduct->deduct_payment)}}</td>
+                                <td>{{get_rupee_currency($payment_deduct->total)}}</td>
+                                <td>{{$payment_deduct->created_at}}</td>
+
+                            </tr>
 
                             </tr>
                         @endforeach

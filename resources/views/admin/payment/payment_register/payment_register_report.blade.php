@@ -2,6 +2,31 @@
 @extends('admin.layouts.app')
 @section('content')
     <style>
+
+        @media print {
+
+            div table {
+                width: 80%;
+                margin: 0;
+
+            }
+
+            .print-table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+            .print-table #pri_table {
+                max-width: 100%;
+                border: 1px solid #000;
+                border-collapse: collapse;
+            }
+
+        }
+
+    </style>
+    <style>
         .modal {
             --bs-modal-width: 1041px;
         }
@@ -193,7 +218,8 @@
             <div id="table_print">
                 <input type="hidden" id="mandali_address" value="{{$user->mandali_address}}">
                 <input type="hidden" id="mandali_code" value="{{$user->mandali_code}}">
-                <table class="table" id="pri_table" style="display: none">
+                <table id="pri_table" class="table table-responsive" border="1" width="100%"
+                       style="border-collapse: collapse;display: none">
                     <thead>
                     <tr>
                         <th scope="col">@lang('langs.customer_no')</th>
@@ -232,17 +258,16 @@
                 </table>
             </div>
 
-{{--                Setup Filter--}}
-
-                <div class="modal fade" id="verticalycentered" tabindex="-1">
+            {{--                Setup Filter--}}
+            <div class="modal fade" id="verticalycentered" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">@lang('langs.customer_report_table')</h5>
+                            <h5 class="modal-title">@lang('langs.payment_register_report')</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="myform" action="{{route('customer_report_export')}}" method="get">
+                            <form id="myform" action="{{route('payment-register-report-export')}}" method="get">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">
@@ -278,9 +303,10 @@
                                         <input type="checkbox" id="final_amount" name="field[final_amount]"
                                                class="check_all" value="final_amount">
                                         <label for="admission_number"> @lang('langs.final_amount')</label><br>
-                                        <input type="checkbox" id="created_by" name="field[created_by]"
-                                               class="check_all" value="created_by">
-                                        <label for="admission_number"> @lang('langs.created_by')</label><br>
+                                        <input type="checkbox" class="check_all" id="customer_code"
+                                               name="field[customer_code]"
+                                               value="customer_code">
+                                        <label for="dob">@lang('langs.customer_code')</label><br>
                                     </div>
 
                                     <div class="col-md-2">
@@ -292,16 +318,17 @@
                                                value="created_at">
                                         <label for="dob">@lang('langs.created_at')</label><br>
 
+
                                     </div>
                                     <div class="col-md-2">
                                         <input type="checkbox" class="check_all" id="account_number"
                                                name="field[account_number]"
                                                value="account_number">
                                         <label for="account_number"> @lang('langs.account_number')</label><br>
-                                        <input type="checkbox" class="check_all" id="account_number"
+                                        <input type="checkbox" class="check_all" id="user_id"
                                                name="field[user_id]"
                                                value="user_id">
-                                        <label for="user_id"> @lang('langs.user_name')</label><br>
+                                        <label for="user_id"> @lang('langs.mobile_number')</label><br>
                                     </div>
                                     <span style="color: red;margin-left: 342px;">{{$errors->first('field')}}</span>
                                 </div>
@@ -314,9 +341,8 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                </div><!-- End Vertically centered Modal-->
-
+                </div><!-- End Customer Report Modal-->
+            </div>
         </section>
     </main>
 
