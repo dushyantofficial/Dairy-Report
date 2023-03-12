@@ -60,16 +60,16 @@
 
         {{--Report Section--}}
         <li class="nav-item ">
-            <a class="nav-link collapsed @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active @endif "
+            <a class="nav-link collapsed @if(Request::is('*customer_report*') ||  Request::is('*item_name_report*') ||  Request::is('*item_sales_report*') ||  Request::is('*item_purchase_report*')) active @endif "
                data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
                 <i class="ri-bill-line"></i><span>@lang('langs.report')</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="icons-nav"
-                class="nav-content collapse @if(Request::is('*customer_report_show*') ||  Request::is('*item_name_report_show*') ||  Request::is('*item_sales_report_show*') ||  Request::is('*item_purchase_report_show*')) active show @endif"
+                class="nav-content collapse @if(Request::is('*customer_report*') ||  Request::is('*item_name_report*') ||  Request::is('*item_sales_report*') ||  Request::is('*item_purchase_report*')) active show @endif"
                 data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{route('customer-report-show')}}"
-                       class="{{ Request::is('customer_report_show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('customer_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.customer_report')</span>
                     </a>
                 </li>
@@ -77,21 +77,21 @@
 
                 <li>
                     <a href="{{route('item-name-report-show')}}"
-                       class="{{ Request::is('item_name_report_show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_name_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_name_report')</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{route('item-sales-report-show')}}"
-                       class="{{ Request::is('item_sales_report_show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_sales_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_sales_report')</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{route('item-purchase-report-show')}}"
-                       class="{{ Request::is('item_purchase_report_show*') ? 'active' : '' }} ">
+                       class="{{ Request::is('item_purchase_report*') ? 'active' : '' }} ">
                         <i class="bi bi-circle"></i><span>@lang('langs.item_purchase_report')</span>
                     </a>
                 </li>
